@@ -1,10 +1,15 @@
 # bordeaux-0918-js-hiventive
 
--- TO DO --
+Collaborative web app about building interactive OS for electronic devices by assembling Github Yocto layers.
 
 ## Team
 
--- TO DO --
+BeePolar team :
+- Ribeiro Agnès
+- Fettinger Julien
+- Gonzalez Thomas
+- Moureaux Mathias
+- Remond Julien
 
 ## How to commit? (for the team)
 
