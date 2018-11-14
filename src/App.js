@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hiventive - Bee.Polar team <img src={BeePolarLogo} alt="BeePolarLogo"/></h1>
+        <h1>Projet Hiventive - Bee.Polar team <img src={BeePolarLogo} alt="BeePolarLogo"/></h1>
       </div>
     );
   }
