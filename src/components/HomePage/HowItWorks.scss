@@ -1,0 +1,13 @@
+@import '../../index.scss';
+
+.circles{
+  @extend %circles
+}
+
+.circle{
+  @extend %circle;
+}
+
+.HowItWorks{
+  text-align: center;
+}
