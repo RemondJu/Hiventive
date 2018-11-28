@@ -1,14 +1,11 @@
+@import '../../index.scss';
+
 .circles{
-  display: flex;
-  justify-content: space-around;
-  min-height: 150px;
+  @extend %circles
 }
 
 .circle{
-  background-color: lightgreen;
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
+  @extend %circle;
 }
 
 .HowItWorks{
