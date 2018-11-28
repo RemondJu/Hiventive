@@ -1,0 +1,16 @@
+.BestLayers{
+  text-align: center;
+  background-color: lightgray;
+}
+
+.layers{
+  display: flex;
+  justify-content: space-around;
+}
+
+.layer{
+  background-color: burlywood;
+  border-radius: 15px;
+  height: 120px;
+  width: 180px;
+}
