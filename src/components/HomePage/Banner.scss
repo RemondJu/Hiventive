@@ -1,4 +1,23 @@
-.Banner{
-  background-image: url('https://via.placeholder.com/300');
+@import '../../index.scss';
+
+
+// .Banner{
+//   background-image: url('https://via.placeholder.com/300');
+//   padding: 110px;
+// }
+
+.Banner {
+  font-family: 'Dosis', sans-serif;
+  background-image: linear-gradient($secondary-color, $primary-color);
+  color : white;
   padding: 110px;
+  
+    h2 {
+      font-weight: bold;
+    }
+
+    .button {
+      @extend %button;
+    }
 }
+
