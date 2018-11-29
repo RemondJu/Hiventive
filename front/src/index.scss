@@ -21,17 +21,33 @@ $font-general: 'Dosis', sans-serif;
 }
 
 %button{
+  font-family: 'Dosis', sans-serif; 
   border: 1px solid $third-color;
   border-radius: 5px;
-  color : white;
+  color : $fourth-color;
   text-transform: uppercase;
   background-color: $third-color;
-  padding : 10px 15px;
 }
 
 %button:hover {
   background-color: $fourth-color;
   border: 1px solid $third-color ;
   color: $third-color;
+}
+
+
+%button_neg{
+  font-family: 'Dosis', sans-serif; 
+  border: 1px solid  $fourth-color;
+  border-radius: 5px;
+  color : $third-color;
+  text-transform: uppercase;
+  background-color: $fourth-color;
+}
+
+%button_neg:hover {
+  background-color: $third-color;
+  border: 1px solid $fourth-color ;
+  color: $fourth-color;
 }
 
