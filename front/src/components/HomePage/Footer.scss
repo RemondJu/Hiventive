@@ -24,3 +24,70 @@
     font-weight: bold;
   }
 }
+
+.hexagon {
+  position: relative;
+  width: 50px; 
+  height: 28.87px;
+  margin: 14.43px 0;
+  background-image: url(https://i2.wp.com/opensourceforu.com/wp-content/uploads/2016/10/GitHub.jpg?fit=750%2C473&ssl=1);
+  background-size: auto 57.7350px;
+  background-position: center;
+}
+
+.hexTop,
+.hexBottom {
+  position: absolute;
+  z-index: 1;
+  width: 35.36px;
+  height: 35.36px;
+  overflow: hidden;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background: inherit;
+  left: 7.32px;
+}
+
+/*counter transform the bg image on the caps*/
+.hexTop:after,
+.hexBottom:after {
+  content: "";
+  position: absolute;
+  width: 50.0000px;
+  height: 28.86751345948129px;
+  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-14.4338px);
+  -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-14.4338px);
+  transform:          rotate(45deg) scaleY(1.7321) translateY(-14.4338px);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  background: inherit;
+}
+
+.hexTop {
+  top: -17.6777px;
+}
+
+.hexTop:after {
+  background-position: center top;
+}
+
+.hexBottom {
+  bottom: -17.6777px;
+}
+
+.hexBottom:after {
+  background-position: center bottom;
+}
+
+.hexagon:after {
+  content: "";
+  position: absolute;
+  top: 0.0000px;
+  left: 0;
+  width: 50.0000px;
+  height: 28.8675px;
+  z-index: 2;
+  background: inherit;
+}
