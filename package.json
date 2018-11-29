@@ -17,6 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lint-all": "eslint src",
     "precommit": "npm run lint-all"
   },
   "eslintConfig": {
