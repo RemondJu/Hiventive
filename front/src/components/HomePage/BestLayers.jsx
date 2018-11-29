@@ -3,13 +3,13 @@ import './BestLayers.scss';
 
 const BestLayers = () => (
   <div className="BestLayers">
-    <h2>Most downloaded layers</h2>
+    <h2 className="titlebest">Most downloaded layers</h2>
     <div className="layers">
       <div className="layer" />
       <div className="layer" />
       <div className="layer" />
     </div>
-    <h2>Latest OS</h2>
+    <h2 className="titlebest">Latest OS</h2>
     <div className="layers">
       <div className="layer" />
       <div className="layer" />
