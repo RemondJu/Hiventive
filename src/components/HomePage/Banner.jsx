@@ -16,7 +16,7 @@ const Banner = () => (
      cupidatat non proident, sunt in culpa qui officia deserunt
      mollit anim id est laborum.
     </p>
-    <button type="submit">Go to app</button>
+    <button className="button" type="submit">Go to app</button>
   </div>
 );
 

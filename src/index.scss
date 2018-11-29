@@ -1,3 +1,11 @@
+$primary-color: #00E18F; 
+$secondary-color: #00C7C6 ;
+$third-color: #3E2B5F;
+$fourth-color: white;
+
+
+// FONT HIVENTIVE // font-family: 'Dosis', sans-serif;
+
 %circles{
   display: flex;
   justify-content: space-around;
@@ -10,3 +18,19 @@
   width: 150px;
   border-radius: 50%;
 }
+
+%button{
+  border: 1px solid $third-color;
+  border-radius: 5px;
+  color : white;
+  text-transform: uppercase;
+  background-color: $third-color;
+  padding : 10px 15px;
+}
+
+%button:hover {
+  background-color: $fourth-color;
+  border: 1px solid $third-color ;
+  color: $third-color;
+}
+
