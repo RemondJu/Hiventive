@@ -1,6 +1,65 @@
+@import '../index.scss';
+
 .NavBar{
   display: flex;
-  min-height: 50px;
+  max-height: 70px;
   padding: 10px;
-  justify-content: space-around;
+  justify-content: space-between;
+  background-color: $third-color;
+
+  .logo{
+    display: flex;
+    width: 45px;
+
+    .title{
+      background: -webkit-linear-gradient($secondary-color, $primary-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Dosis', sans-serif;
+      margin-left : 10px;
+    }
+  }
+  
+  .logo:hover{
+    text-decoration: none;
+  }
+
+  .searchbar{
+    display: flex;
+    
+    .field{
+      border-radius: 5px 0 0 5px;
+      padding : 10px 15px;
+      width : 500px;
+      border-style: none;
+      font-family: 'Dosis', sans-serif;
+    }
+
+    .button_search {
+      @extend %button_neg;
+      border-radius : 0 5px 5px 0;
+      background-color: rgba(53, 52, 93, 0);
+      color: $fourth-color;
+      padding : 10px 15px;
+    }
+
+    .button_search:hover{
+      background-image: linear-gradient(to left, $secondary-color, $primary-color);
+    }
+
+  }
+
+  .button_login {
+    @extend %button_neg;
+    padding : 10px 15px;
+    
+  }
+
+}
+
+
+@media screen and (max-width: 1100px) {
+  .title{
+    display: none;
+  }
 }
