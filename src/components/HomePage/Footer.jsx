@@ -3,7 +3,20 @@ import './Footer.scss';
 
 const Footer = () => (
   <div className="Footer">
-    <h2>Footer</h2>
+    <div className="footerpart">
+      <ul>
+        <li><h4 className="titlefooter">Help</h4></li>
+        <li>Need Help</li>
+        <li>Documentation</li>
+      </ul>
+    </div>
+    <div className="footerpart">
+      <ul>
+        <li><h4 className="titlefooter">Informations</h4></li>
+        <li>About us</li>
+        <li>Contact us</li>
+      </ul>
+    </div>
   </div>
 );
 
