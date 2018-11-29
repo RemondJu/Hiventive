@@ -1,7 +1,7 @@
 $primary-color: #00E18F; 
 $secondary-color: #00C7C6 ;
 $third-color: #3E2B5F;
-$fourth-color: white;
+$fourth-color: rgb(242, 242, 242);
 
 $font-general: 'Dosis', sans-serif;
 
@@ -11,13 +11,12 @@ $font-general: 'Dosis', sans-serif;
   display: flex;
   justify-content: space-around;
   min-height: 150px;
-  height: 500px;
 }
 
 %circle{
-  background-color: lightgreen;
-  height: 150px;
-  width: 150px;
+  background-image: linear-gradient(0.65turn, $secondary-color, $primary-color);
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
 }
 
