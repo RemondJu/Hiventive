@@ -3,10 +3,17 @@
 
 .Banner {
   font-family: 'Dosis', sans-serif;
-  background-image: linear-gradient($secondary-color, $primary-color);
+  background-image: url('https://i.imgur.com/QSUMIOe.png');
+  background-position: center;
   color : white;
   background-size: cover;
   padding: 110px;
+  padding-top: 160px;
+    p{
+      font-size: 1.6em;
+      width: 60%;
+      color: $third-color;
+    }
   
     h2 {
       font-weight: bold;
