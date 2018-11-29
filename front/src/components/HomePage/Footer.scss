@@ -1,4 +1,26 @@
-.Footer{
-  text-align: center;
-}
+@import '../../index.scss';
 
+.Footer {
+  text-align: start;
+  margin-bottom: -8px;
+  background-color: $primary-color;
+  padding: 25px 0px;
+  display: flex;
+  justify-content: center;
+  font-family: $font-general;
+  /*Marge verticale*/
+
+  ul {
+    list-style-type: none;
+    width: 100%;
+  }
+  .footerpart {
+    text-align: start;
+    padding: 25px;
+    
+  }
+  .titlefooter{
+    font-size: 25px;
+    font-weight: bold;
+  }
+}
