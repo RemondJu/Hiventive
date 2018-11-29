@@ -2,13 +2,28 @@
 
 .circles{
   @extend %circles;
+  padding-top: 1%;
 }
 
 .circle{
   @extend %circle;
-  padding: 1%;
+  padding: 2%;
 }
 
 .HowItWorks{
+  background-color: $fourth-color;
+  font-family: 'Dosis', sans-serif;
   text-align: center;
+  height: 500px;
+  align-content: center;
+
+  h2 {
+    padding-top: 1%;
+    font-size: 50px;
+  }
+
+}
+
+.HIWTitles {
+  padding-top: 40%;
 }
