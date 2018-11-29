@@ -1,0 +1,12 @@
+%circles{
+  display: flex;
+  justify-content: space-around;
+  min-height: 150px;
+}
+
+%circle{
+  background-color: lightgreen;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
