@@ -17,6 +17,10 @@ const Footer = () => (
         <li>Contact us</li>
       </ul>
     </div>
+    <div class="hexagon">
+      <div class="hexTop"></div>
+      <div class="hexBottom"></div>
+    </div>
   </div>
 );
 
