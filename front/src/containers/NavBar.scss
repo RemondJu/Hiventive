@@ -46,6 +46,8 @@
 
     .button_search:hover{
       background-image: linear-gradient(to left, $secondary-color, $primary-color);
+      color: $third-color;
+      transition: 0.5s;
     }
 
   }
