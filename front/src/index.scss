@@ -1,0 +1,53 @@
+$primary-color: #00E18F; 
+$secondary-color: #00C7C6 ;
+$third-color: #3E2B5F;
+$fourth-color: rgb(242, 242, 242);
+
+$font-general: 'Dosis', sans-serif;
+
+// FONT HIVENTIVE // font-family: 'Dosis', sans-serif;
+
+%circles{
+  display: flex;
+  justify-content: space-around;
+  min-height: 150px;
+}
+
+%circle{
+  background-image: linear-gradient(0.65turn, $secondary-color, $primary-color);
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+%button{
+  font-family: 'Dosis', sans-serif; 
+  border: 1px solid $third-color;
+  border-radius: 5px;
+  color : $fourth-color;
+  text-transform: uppercase;
+  background-color: $third-color;
+}
+
+%button:hover {
+  background-color: $fourth-color;
+  border: 1px solid $third-color ;
+  color: $third-color;
+}
+
+
+%button_neg{
+  font-family: 'Dosis', sans-serif; 
+  border: 1px solid  $fourth-color;
+  border-radius: 5px;
+  color : $third-color;
+  text-transform: uppercase;
+  background-color: $fourth-color;
+}
+
+%button_neg:hover {
+  background-color: $third-color;
+  border: 1px solid $fourth-color ;
+  color: $fourth-color;
+}
+

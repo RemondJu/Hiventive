@@ -1,0 +1,27 @@
+@import '../../index.scss';
+
+
+.Banner {
+  font-family: 'Dosis', sans-serif;
+  background-image: url('../../images/background-section1.jpg');
+  background-position: center;
+  color : white;
+  background-size: cover;
+  padding: 110px;
+  padding-top: 160px;
+    p{
+      font-size: 1.6em;
+      width: 60%;
+      color: $third-color;
+    }
+  
+    h2 {
+      font-weight: bold;
+    }
+
+    .button {
+      @extend %button;
+      padding : 10px 15px;
+    }
+}
+
