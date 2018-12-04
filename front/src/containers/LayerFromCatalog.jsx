@@ -2,8 +2,8 @@ import React from 'react';
 import './LayerFromCatalog.scss';
 
 const LayerFromCatalog = () => (
-  <div className="Layer">
-    <tr className="LayerFromCatalog">
+  <div className="LayerFromCatalog">
+    <tr className="Layer">
       <td className="imageRow">Image</td>
       <td>Name</td>
       <td>Description</td>
