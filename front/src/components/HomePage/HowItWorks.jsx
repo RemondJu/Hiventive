@@ -11,7 +11,7 @@ const HowItWorks = () => (
       <div className="circle">
         <img src={signin} alt="signin" width="100%" />
         <h3 className="HIWTitles">Sign in</h3>
-        <p>Join our lovely community and share with us your beautiful layers.</p>    
+        <p>Join our lovely community and share with us your beautiful layers.</p>
       </div>
       <div className="circle">
         <img src={search} alt="search" width="100%" />
