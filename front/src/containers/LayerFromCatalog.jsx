@@ -4,7 +4,7 @@ import './LayerFromCatalog.scss';
 const LayerFromCatalog = () => (
   <div className="LayerFromCatalog">
     <tr className="Layer">
-      <td className="imageRow">Image</td>
+      <td className="imageRow"></td>
       <td>Name</td>
       <td>Description</td>
       <td>Maintainer</td>
