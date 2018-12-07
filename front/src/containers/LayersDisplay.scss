@@ -1,0 +1,48 @@
+@import '../index.scss';
+
+.LayersDisplay{
+  margin-top: 120px;
+  width:100%;  
+  display: flex;
+  justify-content: center;
+}
+.layersTitles{
+  color: $third-color;
+  text-align: center;
+  width:100%;
+  th{
+    font-size: 1.4em;
+  }
+  tr{
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.1em;
+    margin-top: 15px;
+    height: 65px;
+    align-items: center;
+  }
+  .imageRow{
+    width: 65px;
+    height: 65px;
+    background-color: $third-color;
+  }
+}
+.layersScrolling{
+  overflow-y: scroll; 
+  max-height: 500px;;
+  margin-top: 20px;
+}
+.layersScrolling::-webkit-scrollbar {
+  border-radius: 15px;
+  width: 0.8em;
+}
+.layersScrolling::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 15px;
+}
+
+.layersScrolling::-webkit-scrollbar-thumb {
+  background-color: $third-color;
+  outline: 1px solid slategrey;
+  border-radius: 15px;
+}
