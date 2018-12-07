@@ -7,15 +7,31 @@
 
 .circle{
   @extend %circle;
-  padding: 2%;
+  padding: 2.2%;
+}
+
+.circleViolet{
+  @extend %circleViolet;
+  padding: 2.2%;
+}
+
+.circleBlue{
+  @extend %circleBlue;
+  padding: 2.2%;
+}
+
+.circleGreen{
+  @extend %circleGreen;
+  padding: 2.2%;
 }
 
 .HowItWorks{
   background-color: $fourth-color;
   font-family: 'Dosis', sans-serif;
   text-align: center;
-  height: 500px;
+  height: 600px;
   align-content: center;
+  padding-top: 30px;
 
   h2 {
     padding-top: 1%;
@@ -24,10 +40,16 @@
 
   p {
     font-size: 1.2em;
+    width: 150px;
   }
 
 }
 
 .HIWTitles {
   padding-top: 40%;
+}
+
+.alignelement{
+  align-content: center;
+  width: 250px;
 }

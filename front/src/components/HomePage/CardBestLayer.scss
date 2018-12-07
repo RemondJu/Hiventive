@@ -1,0 +1,48 @@
+@import '../../index.scss';
+.tablecontainer{
+  width: 530px;
+  min-height: 300px;
+  background-color: rgba(23, 24, 24, 0.515);
+  padding: 10px;
+  font-family:$font-general;
+  border-radius: 20px;
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+
+  h3{
+    font-weight: bold;
+    color: $fourth-color;
+  }
+
+  .bestcardcontent{
+    font-weight: bold;
+    font-size: 20px;
+    color: $secondary-color;
+    
+  }
+
+  .bestcardtitlesecond{
+    font-weight: bold;
+    font-size: 20px;
+    color: $fourth-color;
+  }
+
+  span{
+    margin: 0px 10px ;
+    padding-top: 3px;
+    font-weight: bold;
+    color: $secondary-color;
+  }
+  .bestcardvalues{
+    color: $secondary-color;
+    font-size: 17px;
+    
+  }
+  .name{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 5px;
+    font-size: 15px;
+  }
+}
