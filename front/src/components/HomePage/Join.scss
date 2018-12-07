@@ -8,11 +8,13 @@
 
   .JoinText{
     font-size: 35px;
-  }
-  .ImportantWords {
-    font-size: 45px;
-    font-weight: bold;
-    color: $secondary-color;
+
+    .ImportantWords {
+      font-size: 45px;
+      font-weight: bold;
+      color: $secondary-color;
+    }
+    
   }
   h2 {
     padding-top: 3%;
