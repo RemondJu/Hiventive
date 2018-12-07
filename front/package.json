@@ -18,6 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint-all": "eslint src",
+    "build-preprod": "npm run build && rm ./build/static/**/*.map && rm -rf /var/www/html/hiventive/* && mv ./build/* /var/www/html/hiventive",
     "precommit": "npm run lint-all"
   },
   "eslintConfig": {
