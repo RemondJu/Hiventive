@@ -1,30 +1,5 @@
 @import '../../index.scss';
 
-.circles{
-  @extend %circles;
-  padding-top: 1%;
-}
-
-.circle{
-  @extend %circle;
-  padding: 2.2%;
-}
-
-.circleViolet{
-  @extend %circleViolet;
-  padding: 2.2%;
-}
-
-.circleBlue{
-  @extend %circleBlue;
-  padding: 2.2%;
-}
-
-.circleGreen{
-  @extend %circleGreen;
-  padding: 2.2%;
-}
-
 .HowItWorks{
   background-color: $fourth-color;
   font-family: 'Dosis', sans-serif;
@@ -32,7 +7,30 @@
   height: 600px;
   align-content: center;
   padding-top: 30px;
+  
+  .circles{
+  @extend %circles;
+  padding-top: 1%;
+    .circle{
+      @extend %circle;
+      padding: 2.2%;
+    }
 
+    .circleViolet{
+      @extend %circleViolet;
+      padding: 2.2%;
+    }
+
+    .circleBlue{
+      @extend %circleBlue;
+      padding: 2.2%;
+    }
+
+    .circleGreen{
+      @extend %circleGreen;
+      padding: 2.2%;
+    }
+  }
   h2 {
     padding-top: 1%;
     font-size: 50px;
