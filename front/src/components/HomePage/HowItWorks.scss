@@ -7,7 +7,6 @@
   height: 600px;
   align-content: center;
   padding-top: 30px;
-  
   .circles{
   @extend %circles;
   padding-top: 1%;
@@ -15,20 +14,28 @@
       @extend %circle;
       padding: 2.2%;
     }
-
     .circleViolet{
       @extend %circleViolet;
       padding: 2.2%;
+      .HIWTitles {
+        padding-top: 40%;
+      }
     }
 
     .circleBlue{
       @extend %circleBlue;
       padding: 2.2%;
+      .HIWTitles {
+        padding-top: 40%;
+      }
     }
 
     .circleGreen{
       @extend %circleGreen;
       padding: 2.2%;
+      .HIWTitles {
+        padding-top: 40%;
+      }
     }
   }
   h2 {
@@ -40,14 +47,4 @@
     font-size: 1.2em;
     width: 150px;
   }
-
-}
-
-.HIWTitles {
-  padding-top: 40%;
-}
-
-.alignelement{
-  align-content: center;
-  width: 250px;
 }
