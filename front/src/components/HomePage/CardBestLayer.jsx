@@ -18,11 +18,11 @@ class CardBestLayer extends Component {
       type,
       download,
       view,
-      date, 
+      date,
       user,
     } = this.props;
     return (
-      <div className="tablecontainer">
+      <div className="CardBestLayer">
         <h3>
           Layer
           <span className="bestcardcontent">{nameLayer}</span>
