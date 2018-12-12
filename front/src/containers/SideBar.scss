@@ -19,6 +19,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding-left: 15px;
+
     .filter{
       margin-top: 15px;
       background: none;
@@ -27,11 +28,13 @@
       text-align: left;
       font-weight: 200;
     }
+
     .filter:hover{
       background-color: $fourth-color;
       transition: all 0.5s ease;
       width: 100%;
     }
+
   }
   button{
     border-radius: 8px;
@@ -45,6 +48,7 @@
     span{
       font-size: 1em;
     }
+    
   }
   button:hover{
     background-color: $fourth-color;
