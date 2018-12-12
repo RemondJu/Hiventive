@@ -29,4 +29,4 @@ const NavBar = props => (
 
 function mdtp(dispatch) { return bindActionCreators({ switchLoginModal }, dispatch); }
 
-export default connect(null, mdtp)(NavBar); // ATTENTION à bien mettre
+export default connect(null, mdtp)(NavBar);
