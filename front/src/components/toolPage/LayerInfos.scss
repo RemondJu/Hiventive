@@ -1,0 +1,6 @@
+@import '../../index.scss';
+
+.button {
+  @extend %button;
+  padding : 10px 15px;
+}
