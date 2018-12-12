@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.scss';
 import { Switch, Route } from 'react-router-dom';
-import HomePage from './components/HomePage/Homepage';
-import ToolPage from './components/ToolPage/ToolPage';
-
+import HomePage from './components/homePage/Homepage';
+import ToolPage from './components/toolPage/ToolPage';
 
 const App = () => (
   <div className="App">
