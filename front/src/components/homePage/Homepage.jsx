@@ -1,6 +1,5 @@
 import React from 'react';
 import './Homepage.scss';
-import NavBar from '../../containers/NavBar';
 import Banner from './Banner';
 import HowItWorks from './HowItWorks';
 import BestLayers from './BestLayers';
@@ -9,7 +8,6 @@ import Footer from './Footer';
 
 const HomePage = () => (
   <div className="Homepage">
-    <NavBar />
     <Banner />
     <HowItWorks />
     <BestLayers />
