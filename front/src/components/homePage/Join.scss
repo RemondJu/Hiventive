@@ -5,7 +5,14 @@
   background-color: $fourth-color;
   text-align: center;
   padding-bottom: 5%;
-
+  .circles{
+    @extend %circles;
+    padding-top: 1%;
+      .circle{
+        @extend %circle;
+        padding: 2.2%;
+      }
+    }
   .JoinText{
     font-size: 35px;
 
@@ -14,6 +21,7 @@
       font-weight: bold;
       color: $secondary-color;
     }
+    
     
   }
   h2 {
