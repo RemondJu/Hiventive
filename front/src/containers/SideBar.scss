@@ -23,13 +23,14 @@
       margin-top: 15px;
       background: none;
       color: $third-color;
-      width: 100%;
+      width: 70%;
       text-align: left;
       font-weight: 200;
     }
     .filter:hover{
       background-color: $fourth-color;
-      transition: 0.4s;
+      transition: all 0.5s ease;
+      width: 100%;
     }
   }
   button{
@@ -40,6 +41,7 @@
     color: white;
     align-self: center;
     font-weight: bold;
+    transition: 0.4s;
     span{
       font-size: 1em;
     }
