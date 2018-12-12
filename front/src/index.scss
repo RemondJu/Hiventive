@@ -1,6 +1,5 @@
 $primary-color: #00E18F; 
-$secondary-color: #00C7C6 ;
-$secondary-color-opacity: rgba(0, 199, 199, 0.75) ;
+$secondary-color: #00C7C6;
 $third-color: #3E2B5F;
 $fourth-color: rgb(242, 242, 242);
 
@@ -20,6 +19,28 @@ $font-general: 'Dosis', sans-serif;
   width: 200px;
   border-radius: 50%;
 }
+
+%circleViolet{
+  background-color: $third-color;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+%circleBlue{
+  background-color: $secondary-color;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+%circleGreen{
+  background-color: $primary-color;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
 
 %button{
   font-family: 'Dosis', sans-serif; 

@@ -19,7 +19,8 @@
     "eject": "react-scripts eject",
     "lint-all": "eslint src",
     "build-preprod": "npm run build && rm ./build/static/**/*.map && rm -rf /var/www/html/hiventive/* && mv ./build/* /var/www/html/hiventive",
-    "precommit": "npm run lint-all"
+    "lint": "eslint src --ext js,jsx",
+    "lint-jsx": "eslint src --ext jsx"
   },
   "eslintConfig": {
     "extends": "airbnb",
@@ -52,5 +53,10 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "husky": "^1.2.0"
+  },
+  "husky": {
+    "hooks": {
+    "pre-commit": "npm run lint"
+    }
   }
 }
