@@ -13,21 +13,19 @@
     color: $fourth-color;
     margin-bottom: 40px;
   }
+  .layers{
+    display: flex;
+    height: 340px;
+    justify-content: space-around;
+    padding-top: 30px;
+    margin-bottom: 120px;
   
-}
-
-.layers{
-  display: flex;
-  height: 340px;
-  justify-content: space-around;
-  padding-top: 30px;
-  margin-bottom: 120px;
-
-  .layer{
-    background-color: rgba(62, 60, 63, 0.577);
-    border-radius: 15px;
-    height: 200px;
-    width: 300px;
-
+    .layer{
+      background-color: rgba(62, 60, 63, 0.577);
+      border-radius: 15px;
+      height: 200px;
+      width: 300px;
+  
+    }
   }
 }
