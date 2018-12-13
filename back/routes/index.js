@@ -3,10 +3,42 @@ import conf from './conf';
 
 const router = express.Router();
 
-/* GET index page. */
-router.get('/', (req, res) => {
-  res.json({
-    title: 'Express'
+const logger = require('./logger');
+
+logger.accessLog.info(`Request API to use ${new Date().toISOString()}`);
+
+/* GET select all users */
+router.get('/all-users', (req, res) => {
+  conf.query('SELECT * FROM User', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
+/* GET select all projects */
+router.get('/all-projects', (req, res) => {
+  conf.query('SELECT * FROM Project', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
+/* GET select all layers */
+router.get('/all-layers', (req, res) => {
+  conf.query('SELECT * FROM Layer', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
   });
 });
 
