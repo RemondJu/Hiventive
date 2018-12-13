@@ -1,0 +1,7 @@
+{"message":"Test error log","level":"info"}
+{"message":"Test error log","level":"info"}
+{"message":"Test error log","level":"info"}
+{"code":"ER_NO_SUCH_TABLE","errno":1146,"sqlMessage":"Table 'hiventive.U' doesn't exist","sqlState":"42S02","index":0,"sql":"SELECT * FROM U","level":"info"}
+{"code":"ER_NO_SUCH_TABLE","errno":1146,"sqlMessage":"Table 'hiventive.U' doesn't exist","sqlState":"42S02","index":0,"sql":"SELECT * FROM U","level":"error"}
+{"code":"ER_NO_SUCH_TABLE","errno":1146,"sqlMessage":"Table 'hiventive.U' doesn't exist","sqlState":"42S02","index":0,"sql":"SELECT * FROM U","level":"error"}
+{"code":"ER_NO_SUCH_TABLE","errno":1146,"sqlMessage":"Table 'hiventive.U' doesn't exist","sqlState":"42S02","index":0,"sql":"SELECT * FROM U","level":"error"}
