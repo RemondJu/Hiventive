@@ -36,36 +36,33 @@
         cursor: pointer;
       }
 
-      .login_title{
+      .login_title {
         text-align: center;
         color: $primary-color;
       }
 
-      .login_intro{
+      .login_text {
         text-align: center;
         font-size: 1.3rem;
-        margin-bottom: 20px;
+        margin: 20px 0;
       }
 
-      .login_form{
-        margin-bottom: 20px;
-
-        .login_input{
-          display: block;
-          color: $fourth-color;
-          width: 100%;
-          border: none;
-          border-bottom: 2px solid $fourth-color;
-          background-color: transparent;
-        }
+      .login_input {
+        display: block;
+        color: $fourth-color;
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid $fourth-color;
+        background-color: transparent;
       }
 
-      .login_sign_in{
+      .login_sign_in {
+        margin-top: 40px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
 
-        .login_hiventive{
+        .signin_hiventive {
           @extend %button_neg;
           font-size: 1.1rem;
           margin: 0;
@@ -76,7 +73,7 @@
           text-transform: none;
         }
 
-        .login_hiventive:hover{
+        .signin_hiventive:hover {
           text-decoration: underline;
           color: $primary-color;
           border : none;
@@ -88,11 +85,11 @@
           font-size: 1.2rem;
           cursor: pointer;
         }
-      }
+      } 
     }
   }
 
 .modal_login.hidden {
   transform: scale(1.2); 
   visibility: hidden;
-  }
+}
