@@ -7,6 +7,8 @@ const LayerInfos = () => (
     <NavLink to="/ToolPage">
       <button className="button" type="button">Back</button>
     </NavLink>
+    <h2>meta-ti / version: rocko</h2>
+    <h3>Distribution</h3>
   </div>
 
 );

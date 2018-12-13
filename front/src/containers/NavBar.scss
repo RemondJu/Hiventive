@@ -7,7 +7,8 @@
   padding: 10px;
   justify-content: space-between;
   background-color: $third-color;
-  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
   width: 100%;
   .logo{
     display: flex;
