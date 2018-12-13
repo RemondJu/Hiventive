@@ -1,14 +1,14 @@
 @import '../../index.scss';
 .CardBestLayer{
-  width: 530px;
-  min-height: 300px;
-  background-color: rgba(23, 24, 24, 0.515);
-  padding: 10px;
+  width: 330px;
+  min-height: 200px;
+  background-color: rgba(124, 83, 124, 0.495);
+  padding: 20px;
+  margin: auto;
   font-family:$font-general;
   border-radius: 20px;
   text-align: left;
-  display: flex;
-  flex-wrap: wrap;
+
 
   h3{
     font-weight: bold;
@@ -17,32 +17,21 @@
 
   .bestcardcontent{
     font-weight: bold;
-    font-size: 20px;
-    color: $secondary-color;
+    font-size: 1em;
+    color: $third-color;
     
-  }
-
-  .bestcardtitlesecond{
-    font-weight: bold;
-    font-size: 20px;
-    color: $fourth-color;
+    
   }
 
   span{
     margin: 0px 10px ;
-    padding-top: 3px;
+    padding-top: 10px;
     font-weight: bold;
     color: $secondary-color;
   }
   .bestcardvalues{
     color: $secondary-color;
-    font-size: 17px;
-    
+    font-size: 1.5em;   
   }
-  .name{
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 5px;
-    font-size: 15px;
-  }
+ 
 }

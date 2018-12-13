@@ -41,7 +41,6 @@ $font-general: 'Dosis', sans-serif;
   border-radius: 50%;
 }
 
-
 %button{
   font-family: 'Dosis', sans-serif; 
   border: 1px solid $third-color;
@@ -57,7 +56,6 @@ $font-general: 'Dosis', sans-serif;
   color: $third-color;
 }
 
-
 %button_neg{
   font-family: 'Dosis', sans-serif; 
   border: 1px solid  $fourth-color;
@@ -72,4 +70,21 @@ $font-general: 'Dosis', sans-serif;
   border: 1px solid $fourth-color ;
   color: $fourth-color;
 }
+
+%BestLayers{
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  
+  %titlebest{
+    font-family: $font-general;
+    font-size: 50px;
+    font-weight: bold;
+    color: $fourth-color;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+  }
+
+  }
 

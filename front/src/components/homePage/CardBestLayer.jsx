@@ -14,8 +14,6 @@ class CardBestLayer extends Component {
   render() {
     const {
       nameLayer,
-      description,
-      type,
       download,
       view,
       date,
@@ -27,29 +25,29 @@ class CardBestLayer extends Component {
           Layer
           <span className="bestcardcontent">{nameLayer}</span>
         </h3>
-        <p className="bestcardtitlesecond">
-          Descriptions :
-          <span className="bestcardcontent">{description}</span>
-        </p>
-        <p className="bestcardtitlesecond">
-          Type :
-          <span className="bestcardcontent">{type}</span>
-        </p>
         <span>
-          <img src={dll} alt="dll" width="5%" />
+          <img src={dll} alt="dll" width="10%" />
           <span className="bestcardvalues">{download}</span>
         </span>
         <span>
-          <img src={eye} alt="eye" width="5%" />
+          <img src={eye} alt="eye" width="10%" />
           <span className="bestcardvalues">{view}</span>
         </span>
+        <br />
         <span>
-          <img src={calendar} alt="calendar" width="5%" />
+          <img src={calendar} alt="calendar" width="10%" />
           <span className="bestcardvalues">{date}</span>
         </span>
+        <br />
         <span>
-          <img src={username} alt="user" width="5%" />
-          <span className="bestcardvalues">{user}</span>
+          <img src={username} alt="user" width="10%" />
+          <span className="bestcardvalues">
+            {
+             (user.length > 20)
+               ? `${user.slice(0, 19)}...` : user
+            }
+
+          </span>
         </span>
       </div>
 
