@@ -2,20 +2,22 @@
 
 .NavBar{
   display: flex;
+  position: relative;
   max-height: 70px;
   padding: 10px;
   justify-content: space-between;
   background-color: $third-color;
+
   position: sticky;
+
   width: 100%;
   .logo{
     display: flex;
     width: 45px;
 
     .title{
-      background: -webkit-linear-gradient($secondary-color, $primary-color);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background: none;
+      -webkit-text-fill-color: $fourth-color;
       font-family: 'Dosis', sans-serif;
       margin-left : 10px;
     }
@@ -55,11 +57,8 @@
   .button_login {
     @extend %button_neg;
     padding : 10px 15px;
-    
   }
-
 }
-
 
 @media screen and (max-width: 1100px) {
   .title{
