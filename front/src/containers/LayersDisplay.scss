@@ -1,18 +1,21 @@
 @import '../index.scss';
 
 .LayersDisplay{
-  margin-top: 120px;
+  margin-top: 25px;
   width:100%;  
   display: flex;
   justify-content: center;
 }
+
 .layersTitles{
   color: $third-color;
   text-align: center;
   width:100%;
+  
   th{
     font-size: 1.4em;
   }
+
   tr{
     display: flex;
     justify-content: space-around;
@@ -25,17 +28,39 @@
     width: 65px;
     height: 65px;
     background-color: $third-color;
+    transition: 1s;
+
+    .info {
+      width: 50px;
+      height: 50px;
+      margin-top: 11%;
+      transition: 0.7s;
+    }
+
+  }
+  .imageRow:hover {
+    background-color: $secondary-color;
+    transition: 1s;
+    
+    .info:hover {
+      content: url(../images/infohover.png);
+      transition: 0.7s;
+    }
+
   }
 }
+
 .layersScrolling{
   overflow-y: scroll; 
   max-height: 500px;;
   margin-top: 20px;
 }
+
 .layersScrolling::-webkit-scrollbar {
   border-radius: 15px;
   width: 0.8em;
 }
+
 .layersScrolling::-webkit-scrollbar-track{
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   border-radius: 15px;
