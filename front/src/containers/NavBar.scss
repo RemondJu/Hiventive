@@ -2,9 +2,10 @@
 
 .NavBar{
   display: flex;
-  position: relative;
+  position: sticky;
   max-height: 70px;
   padding: 10px;
+  z-index: 1;
   justify-content: space-between;
   background-color: $third-color;
   position: -webkit-sticky;
@@ -56,6 +57,39 @@
   .button_login {
     @extend %button_neg;
     padding : 10px 15px;
+    margin: 0px 10px 0px 0px;
+  }
+  .popoversShow{
+    background-color: white;
+    transition: 0.2s;
+    height: 50px;
+    position: absolute;
+    border-radius: 5px;
+  }
+  .effectAdd{
+ transform: translate(20px, 15px);
+  }
+  .effectLog{
+ transform: translate(-10px, 15px);
+  }
+  .popoversHid{
+    height: 0px;
+    transition: 0.2s;
+    position: absolute;
+  }
+  .textShow{
+    padding: 15px;
+  }
+  .textHidden{
+    display: none;
+  }
+  .button_link_log{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .button_link_log:hover{
+    color: black;
   }
 }
 
