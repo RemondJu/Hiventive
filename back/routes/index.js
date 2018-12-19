@@ -42,4 +42,26 @@ router.get('/all-layers', (req, res) => {
   });
 });
 
+/* GET select all categories */
+router.get('/layer/categories', (req, res) => {
+  conf.query('SELECT * FROM LayerType', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+/* post new layer */
+router.post('/layer/', (req, res) => {
+  conf.query('INSERT INTO Layer SET ? ', req.body, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
 export default router;
