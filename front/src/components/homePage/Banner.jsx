@@ -18,7 +18,8 @@ const Banner = () => (
       state: {
         whereToArrive: 'home',
       },
-    }}>
+    }}
+    >
       <button className="button" type="button">Go to app</button>
     </Link>
   </div>
