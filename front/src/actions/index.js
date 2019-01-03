@@ -1,5 +1,11 @@
-
-const switchLoginModal = () => ({
+export const switchLoginModal = () => ({
   type: 'SWITCH_LOGIN_MODAL',
 });
-export default switchLoginModal;
+
+export const showToggleAdd = () => ({
+  type: 'SHOW_TOGGLE_ADD',
+});
+
+export const showToggleLog = () => ({
+  type: 'SHOW_TOGGLE_LOG',
+});

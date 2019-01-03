@@ -1,8 +1,8 @@
 import React from 'react';
 import './HowItWorks.scss';
-import search from '../../images/loupe.svg';
-import signin from '../../images/pen.png';
-import build from '../../images/box.png';
+import search from '../../images/search.png';
+import signin from '../../images/signin.png';
+import build from '../../images/build.png';
 
 const HowItWorks = () => (
   <div className="HowItWorks">
