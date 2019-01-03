@@ -32,7 +32,7 @@ export const layersFetchData = url => (dispatch) => {
     .then(response => response.json())
     .then(layers => dispatch(layersFetchDataSuccess(layers)))
     .catch(() => dispatch(layersHasErrored(true)));
-
+};
 
 // fetch categories to layer
 export const hasErrored = bool => ({
@@ -55,6 +55,20 @@ export const fetchCategoriesLayer = () => (dispatch) => {
   fetch(`${API_SERVER}/layer/categories/`)
     .then(res => res.json())
     .then(categories => dispatch(categoriesLayerFetchDataSuccess(categories)))
+    .then(() => dispatch(isLoading(false)))
+    .catch(() => dispatch(hasErrored(true)));
+};
+
+export const searchLayerFetchDataSuccess = layers => ({
+  type: 'SEARCH_LAYER_FETCH_DATA_SUCCESS',
+  layers,
+});
+
+export const fetchSearchLayer = wordSearch => (dispatch) => {
+  dispatch(isLoading(true));
+  fetch(`${API_SERVER}/layer/search/?wordSearch=${wordSearch}`)
+    .then(res => res.json())
+    .then(layers => dispatch(searchLayerFetchDataSuccess(layers)))
     .then(() => dispatch(isLoading(false)))
     .catch(() => dispatch(hasErrored(true)));
 };

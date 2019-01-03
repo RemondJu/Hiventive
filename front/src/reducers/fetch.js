@@ -23,6 +23,9 @@ export function layersFetchDataSuccess(state = [], action) {
     case 'LAYERS_FETCH_DATA_SUCCESS':
       return action.layers;
 
+    case 'SEARCH_LAYER_FETCH_DATA_SUCCESS':
+      return action.layers;
+
     default:
       return state;
   }

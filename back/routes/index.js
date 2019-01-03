@@ -70,4 +70,15 @@ router.post('/layer/', (req, res) => {
   });
 });
 
+/* GET search layer */
+router.get('/layer/search/', (req, res) => {
+  conf.query(`SELECT * FROM Layer WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.viewsCounter DESC LIMIT 20`, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 export default router;
