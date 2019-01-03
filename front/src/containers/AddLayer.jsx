@@ -74,16 +74,18 @@ class AddLayer extends Component {
     };
     // id project provisoir
     const projectId = 1;
-    const conf = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(layerSend),
-    };
-    fetch(`${API_SERVER}/layer/?projectId=${projectId}`, conf)
-      .then(() => history.push('/'))
-      .catch();
+    if (layerTypeID !== 0) {
+      const conf = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(layerSend),
+      };
+      fetch(`${API_SERVER}/layer/?projectId=${projectId}`, conf)
+        .then(() => history.push('/'))
+        .catch();
+    }
   }
 
   render() {
@@ -112,18 +114,19 @@ class AddLayer extends Component {
                   <li className="item_input">
                     <label className="label_input" htmlFor="name">
                       <p>Name</p>
-                      <input name="name" id="name" onChange={this.inputChange} value={name} type="text" />
+                      <input required name="name" id="name" onChange={this.inputChange} value={name} type="text" />
                     </label>
                   </li>
                   <li className="item_input">
                     <label className="label_input" htmlFor="url">
                       <p>Url</p>
-                      <input name="url" id="url" onChange={this.inputChange} value={url} type="text" />
+                      <input required name="url" id="url" onChange={this.inputChange} value={url} type="text" />
                     </label>
                   </li>
                   <li className="item_input">
                     <p>Category</p>
-                    <select name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
+                    <select required name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
+                      <option value={0}>Selecte type</option>
                       {categoryLayer.length === 0 ? '...' : categoryLayer.categories.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
                     </select>
                   </li>
@@ -134,13 +137,13 @@ class AddLayer extends Component {
                   <li className="item_input">
                     <label className="label_input" htmlFor="version">
                       <p>Version</p>
-                      <input name="version" id="version" onChange={this.inputChange} value={version} type="text" />
+                      <input required name="version" id="version" onChange={this.inputChange} value={version} type="text" />
                     </label>
                   </li>
                   <li className="item_input">
                     <label className="label_input" htmlFor="hostSite">
                       <p>Host site</p>
-                      <input name="hostSite" id="hostSite" onChange={this.inputChange} value={hostSite} type="text" />
+                      <input required name="hostSite" id="hostSite" onChange={this.inputChange} value={hostSite} type="text" />
                     </label>
                   </li>
                   <li className="item_input">
@@ -156,7 +159,7 @@ class AddLayer extends Component {
               <Col xs="12" className="text_area">
                 <label className="label_input" htmlFor="description">
                   <p>Description</p>
-                  <textarea className="text_area_input" name="description" id="description" onChange={this.inputChange} value={description} />
+                  <textarea required className="text_area_input" name="description" id="description" onChange={this.inputChange} value={description} />
                 </label>
               </Col>
             </Row>
