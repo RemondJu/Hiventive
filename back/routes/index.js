@@ -44,7 +44,7 @@ router.get('/all-layers', (req, res) => {
 
 /* GET select all categories */
 router.get('/layer/categories', (req, res) => {
-  conf.query('SELECT * FROM LayerType', (err, result) => {
+  conf.query('SELECT id, type FROM LayerType', (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
@@ -59,7 +59,13 @@ router.post('/layer/', (req, res) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
-      res.sendStatus(200);
+      conf.query('INSERT IGNORE INTO ProjectLayer SET projectId = ?, layerId= (SELECT id FROM Layer WHERE id =LAST_INSERT_ID()); ', req.query.projectId, (errB) => {
+        if (errB) {
+          logger.errorLog.error(err);
+        } else {
+          res.sendStatus(200);
+        }
+      });
     }
   });
 });

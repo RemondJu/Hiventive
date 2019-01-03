@@ -16,11 +16,11 @@ class AddLayer extends Component {
     super(props);
     this.state = {
       name: '',
-      version: 0,
+      version: '',
       url: '',
       hostSite: '',
       description: '',
-      categories: '',
+      layerTypeID: '',
       share: false,
     };
     this.inputChange = this.inputChange.bind(this);
@@ -47,17 +47,41 @@ class AddLayer extends Component {
   }
 
   sendForm(event) {
-    const data = this.state;
-    const { history } = this.props;
     event.preventDefault();
+    const {
+      name,
+      version,
+      url,
+      hostSite,
+      description,
+      layerTypeID,
+      share,
+    } = this.state;
+    const { history } = this.props;
+    // id userId
+    const layerSend = {
+      userId: 1,
+      viewsCounter: 0,
+      downloadsCounter: 0,
+      imported: false,
+      layerTypeID: Number(layerTypeID),
+      name,
+      version,
+      url,
+      hostSite,
+      description,
+      share,
+    };
+    // id project provisoir
+    const projectId = 1;
     const conf = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(layerSend),
     };
-    fetch(`${API_SERVER}/layer`, conf)
+    fetch(`${API_SERVER}/layer/?projectId=${projectId}`, conf)
       .then(() => history.push('/'))
       .catch();
   }
@@ -69,7 +93,6 @@ class AddLayer extends Component {
       url,
       hostSite,
       description,
-      categories,
       share,
     } = this.state;
     const { categoryLayer } = this.props;
@@ -100,8 +123,8 @@ class AddLayer extends Component {
                   </li>
                   <li className="item_input">
                     <p>Category</p>
-                    <select name="categories" id="categories" value={categories} onChange={this.inputChange}>
-                      {categoryLayer.length === 0 ? '...' : categoryLayer.map(category => <option key={category.id} value={category}>{category}</option>)}
+                    <select name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
+                      {categoryLayer.length === 0 ? '...' : categoryLayer.categories.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
                     </select>
                   </li>
                 </ul>

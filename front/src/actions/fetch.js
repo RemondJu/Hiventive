@@ -18,7 +18,7 @@ export const categoriesLayerFetchDataSuccess = categories => ({
 
 export const fetchCategoriesLayer = () => (dispatch) => {
   dispatch(categoriesLayerIsLoading(true));
-  fetch(`${API_SERVER}/layer/categories`)
+  fetch(`${API_SERVER}/layer/categories/`)
     .then(res => res.json())
     .then(categories => dispatch(categoriesLayerFetchDataSuccess(categories)))
     .then(() => dispatch(categoriesLayerIsLoading(false)))
