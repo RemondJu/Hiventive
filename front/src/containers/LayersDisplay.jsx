@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './LayersDisplay.scss';
-
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { layersFetchData } from '../actions/fetch';
@@ -9,8 +9,10 @@ import LayerFromCatalog from './LayerFromCatalog';
 
 class LayersDisplay extends Component {
   componentDidMount() {
-    const { fetchData } = this.props;
-    fetchData('http://localhost:4000/hiventive/api/all-layers');
+    const { fetchData, location } = this.props;
+    if (location.state !== undefined) {
+      fetchData('http://localhost:4000/hiventive/api/all-layers');
+    }
   }
 
   render() {
@@ -54,4 +56,4 @@ function mdtp(dispatch) {
 }
 
 
-export default connect(mstp, mdtp)(LayersDisplay);
+export default withRouter(connect(mstp, mdtp)(LayersDisplay));
