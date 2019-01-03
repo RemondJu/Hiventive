@@ -32,16 +32,6 @@ const Footer = () => (
           </a>
         </Col>
       </Row>
-      <Row>
-        <Col md={{ size: 'auto' }} className="mb-2 mt-4">
-          <p className="footerby">
-            Made with
-            <img src="https://www.freeiconspng.com/uploads/heart-png-26.png" alt="Heart" width="3%" />
-            by Bee Polar Team
-
-          </p>
-        </Col>
-      </Row>
 
     </Container>
   </div>
