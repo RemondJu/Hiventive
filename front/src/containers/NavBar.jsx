@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-
 import { NavLink } from 'react-router-dom';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-
 import './NavBar.scss';
 import '../components/ModalLogin.scss';
 import { showToggleAdd, showToggleLog, switchLoginModal } from '../actions';
+import { fetchSearchLayer } from '../actions/fetch';
 import ModalLogin from '../components/ModalLogin';
 import logoHiventiveWhite from '../images/logoHiventive_white.png';
 
@@ -16,7 +14,22 @@ import logoHiventiveWhite from '../images/logoHiventive_white.png';
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      wordSearch: '',
+    };
+    this.searchChange = this.searchChange.bind(this);
+    this.sendSearch = this.sendSearch.bind(this);
+  }
+
+  searchChange(event) {
+    this.setState({
+      wordSearch: event.target.value,
+    });
+  }
+
+  sendSearch(event) {
+    event.preventDefault();
+    console.log(this.state)
   }
 
   render() {
@@ -26,6 +39,7 @@ class NavBar extends Component {
       showToggleLogRedux,
       popoversNavbar,
     } = this.props;
+    const { wordSearch } = this.state;
     return (
       <div className="NavBar">
         <NavLink to="/" className="logo">
@@ -33,8 +47,10 @@ class NavBar extends Component {
           <h1 className="title">Hiventive</h1>
         </NavLink>
         <div className="searchbar">
-          <input className="field" placeholder="Search for layers" type="text" />
-          <button className="button_search" type="submit">Search</button>
+          <form onSubmit={this.sendSearch}>
+            <input className="field" value={wordSearch} onChange={this.searchChange} placeholder="Search for layers" type="text" />
+            <button className="button_search" type="submit">Search</button>
+          </form>
         </div>
         <div className="buttonsForPopovers">
           <button className="button_login" onClick={() => showToggleAddRedux()} type="button">+</button>

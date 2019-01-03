@@ -24,3 +24,17 @@ export const fetchCategoriesLayer = () => (dispatch) => {
     .then(() => dispatch(isLoading(false)))
     .catch(() => dispatch(hasErrored(true)));
 };
+
+export const searchLayerFetchDataSuccess = layers => ({
+  type: 'SEARCH_LAYER_FETCH_DATA_SUCCESS',
+  layers,
+});
+
+export const fetchSearchLayer = wordSearch => (dispatch) => {
+  dispatch(isLoading(true));
+  fetch(`${API_SERVER}/layer/search/?wordSearch=${wordSearch}`)
+    .then(res => res.json())
+    .then(layers => dispatch(searchLayerFetchDataSuccess(layers)))
+    .then(() => dispatch(isLoading(false)))
+    .catch(() => dispatch(hasErrored(true)));
+};
