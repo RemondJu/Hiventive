@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import modal from './modal';
+import newProjectModalToggle from './newProjectModalToggle';
 import { layersHasErrored, layersIsLoading, layersFetchDataSuccess } from './fetch';
 import popoversNavbar from './popoversNavbar';
 import categoryLayer from './categoryLayer';
@@ -10,6 +11,7 @@ const allReducers = combineReducers({
   popoversNavbar,
   categoryLayer,
   isLoading,
+  newProjectModalToggle,
   layersHasErrored,
   layersIsLoading,
   layersFetchDataSuccess,

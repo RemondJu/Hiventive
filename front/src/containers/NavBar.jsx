@@ -11,6 +11,7 @@ import '../components/ModalLogin.scss';
 import { showToggleAdd, showToggleLog, switchLoginModal } from '../actions';
 import ModalLogin from '../components/ModalLogin';
 import logoHiventiveWhite from '../images/logoHiventive_white.png';
+import NewProjectModal from '../components/NewProjectModal';
 
 
 class NavBar extends Component {
@@ -51,6 +52,7 @@ class NavBar extends Component {
           </div>
         </div>
         <ModalLogin />
+        <NewProjectModal />
       </div>
     );
   }
