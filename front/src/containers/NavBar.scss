@@ -2,7 +2,7 @@
 
 .NavBar{
   display: flex;
-  position: fixed;
+  position: sticky;
   max-height: 70px;
   padding: 10px;
   z-index: 1;
