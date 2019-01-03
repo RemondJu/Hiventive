@@ -12,6 +12,7 @@ import { showToggleAdd, showToggleLog, switchLoginModal } from '../actions';
 import ModalLogin from '../components/ModalLogin';
 import logoHiventiveWhite from '../images/logoHiventive_white.png';
 
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +40,7 @@ class NavBar extends Component {
           <button className="button_login" onClick={() => showToggleAddRedux()} type="button">+</button>
           <div className={popoversNavbar.toggleAdd ? 'popoversShow effectAdd' : 'popoversHid'}>
             <div className={popoversNavbar.toggleAdd ? 'textShow' : 'textHidden'}>
-              <p>Add new Layer</p>
+              <NavLink className="button_link_log" to="/newLayer/">Add new Layer</NavLink>
             </div>
           </div>
           <button className="button_login" onClick={() => showToggleLogRedux()} type="button">Login / Sign in</button>
