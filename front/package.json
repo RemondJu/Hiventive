@@ -30,7 +30,7 @@
     "parser": "babel-eslint",
     "globals": {
       "fetch": false
-    },
+      },
     "env": {
       "es6": true
     },
