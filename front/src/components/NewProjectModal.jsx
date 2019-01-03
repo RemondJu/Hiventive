@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './NewProjectModal.scss';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { newProjectModal } from '../actions';
@@ -53,6 +54,12 @@ class NewProjectModal extends Component {
     );
   }
 }
+
+NewProjectModal.propTypes = {
+  newProjectModalToggle: PropTypes.shape.isRequired,
+  newProjectModalAction: PropTypes.func.isRequired,
+};
+
 
 const mstp = state => ({
   newProjectModalToggle: state.newProjectModalToggle,
