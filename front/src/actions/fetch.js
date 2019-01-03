@@ -1,13 +1,13 @@
 import API_SERVER from '../constants';
 
 // fetch categories to layer
-export const categoriesLayerHasErrored = bool => ({
-  type: 'CATEGORIES_LAYER_HAS_ERRORED',
+export const hasErrored = bool => ({
+  type: 'HAS_ERRORED',
   hasErrored: bool,
 });
 
-export const categoriesLayerIsLoading = bool => ({
-  type: 'CATEGORIES_LAYER_IS_LOADING',
+export const isLoading = bool => ({
+  type: 'IS_LOADING',
   isLoading: bool,
 });
 
@@ -17,10 +17,10 @@ export const categoriesLayerFetchDataSuccess = categories => ({
 });
 
 export const fetchCategoriesLayer = () => (dispatch) => {
-  dispatch(categoriesLayerIsLoading(true));
+  dispatch(isLoading(true));
   fetch(`${API_SERVER}/layer/categories/`)
     .then(res => res.json())
     .then(categories => dispatch(categoriesLayerFetchDataSuccess(categories)))
-    .then(() => dispatch(categoriesLayerIsLoading(false)))
-    .catch(() => dispatch(categoriesLayerHasErrored(true)));
+    .then(() => dispatch(isLoading(false)))
+    .catch(() => dispatch(hasErrored(true)));
 };

@@ -6,10 +6,12 @@ import ToolPage from './components/toolPage/ToolPage';
 import LayerInfos from './components/toolPage/LayerInfos';
 import NavBar from './containers/NavBar';
 import AddLayer from './containers/AddLayer';
+import LoadingContent from './containers/LoadingContent';
 
 const App = () => (
   <div className="App">
     <NavBar />
+    <LoadingContent />
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/ToolPage" component={ToolPage} />
