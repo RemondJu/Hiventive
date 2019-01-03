@@ -13,3 +13,8 @@ export const showToggleAdd = () => ({
 export const showToggleLog = () => ({
   type: 'SHOW_TOGGLE_LOG',
 });
+
+export const filterType = typeFilter => ({
+  type: 'FILTER_TYPE',
+  typeFilter,
+});

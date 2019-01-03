@@ -5,6 +5,8 @@ import { layersHasErrored, layersIsLoading, layersFetchDataSuccess } from './fet
 import popoversNavbar from './popoversNavbar';
 import categoryLayer from './categoryLayer';
 import isLoading from './isLoading';
+import typeFilter from './typeFilter';
+
 
 const allReducers = combineReducers({
   modal,
@@ -15,6 +17,7 @@ const allReducers = combineReducers({
   layersHasErrored,
   layersIsLoading,
   layersFetchDataSuccess,
+  typeFilter,
 });
 
 export default allReducers;
