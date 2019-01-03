@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -9,7 +9,6 @@ import { showToggleAdd, showToggleLog, switchLoginModal } from '../actions';
 import { fetchSearchLayer } from '../actions/fetch';
 import ModalLogin from '../components/ModalLogin';
 import logoHiventiveWhite from '../images/logoHiventive_white.png';
-
 
 class NavBar extends Component {
   constructor(props) {
@@ -28,8 +27,11 @@ class NavBar extends Component {
   }
 
   sendSearch(event) {
+    const { wordSearch } = this.state;
+    const { fetchSearchLayerRedux, history } = this.props;
     event.preventDefault();
-    console.log(this.state)
+    fetchSearchLayerRedux(wordSearch);
+    history.push('/ToolPage');
   }
 
   render() {
@@ -77,6 +79,8 @@ NavBar.propTypes = {
   showToggleAddRedux: PropTypes.func.isRequired,
   showToggleLogRedux: PropTypes.func.isRequired,
   popoversNavbar: PropTypes.shape.isRequired,
+  fetchSearchLayerRedux: PropTypes.func.isRequired,
+  history: PropTypes.shape.isRequired,
 };
 
 const mstp = state => ({
@@ -87,6 +91,7 @@ const mdtp = dispatch => bindActionCreators({
   switchLoginModalRedux: switchLoginModal,
   showToggleAddRedux: showToggleAdd,
   showToggleLogRedux: showToggleLog,
+  fetchSearchLayerRedux: fetchSearchLayer,
 }, dispatch);
 
-export default connect(mstp, mdtp)(NavBar);
+export default withRouter(connect(mstp, mdtp)(NavBar));

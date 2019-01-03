@@ -32,7 +32,7 @@ export const layersFetchData = url => (dispatch) => {
     .then(response => response.json())
     .then(layers => dispatch(layersFetchDataSuccess(layers)))
     .catch(() => dispatch(layersHasErrored(true)));
-
+};
 
 // fetch categories to layer
 export const hasErrored = bool => ({
