@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import SideBar from './SideBar';
 import { fetchCategoriesLayer } from '../actions/fetch';
+import { showToggleAdd } from '../actions';
 import API_SERVER from '../constants';
 
 
@@ -30,7 +31,8 @@ class AddLayer extends Component {
 
 
   componentDidMount() {
-    const { fetchCategoriesLayerRedux } = this.props;
+    const { fetchCategoriesLayerRedux, showToggleAddRedux } = this.props;
+    showToggleAddRedux();
     fetchCategoriesLayerRedux();
   }
 
@@ -42,7 +44,7 @@ class AddLayer extends Component {
 
   inputChangeCheckbox() {
     this.setState(prevState => ({
-      share: prevState.share,
+      share: !prevState.share,
     }));
   }
 
@@ -65,11 +67,11 @@ class AddLayer extends Component {
       downloadsCounter: 0,
       imported: false,
       layerTypeID: Number(layerTypeID),
+      description: description === '' ? 'no description' : description,
       name,
       version,
       url,
       hostSite,
-      description,
       share,
     };
     // id project provisoir
@@ -125,7 +127,7 @@ class AddLayer extends Component {
                   </li>
                   <li className="item_input">
                     <p>Category</p>
-                    <select required name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
+                    <select name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
                       <option value={0}>Selecte type</option>
                       {categoryLayer.length === 0 ? '...' : categoryLayer.categories.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
                     </select>
@@ -149,7 +151,7 @@ class AddLayer extends Component {
                   <li className="item_input">
                     <label className="label_chekbox" htmlFor="share">
                       <p>Share</p>
-                      <input name="share" id="share" onChange={this.inputChange} value={share} type="checkbox" />
+                      <input name="share" id="share" onChange={this.inputChangeCheckbox} value={share} type="checkbox" />
                     </label>
                   </li>
                 </ul>
@@ -159,13 +161,13 @@ class AddLayer extends Component {
               <Col xs="12" className="text_area">
                 <label className="label_input" htmlFor="description">
                   <p>Description</p>
-                  <textarea required className="text_area_input" name="description" id="description" onChange={this.inputChange} value={description} />
+                  <textarea className="text_area_input" name="description" id="description" onChange={this.inputChange} value={description} />
                 </label>
               </Col>
             </Row>
             <Row>
               <Col xs="6" className="text_align_center">
-                <NavLink to="/LayerInfos">
+                <NavLink to="/">
                   <button className="button_submit" type="button">
                     return
                   </button>
@@ -186,6 +188,7 @@ class AddLayer extends Component {
 
 AddLayer.propTypes = {
   fetchCategoriesLayerRedux: PropTypes.func.isRequired,
+  showToggleAddRedux: PropTypes.func.isRequired,
   categoryLayer: PropTypes.shape.isRequired,
 };
 
@@ -195,6 +198,7 @@ const mstp = state => ({
 
 const mdtp = dispatch => bindActionCreators({
   fetchCategoriesLayerRedux: fetchCategoriesLayer,
+  showToggleAddRedux: showToggleAdd,
 }, dispatch);
 
 
