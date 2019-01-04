@@ -1,0 +1,7 @@
+{
+  "uid": "hiventive",
+  "append": true,
+  "watch": true,
+  "script": "start",
+  "sourceDir": "/home/staffbdx/Bureau/workspace/bordeaux-0918-js-hiventive/back/bin"
+}
