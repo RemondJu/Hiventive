@@ -1,0 +1,37 @@
+@import '../../index.scss';
+.CardBestLayer{
+  width: 330px;
+  min-height: 200px;
+  background-color: rgba(124, 83, 124, 0.495);
+  padding: 20px;
+  margin: auto;
+  font-family:$font-general;
+  border-radius: 20px;
+  text-align: left;
+
+
+  h3{
+    font-weight: bold;
+    color: $fourth-color;
+  }
+
+  .bestcardcontent{
+    font-weight: bold;
+    font-size: 1em;
+    color: $third-color;
+    
+    
+  }
+
+  span{
+    margin: 0px 10px ;
+    padding-top: 10px;
+    font-weight: bold;
+    color: $secondary-color;
+  }
+  .bestcardvalues{
+    color: $secondary-color;
+    font-size: 1.5em;   
+  }
+ 
+}

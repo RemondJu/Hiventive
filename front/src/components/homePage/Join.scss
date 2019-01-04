@@ -1,0 +1,31 @@
+@import '../../index.scss';
+
+.Join{
+  font-family: 'Dosis', sans-serif;
+  background-color: $fourth-color;
+  text-align: center;
+  padding-bottom: 5%;
+  .circles{
+    @extend %circles;
+    padding-top: 1%;
+      .circle{
+        @extend %circle;
+        padding: 2.2%;
+      }
+    }
+  .JoinText{
+    font-size: 35px;
+
+    .ImportantWords {
+      font-size: 45px;
+      font-weight: bold;
+      color: $secondary-color;
+    }
+    
+    
+  }
+  h2 {
+    padding-top: 3%;
+    font-size: 50px;
+  }
+}

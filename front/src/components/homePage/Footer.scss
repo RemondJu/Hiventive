@@ -1,0 +1,30 @@
+@import '../../index.scss';
+
+.Footer {
+  text-align: center;
+  margin-bottom: -8px;
+  background-color: $third-color;
+  padding: 5px 20px; 
+  font-family: $font-general;
+
+  ul {
+    list-style-type: none;
+    width: 100%;
+    color: $fourth-color;
+  }
+  .titlefooter{
+    font-size: 25px;
+    font-weight: bold;
+    color: $fourth-color;
+  }
+  a {
+    padding-left: 20px;
+  }
+  .footerby{
+    color: $fourth-color;
+    font-family: $font-general;
+    text-align: center;
+    margin-left: 70px;
+
+  }
+}

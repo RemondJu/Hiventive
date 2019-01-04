@@ -1,0 +1,54 @@
+@import '../index.scss';
+
+.ModalLogin {
+  @extend %modal;
+
+    .innerWindow {
+      @extend %innerWindow;
+      
+      .close {
+        @extend %closeButton;
+      }
+
+      .close:hover,
+      .close:focus {
+        @extend %closeButtonHoverFocus;
+      }
+
+      .login_title {
+        @extend %modalTitle;
+      }
+
+      .login_text {
+        @extend %modalText;
+      }
+
+      .login_input {
+        @extend %inputField;        
+      }
+
+      .login_sign_in {
+        @extend %modalButtons;
+
+        .signin_hiventive {
+          @extend %linkButton;
+        }
+
+        .signin_hiventive:hover {
+          @extend %linkButtonHover;          
+        }
+
+        .login_submit {
+          @extend %submitButton;                    
+        }
+      } 
+      *:focus{
+        outline: none;
+      }
+    }
+  }
+
+.hidden {
+  transform: scale(1.2); 
+  visibility: hidden;
+}

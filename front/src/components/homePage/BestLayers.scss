@@ -1,0 +1,9 @@
+@import '../../index.scss';
+
+.BestLayers{
+  @extend %BestLayers;
+  .titlebest{
+    @extend %titlebest;
+  }
+
+  }

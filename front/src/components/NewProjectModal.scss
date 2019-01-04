@@ -1,0 +1,53 @@
+@import '../index.scss';
+
+.NewProjectModal{
+  @extend %modal;
+
+  .innerWindow{
+    @extend %innerWindow;
+    
+    .close {
+      @extend %closeButton;
+    }
+
+    .close:hover,
+    .close:focus {
+      @extend %closeButtonHoverFocus;
+    }
+
+    .login_title {
+      @extend %modalTitle;
+    }
+
+    .login_text {
+      @extend %modalText;
+    }
+
+    .login_input {
+      @extend %inputField;  
+    }
+
+    .createImport {
+      @extend %modalButtons;
+
+      .importButton {
+        @extend %linkButton;
+      }
+
+      .importButton:hover {
+        @extend %linkButtonHover;          
+      }
+
+      .createButton {
+        @extend %submitButton;                    
+      }
+    } 
+  }
+  *:focus{
+    outline: none;
+  }
+}
+
+.hidden {
+  display: none;
+}

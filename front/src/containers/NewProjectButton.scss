@@ -1,0 +1,24 @@
+@import '../index.scss';
+
+.projectButton{
+  display: block;
+  align-self: center;
+  border-radius: 8px;
+  padding: 10px 10px;
+  border: none;
+  background-color: $third-color;
+  color: white;
+  width: 100%;
+  font-weight: bold;
+  transition: 0.4s;
+  span{
+    font-size: 1em;
+  }
+  
+}
+.projectButton:hover{
+  border-radius: 8px;
+  background-color: $fourth-color;
+  color: $third-color;
+  transition: 0.4s;
+}

@@ -1,0 +1,52 @@
+@import '../index.scss';
+
+.AddLayer{
+  display: flex;
+  height: 100%;
+  .text_title{
+    margin: 0px auto 5px auto;
+  }
+  .content_add_layer{
+    margin: 25px auto 0px auto;
+  }
+  .liste_input{
+    list-style-type: none;
+  }
+  .item_input{
+     margin: 5px 0px 10px 0px;
+  }
+  .label_chekbox{
+    display: flex;
+    justify-content: space-around;
+    padding: 45px 10px 0px 10px;
+  }
+  .text_area{
+     padding: 0px 50px 0px 50px;
+  }
+  .text_area_input{
+    border-radius: 10px;
+    border: 1px solid #a6a6a6;
+    background-color: #fafafa;
+    width: 235%;
+  }
+  .text_align_center{
+    margin: 25px 0px 0px 0px;
+    padding: 0px 25% 0px 25%;
+  }
+  .button_submit{
+    border-radius: 8px;
+      padding: 10px 10px 10px 10px;
+       margin: 0px 0px 10px 0px;
+    border: none;
+    background-color: $third-color;
+    color: white;
+    align-self: center;
+    font-weight: bold;
+    transition: 0.4s;  
+  }
+  .button_submit:hover{
+    background-color: $fourth-color;
+    color: $third-color;
+    transition: 0.4s;
+  }
+}
