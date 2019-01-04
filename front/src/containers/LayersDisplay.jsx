@@ -6,13 +6,14 @@ import { bindActionCreators } from 'redux';
 import { layersFetchData } from '../actions/fetch';
 import LayerFromCatalog from './LayerFromCatalog';
 import { filterType } from '../actions';
+import API_SERVER from '../constants';
 
 
 class LayersDisplay extends Component {
   componentDidMount() {
     const { fetchData, location, filterTypeRedux } = this.props;
     if (location.state !== undefined) {
-      fetchData('http://localhost:4000/hiventive/api/all-layers');
+      fetchData(`${API_SERVER}/all-layers`);
     }
     filterTypeRedux('All');
   }

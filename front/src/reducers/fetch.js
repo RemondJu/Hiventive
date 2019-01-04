@@ -1,3 +1,4 @@
+
 export function layersHasErrored(state = false, action) {
   switch (action.type) {
     case 'LAYERS_HAS_ERRORED':
