@@ -26,5 +26,6 @@ yarn-error.log*
 package-lock.json
 conf.js
 .env
+.env.production
 errors.log
 access.log
