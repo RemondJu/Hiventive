@@ -15,6 +15,7 @@ import { fetchSearchLayer } from '../actions/fetch';
 import ModalLogin from '../components/ModalLogin';
 import logoHiventiveWhite from '../images/logoHiventive_white.png';
 import NewProjectModal from '../components/NewProjectModal';
+import glass from '../images/search.png';
 
 class NavBar extends Component {
   constructor(props) {
@@ -60,6 +61,11 @@ class NavBar extends Component {
             <input className="field" value={wordSearch} onChange={this.searchChange} placeholder="Search for layers" type="text" />
             <button className="button_search" type="submit">Search</button>
           </form>
+        </div>
+        <div className="searchButton">
+          <button type="button">
+            <img className="searchLogo" src={glass} alt="search glass" />
+          </button>
         </div>
         <div className="buttonsForPopovers">
           <button className="button_login" onClick={() => showToggleAddRedux()} type="button">+</button>
