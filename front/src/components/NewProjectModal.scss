@@ -1,69 +1,45 @@
 @import '../index.scss';
 
 .NewProjectModal{
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  z-index: 10;
+  @extend %modal;
 
   .innerWindow{
-    background-color: $third-color;
-    margin: 15% auto;
-    border-radius: 5px;
-    padding: 20px;
-    color: $fourth-color;
-    width: 40%; 
-    min-width: 280px;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+    @extend %innerWindow;
     
+    .close {
+      @extend %closeButton;
+    }
+
+    .close:hover,
+    .close:focus {
+      @extend %closeButtonHoverFocus;
+    }
+
     .login_title {
-      text-align: center;
-      color: $primary-color;
+      @extend %modalTitle;
     }
 
     .login_text {
-      text-align: center;
-      font-size: 1.3rem;
-      margin: 20px 0;
+      @extend %modalText;
     }
 
     .login_input {
-      display: block;
-      color: $fourth-color;
-      width: 100%;
-      border: none;
-      border-bottom: 2px solid $fourth-color;
-      background-color: transparent;
+      @extend %inputField;  
     }
+
     .createImport {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+      @extend %modalButtons;
 
       .importButton {
-        @extend %button_neg;
-        font-size: 1.1rem;
-        margin: 0;
-        border : none;
-        background: transparent;
-        color: $primary-color;
-        cursor: pointer;
-        text-transform: none;
+        @extend %linkButton;
       }
 
       .importButton:hover {
-        text-decoration: underline;
-        color: $primary-color;
-        border : none;
+        @extend %linkButtonHover;          
       }
 
       .createButton {
-        @extend %button_neg;
-        padding : 5px 15px;
-        font-size: 1.2rem;
-        cursor: pointer;
+        @extend %submitButton;                    
       }
     } 
   }
@@ -73,6 +49,5 @@
 }
 
 .hidden {
-  transform: scale(1.2); 
   display: none;
 }
