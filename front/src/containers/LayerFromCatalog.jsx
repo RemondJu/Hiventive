@@ -7,13 +7,12 @@ import info from '../images/info.png';
 
 const LayerFromCatalog = (props) => {
   const {
-    name, description, url, repository,
+    id, name, description, url, repository,
   } = props;
-
   return (
     <div className="LayerFromCatalog">
       <tr className="Layer">
-        <NavLink to="/LayerInfos">
+        <NavLink to={`/layerinfos/${id}`}>
           <td className="imageRow">
             <img className="info" alt="logo_info" src={info} />
           </td>

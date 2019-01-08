@@ -33,6 +33,7 @@ class LayersDisplay extends Component {
           <div className="layersScrolling">
             {layers.filter(element => element.type === typeFilter || typeFilter === 'All').map(layer => (
               <LayerFromCatalog
+                id={layer.id}
                 name={layer.name}
                 description={layer.description}
                 url={layer.url}
