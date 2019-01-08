@@ -9,8 +9,8 @@ class LayerInfos extends Component {
   }
 
   componentDidMount() {
-    const { fetchLayerDetail, location } = this.props;
-    fetchLayerDetail(this.props.match.params.id);
+    const { fetchLayerDetail } = this.props;
+    fetchLayerDetail(this.params.id);
   }
 
   render() {
