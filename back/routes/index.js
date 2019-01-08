@@ -81,4 +81,16 @@ router.get('/layer/search/', (req, res) => {
   });
 });
 
+/* GET layer details by ID */
+router.get('/layerdetail/:id', (req, res) => {
+  const idLayer = req.params.id;
+  conf.query('SELECT * FROM Layer WHERE id = ?', idLayer, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 export default router;
