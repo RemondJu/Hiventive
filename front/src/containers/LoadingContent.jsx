@@ -21,6 +21,12 @@ class LoadingContent extends Component {
     }, 15000);
   }
 
+  componentDidUpdate() {
+    setTimeout(() => {
+      this.sendError();
+    }, 15000);
+  }
+
   sendError() {
     const { isLoadingValue, isLoadingRedux, history } = this.props;
     if (isLoadingValue) {
