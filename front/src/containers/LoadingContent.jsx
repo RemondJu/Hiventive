@@ -31,8 +31,8 @@ class LoadingContent extends Component {
     const { isLoadingValue, isLoadingRedux, history } = this.props;
     if (isLoadingValue) {
       isLoadingRedux(false);
+      history.push('/');
     }
-    history.push('/');
   }
 
   render() {
