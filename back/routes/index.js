@@ -80,5 +80,14 @@ router.get('/layer/search/', (req, res) => {
     }
   });
 });
+router.post('/project', (req, res) => {
+  conf.query('INSERT INTO Project SET ? ', req.body, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(201);
+    }
+  });
+});
 
 export default router;

@@ -14,7 +14,7 @@ import {
 import { fetchSearchLayer } from '../actions/fetch';
 import ModalLogin from '../components/ModalLogin';
 import logoHiventiveWhite from '../images/logoHiventive_white.png';
-import NewProjectModal from '../components/NewProjectModal';
+import NewProjectModal from './NewProjectModal';
 
 class NavBar extends Component {
   constructor(props) {

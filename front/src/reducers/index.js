@@ -7,6 +7,7 @@ import categoryLayer from './categoryLayer';
 import isLoading from './isLoading';
 import typeFilter from './typeFilter';
 import isError from './isError';
+import userIsLogin from './userIsLogin';
 
 const allReducers = combineReducers({
   modal,
@@ -19,6 +20,7 @@ const allReducers = combineReducers({
   layersFetchDataSuccess,
   typeFilter,
   isError,
+  userIsLogin,
 });
 
 export default allReducers;
