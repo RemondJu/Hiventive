@@ -4,7 +4,6 @@ import './NewProjectModal.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
 import { newProjectModal } from '../actions';
 import API_SERVER from '../constants';
 

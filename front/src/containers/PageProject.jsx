@@ -12,13 +12,7 @@ class PageProject extends Component {
     this.state = {};
   }
 
-  // componentDidMount() {
-  //   const { match, fetchData } = this.props;
-  //   fetchData(match.params.id);
-  // }
-
   render() {
-    // const { project } = this.props;
     return (
       <div className="PageProject">
         <div className="sideBarProject">

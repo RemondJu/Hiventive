@@ -9,7 +9,7 @@ logger.accessLog.info(`Request API to use ${new Date().toISOString()}`);
 
 /* Select All */
 /* GET select all users */
-router.get('/all-users', (req, res) => {
+router.get('/users', (req, res) => {
   conf.query('SELECT * FROM User', (err, result) => {
     if (err) {
       logger.errorLog.error(err);
@@ -20,7 +20,7 @@ router.get('/all-users', (req, res) => {
 });
 
 /* GET select all layers */
-router.get('/all-layers', (req, res) => {
+router.get('/layers', (req, res) => {
   conf.query('SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id', (err, result) => {
     if (err) {
       logger.errorLog.error(err);

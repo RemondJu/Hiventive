@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 
 const projectSideBar = () => (
-  <div className="SideBar">
+  <div className="ProjectSideBar">
     <div className="filters">
       <h2>My Projects</h2>
       <button type="submit" className="filter">Project_01</button>
