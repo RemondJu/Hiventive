@@ -31,7 +31,6 @@ class LayerFromCatalog extends Component {
         },
         body: JSON.stringify(data),
       };
-      
       fetch(`${API_SERVER}/project-layer`, config)
         .then(this.setState({
           layerAdded: !layerAdded,
@@ -48,7 +47,7 @@ class LayerFromCatalog extends Component {
     return (
       <div className="LayerFromCatalog">
         <tr className="Layer">
-          <NavLink to="/LayerInfos">
+          <NavLink to="/layerinfos">
             <td className="imageRow">
               <img className="info" alt="logo_info" src={info} />
             </td>
@@ -57,8 +56,8 @@ class LayerFromCatalog extends Component {
           <td>{description}</td>
           <td>{url}</td>
           <td>{repository}</td>
-          <td> 
-            <img 
+          <td>
+            <img
               className="isShare"
               src={share ? publiclayer : privatelayer}
               alt="pp"
