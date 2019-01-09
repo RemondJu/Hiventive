@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './LayerInfos.scss';
 import { Container, Row, Col } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import BackButton from './BackButton';
 import { fetchLayerInfos } from '../../actions/fetch';
 
 class LayerInfos extends Component {
@@ -21,20 +21,14 @@ class LayerInfos extends Component {
     const { layer } = this.props;
     return (
       <div className="LayerInfos">
-        <NavLink to="/ToolPage">
-          <Row>
-            <Col className="mt-3 ml-5" sm={{ size: 'auto', offset: 1 }}>
-              <button className="button" type="button">
-                <span className="arrowBack">↩︎</span>
-              </button>
-            </Col>
-          </Row>
-        </NavLink>
+        <div className="contentBackButton">
+          <BackButton />
+        </div>
         <Container>
           <Row>
             <Col className="pageHeader mt-2 ml-5 mb-5" sm="auto" md="auto">
               <h1 className="titleLayerInfo">
-Layer Name :
+                Layer Name :
                 {' '}
                 <span className="nameLayerInfo">{layer.layerName}</span>
               </h1>
@@ -44,7 +38,7 @@ Layer Name :
             <Row>
               <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                 <p className="titleSecLayerInfo">
-Type :
+                  Type :
                   {' '}
                   <span className="elementLayerInfo">{layer.type}</span>
                 </p>
@@ -53,7 +47,7 @@ Type :
             <Row>
               <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                 <p className="titleSecLayerInfo">
-Description :
+                  Description :
                   {' '}
                   <span className="elementLayerInfo">{layer.description}</span>
                 </p>
@@ -62,7 +56,7 @@ Description :
             <Row>
               <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                 <p className="titleSecLayerInfo">
-Owner :
+                  Owner :
                   {' '}
                   <span className="elementLayerInfo">{layer.userName}</span>
                 </p>
@@ -71,7 +65,7 @@ Owner :
             <Row>
               <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                 <p className="titleSecLayerInfo">
-Version :
+                  Version :
                   {' '}
                   <span className="elementLayerInfo">{layer.version}</span>
                 </p>
@@ -80,7 +74,7 @@ Version :
             <Row>
               <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                 <p className="titleSecLayerInfo">
-url :
+                  url :
                   {' '}
                   <span className="urlLayerInfo">{layer.url}</span>
                 </p>
@@ -89,7 +83,7 @@ url :
             <Row>
               <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                 <p className="titleSecLayerInfo">
-repository :
+                  repository :
                   {' '}
                   <span className="urlLayerInfo">{layer.hostSite}</span>
                 </p>
@@ -98,7 +92,7 @@ repository :
             <Row>
               <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                 <p className="titleSecLayerInfo">
-Download :
+                  Download :
                   {' '}
                   <span className="elementLayerInfo">{layer.downloadsCounter}</span>
                 </p>
@@ -107,7 +101,7 @@ Download :
             <Row>
               <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                 <p className="titleSecLayerInfo">
-View :
+                  View :
                   {' '}
                   <span className="elementLayerInfo">{layer.viewsCounter}</span>
                 </p>
@@ -116,7 +110,7 @@ View :
             <Row>
               <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                 <p className="titleSecLayerInfo">
-Share :
+                  Share :
                   {' '}
                   <span className="elementLayerInfo">{layer.share}</span>
                 </p>

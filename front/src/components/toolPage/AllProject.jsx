@@ -2,7 +2,7 @@ import React from 'react';
 import ProjectSideBar from '../../containers/ProjectSideBar';
 import './ToolPage.scss';
 
-const ProjectPage = () => (
+const AllProject = () => (
   <div className="ToolPage">
     <div className="toolRow">
       <ProjectSideBar />
@@ -10,4 +10,4 @@ const ProjectPage = () => (
   </div>
 );
 
-export default ProjectPage;
+export default AllProject;

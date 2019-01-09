@@ -1,0 +1,26 @@
+@import '../index.scss';
+
+.PageProject {
+  height: 100%;
+  display: flex;
+
+  .sideBarProject {
+    width: 40%;
+
+    .projectRow {
+      height: 100%;
+      min-width: 250%;
+    }
+  }
+
+  .titleProject {
+    text-align: center;
+    margin-top: 2%;
+  }
+
+  .projectBackButton{
+    margin-left: 41%;
+    margin-top: 1%;
+  }
+
+}

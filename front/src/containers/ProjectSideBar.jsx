@@ -2,7 +2,6 @@ import React from 'react';
 import './SideBar.scss';
 
 import { NavLink } from 'react-router-dom';
-import NewProjectButton from './NewProjectButton';
 
 
 const projectSideBar = () => (
@@ -15,7 +14,9 @@ const projectSideBar = () => (
       <button type="submit" className="filter">Project_04</button>
     </div>
     <NavLink to="/ProjectPage">
-      <NewProjectButton />
+      <button className="buildButton" type="submit">
+        Build your project
+      </button>
     </NavLink>
   </div>
 );
