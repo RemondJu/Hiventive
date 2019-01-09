@@ -16,7 +16,7 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/ToolPage" component={ToolPage} />
-      <Route path="/layerinfos" component={LayerInfos} />
+      <Route path="/layerinfos/:id" component={LayerInfos} />
       <Route path="/newLayer/" component={AddLayer} />
       <Route path="/list-projects/" component={ListProjects} />
     </Switch>
