@@ -59,13 +59,7 @@ router.post('/layer/', (req, res) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
-      conf.query('INSERT IGNORE INTO ProjectLayer SET projectId = ?, layerId= (SELECT id FROM Layer WHERE id =LAST_INSERT_ID()); ', req.query.projectId, (errB) => {
-        if (errB) {
-          logger.errorLog.error(err);
-        } else {
-          res.sendStatus(200);
-        }
-      });
+      res.sendStatus(200);
     }
   });
 });
@@ -77,6 +71,15 @@ router.get('/layer/search/', (req, res) => {
       logger.errorLog.error(err);
     } else {
       res.json(result);
+    }
+  });
+});
+router.post('/project', (req, res) => {
+  conf.query('INSERT INTO Project SET ? ', req.body, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(201);
     }
   });
 });
