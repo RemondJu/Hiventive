@@ -24,7 +24,6 @@ class LayersDisplay extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { layers, typeFilter } = this.props;
     return (
       <div className="LayersDisplay">
