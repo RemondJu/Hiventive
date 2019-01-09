@@ -3,11 +3,13 @@ import './LayerFromCatalog.scss';
 import { NavLink } from 'react-router-dom';
 
 import info from '../images/info.png';
+import publiclayer from '../images/publiclayer.png';
+import privatelayer from '../images/privatelayer.png';
 
 
 const LayerFromCatalog = (props) => {
   const {
-    name, description, url, repository,
+    name, description, url, repository, share,
   } = props;
 
   return (
@@ -22,6 +24,13 @@ const LayerFromCatalog = (props) => {
         <td>{description}</td>
         <td>{url}</td>
         <td>{repository}</td>
+        <td> 
+          <img 
+            className="isShare"
+            src={share ? publiclayer : privatelayer}
+            alt="pp"
+          />
+        </td>
       </tr>
     </div>
   );
