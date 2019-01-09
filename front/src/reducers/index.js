@@ -8,6 +8,7 @@ import isLoading from './isLoading';
 import typeFilter from './typeFilter';
 import isError from './isError';
 import layer from './layer';
+import userIsLogin from './userIsLogin';
 
 const allReducers = combineReducers({
   modal,
@@ -21,6 +22,7 @@ const allReducers = combineReducers({
   typeFilter,
   isError,
   layer,
+  userIsLogin,
 });
 
 export default allReducers;
