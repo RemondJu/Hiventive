@@ -14,27 +14,46 @@ class LayerFromCatalog extends Component {
     this.addLayerToProject = this.addLayerToProject.bind(this);
   }
 
+  componentDidMount() {
+    const { activeProject, id } = this.props;
+
+    fetch(`${API_SERVER}/project-layers/${activeProject.id}/${id}`)
+      .then(res => res.json())
+      .then(data => (data === 'false' ? this.setState({ layerAdded: true }) : ''))
+      .catch();
+  }
+
   addLayerToProject() {
-    const { activeProject, tempId } = this.props;
+    const { activeProject, id } = this.props;
     const { layerAdded } = this.state;
     if (activeProject.id !== undefined) {
-      const data = {
-        projectId: activeProject.id,
-        layerId: tempId,
-      };
-      const config = {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      };
-
-      fetch(`${API_SERVER}/project-layer`, config)
-        .then(this.setState({
-          layerAdded: !layerAdded,
-        }))
-        .catch();
+      if (!layerAdded) {
+        const data = {
+          projectId: activeProject.id,
+          layerId: id,
+        };
+        const config = {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        };
+        fetch(`${API_SERVER}/project-layer`, config)
+          .then(this.setState({
+            layerAdded: !layerAdded,
+          }))
+          .catch();
+      } else {
+        const config = {
+          method: 'DELETE',
+        };
+        fetch(`${API_SERVER}/project-layer/${id}`, config)
+          .then(this.setState({
+            layerAdded: !layerAdded,
+          }))
+          .catch();
+      }
     }
   }
 

@@ -90,7 +90,27 @@ router.post('/project-layer', (req, res) => {
       logger.errorLog.error(err);
     } else {
       res.sendStatus(201);
-      }
+    }
+  });
+});
+
+router.delete('/project-layer/:id', (req, res) => {
+  conf.query('DELETE FROM `ProjectLayer` WHERE `layerId`= ?', req.params.id, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+router.get('/project-layers/:id/:layerId', (req, res) => {
+  conf.query('SELECT `layerId` FROM `ProjectLayer` WHERE `projectId` = ? AND `layerId` = ?', [req.params.id, req.params.layerId], (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result[0] === undefined ? 'true' : 'false');
+    }
   });
 });
 
