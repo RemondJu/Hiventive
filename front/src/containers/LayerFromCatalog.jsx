@@ -3,6 +3,8 @@ import './LayerFromCatalog.scss';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import info from '../images/info.png';
+import publiclayer from '../images/publiclayer.png';
+import privatelayer from '../images/privatelayer.png';
 import API_SERVER from '../constants';
 
 class LayerFromCatalog extends Component {
@@ -59,13 +61,13 @@ class LayerFromCatalog extends Component {
 
   render() {
     const {
-      name, description, url, repository,
+      id, name, description, url, repository, share,
     } = this.props;
     const { layerAdded } = this.state;
     return (
       <div className="LayerFromCatalog">
         <tr className="Layer">
-          <NavLink to="/LayerInfos">
+          <NavLink to={`/layerinfos/${id}`}>
             <td className="imageRow">
               <img className="info" alt="logo_info" src={info} />
             </td>
@@ -74,6 +76,13 @@ class LayerFromCatalog extends Component {
           <td>{description}</td>
           <td>{url}</td>
           <td>{repository}</td>
+          <td>
+            <img
+              className="isShare"
+              src={share ? publiclayer : privatelayer}
+              alt="pp"
+            />
+          </td>
           <td><button type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
         </tr>
       </div>

@@ -84,6 +84,18 @@ router.post('/project', (req, res) => {
   });
 });
 
+
+/* GET projects to user */
+router.get('/projects/user/:id', (req, res) => {
+  conf.query('SELECT id, description, name FROM Project WHERE userID=?', req.params.id, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 router.post('/project-layer', (req, res) => {
   conf.query('INSERT INTO ProjectLayer SET ? ', req.body, (err) => {
     if (err) {
