@@ -84,6 +84,16 @@ router.post('/project', (req, res) => {
   });
 });
 
+router.post('/project-layer', (req, res) => {
+  conf.query('INSERT INTO ProjectLayer SET ? ', req.body, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(201);
+      }
+  });
+});
+
 /* GET layer details by ID */
 router.get('/layerdetail/:id', (req, res) => {
   const idLayer = req.params.id;
