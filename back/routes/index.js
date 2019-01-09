@@ -92,6 +92,9 @@ router.get('/projects/user/:id', (req, res) => {
       logger.errorLog.error(err);
     } else {
       res.json(result);
+    }
+  });
+});
 
 router.post('/project-layer', (req, res) => {
   conf.query('INSERT INTO ProjectLayer SET ? ', req.body, (err) => {
@@ -99,7 +102,7 @@ router.post('/project-layer', (req, res) => {
       logger.errorLog.error(err);
     } else {
       res.sendStatus(201);
-      }
+    }
   });
 });
 
@@ -111,7 +114,6 @@ router.get('/layerdetail/:id', (req, res) => {
       logger.errorLog.error(err);
     } else {
       res.json(result[0]);
-
     }
   });
 });
