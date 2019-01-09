@@ -41,13 +41,13 @@ class LayerFromCatalog extends Component {
 
   render() {
     const {
-      name, description, url, repository, share,
+      id, name, description, url, repository, share,
     } = this.props;
     const { layerAdded } = this.state;
     return (
       <div className="LayerFromCatalog">
         <tr className="Layer">
-          <NavLink to="/layerinfos">
+          <NavLink to={`/layerinfos/${id}`}>
             <td className="imageRow">
               <img className="info" alt="logo_info" src={info} />
             </td>
