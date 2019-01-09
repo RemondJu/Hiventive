@@ -68,7 +68,7 @@ export const layerFetchDataSuccess = layer => ({
 
 export const fetchLayerInfos = id => (dispatch) => {
   dispatch(isLoading(true));
-  fetch(`${API_SERVER}/layerdetail/${parseInt(id)}`)
+  fetch(`${API_SERVER}/layerdetail/${parseInt((id), 10)}`)
     .then(res => res.json())
     .then(layer => dispatch(layerFetchDataSuccess(layer)))
     .then(() => dispatch(isLoading(false)))
