@@ -10,6 +10,7 @@ import {
   showToggleLog,
   switchLoginModal,
   filterType,
+  hidAllModalNavBar,
 } from '../actions';
 import { fetchSearchLayer } from '../actions/fetch';
 import ModalLogin from '../components/ModalLogin';
@@ -24,6 +25,7 @@ class NavBar extends Component {
     };
     this.searchChange = this.searchChange.bind(this);
     this.sendSearch = this.sendSearch.bind(this);
+    this.goToListProject = this.goToListProject.bind(this);
   }
 
   searchChange(event) {
@@ -39,6 +41,12 @@ class NavBar extends Component {
     fetchSearchLayerRedux(wordSearch);
     filterTypeRedux('All');
     history.push('/ToolPage');
+  }
+
+  goToListProject() {
+    const { history, hidAllModalNavBarRedux } = this.props;
+    hidAllModalNavBarRedux();
+    history.push('/list-projects');
   }
 
   render() {
@@ -72,6 +80,7 @@ class NavBar extends Component {
           <div className={popoversNavbar.toggleLog ? 'popoversShow effectLog' : 'popoversHid'}>
             <div className={popoversNavbar.toggleLog ? 'textShow' : 'textHidden'}>
               <button className="button_link_log" type="button" onClick={() => switchLoginModalRedux()}>login</button>
+              <button className="button_link_log" type="button" onClick={() => this.goToListProject()}>Your projects</button>
             </div>
           </div>
         </div>
@@ -102,6 +111,7 @@ const mdtp = dispatch => bindActionCreators({
   showToggleLogRedux: showToggleLog,
   fetchSearchLayerRedux: fetchSearchLayer,
   filterTypeRedux: filterType,
+  hidAllModalNavBarRedux: hidAllModalNavBar,
 }, dispatch);
 
 export default withRouter(connect(mstp, mdtp)(NavBar));
