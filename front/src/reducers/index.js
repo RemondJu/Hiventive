@@ -7,6 +7,7 @@ import categoryLayer from './categoryLayer';
 import isLoading from './isLoading';
 import typeFilter from './typeFilter';
 import isError from './isError';
+import layer from './layer';
 import userIsLogin from './userIsLogin';
 
 const allReducers = combineReducers({
@@ -20,6 +21,7 @@ const allReducers = combineReducers({
   layersFetchDataSuccess,
   typeFilter,
   isError,
+  layer,
   userIsLogin,
 });
 
