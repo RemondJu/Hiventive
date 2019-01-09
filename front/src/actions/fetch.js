@@ -61,6 +61,20 @@ export const fetchSearchLayer = wordSearch => (dispatch) => {
     .catch(() => dispatch(hasErrored(true)));
 };
 
+export const getProjectsToUser = projects => ({
+  type: 'PROJECTS_USER_FETCH_DATA_SUCCESS',
+  projects,
+});
+
+export const fetchProjectUser = idUser => (dispatch) => {
+  dispatch(isLoading(true));
+  fetch(`${API_SERVER}/projects/user/${idUser}`)
+    .then(res => res.json())
+    .then(projects => dispatch(getProjectsToUser(projects)))
+    .then(() => dispatch(isLoading(false)))
+    .catch(() => dispatch(hasErrored(true)));
+};
+
 export const layerFetchDataSuccess = layer => ({
   type: 'LAYER_FETCH_DATA_SUCCESS',
   layer,
