@@ -10,6 +10,11 @@ import API_SERVER from '../constants';
 
 
 class LayersDisplay extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   componentDidMount() {
     const { fetchData, location, filterTypeRedux } = this.props;
     if (location.state !== undefined) {
@@ -33,11 +38,13 @@ class LayersDisplay extends Component {
           <div className="layersScrolling">
             {layers.filter(element => element.type === typeFilter || typeFilter === 'All').map(layer => (
               <LayerFromCatalog
+                tempId={layer.id}
                 id={layer.id}
                 name={layer.name}
                 description={layer.description}
                 url={layer.url}
                 repository={layer.hostSite}
+                share={layer.share}
               />
             ))}
           </div>

@@ -9,6 +9,8 @@ import typeFilter from './typeFilter';
 import isError from './isError';
 import layer from './layer';
 import userIsLogin from './userIsLogin';
+import projectUser from './projectUser';
+import activeProject from './activeProject';
 
 const allReducers = combineReducers({
   modal,
@@ -23,6 +25,8 @@ const allReducers = combineReducers({
   isError,
   layer,
   userIsLogin,
+  projectUser,
+  activeProject,
 });
 
 export default allReducers;
