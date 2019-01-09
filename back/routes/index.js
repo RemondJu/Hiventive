@@ -33,7 +33,7 @@ router.get('/all-projects', (req, res) => {
 
 /* GET select all layers */
 router.get('/all-layers', (req, res) => {
-  conf.query('SELECT * FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id', (err, result) => {
+  conf.query('SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id', (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
@@ -59,24 +59,61 @@ router.post('/layer/', (req, res) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
-      conf.query('INSERT IGNORE INTO ProjectLayer SET projectId = ?, layerId= (SELECT id FROM Layer WHERE id =LAST_INSERT_ID()); ', req.query.projectId, (errB) => {
-        if (errB) {
-          logger.errorLog.error(err);
-        } else {
-          res.sendStatus(200);
-        }
-      });
+      res.sendStatus(200);
     }
   });
 });
 
 /* GET search layer */
 router.get('/layer/search/', (req, res) => {
-  conf.query(`SELECT * FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.viewsCounter DESC LIMIT 20`, (err, result) => {
+  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.viewsCounter DESC LIMIT 20`, (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
       res.json(result);
+    }
+  });
+});
+router.post('/project', (req, res) => {
+  conf.query('INSERT INTO Project SET ? ', req.body, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(201);
+    }
+  });
+});
+
+
+/* GET projects to user */
+router.get('/projects/user/:id', (req, res) => {
+  conf.query('SELECT id, description, name FROM Project WHERE userID=?', req.params.id, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+router.post('/project-layer', (req, res) => {
+  conf.query('INSERT INTO ProjectLayer SET ? ', req.body, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(201);
+    }
+  });
+});
+
+/* GET layer details by ID */
+router.get('/layerdetail/:id', (req, res) => {
+  const idLayer = req.params.id;
+  conf.query('SELECT Layer.description, Layer.name AS layerName, Layer.downloadsCounter, Layer.hostSite, Layer.id, Layer.imported, Layer.url, Layer.version, Layer.viewsCounter, Layer.share, LayerType.type, User.name AS userName FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id LEFT JOIN User ON Layer.userID = User.id WHERE Layer.id = ?', idLayer, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result[0]);
     }
   });
 });

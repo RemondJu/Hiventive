@@ -17,6 +17,10 @@ const popoversNavbar = (state = initialState, action) => {
     case 'SHOW_TOGGLE_LOG':
       return { ...state, toggleLog: !state.toggleLog, toggleAdd: false };
 
+    case 'SWITCH_LOGIN_MODAL_HID':
+      return { ...state, toggleAdd: false, toggleLog: false };
+
+
     default: return state;
   }
 };

@@ -56,10 +56,12 @@ class AddLayer extends Component {
       layerTypeID,
       share,
     } = this.state;
-    const { history, newLayerModalRedux } = this.props;
+
+    const { history, newLayerModalRedux, userIsLogin } = this.props;
+    
     // id userId
     const layerSend = {
-      userId: 1,
+      userId: userIsLogin.id,
       viewsCounter: 0,
       downloadsCounter: 0,
       imported: false,
@@ -71,7 +73,8 @@ class AddLayer extends Component {
       hostSite,
       share,
     };
-    // id project provisoire
+    
+    // id project temp
     const projectId = 1;
     if (layerTypeID !== 0) {
       const conf = {
@@ -171,11 +174,14 @@ AddLayer.propTypes = {
   fetchCategoriesLayerRedux: PropTypes.func.isRequired,
   categoryLayer: PropTypes.shape.isRequired,
   newLayerModalRedux: PropTypes.func.isRequired,
+  userIsLogin: PropTypes.shape.isRequired,
+
 };
 
 const mstp = state => ({
   categoryLayer: state.categoryLayer,
   modalLayer: state.newLayerModalToggle,
+  userIsLogin: state.userIsLogin,
 });
 
 const mdtp = dispatch => bindActionCreators({

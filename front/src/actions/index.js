@@ -22,3 +22,7 @@ export const filterType = typeFilter => ({
   type: 'FILTER_TYPE',
   typeFilter,
 });
+
+export const hidAllModalNavBar = () => ({
+  type: 'SWITCH_LOGIN_MODAL_HID',
+});

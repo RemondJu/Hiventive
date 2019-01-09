@@ -33,8 +33,8 @@ class ModalLogin extends Component {
     const { name, password } = this.state;
     const { modal, loginModal } = this.props;
     return (
-      <div className={`modal_login ${modal}`}>
-        <div className="modal_login_content">
+      <div className={`ModalLogin ${modal}`}>
+        <div className="innerWindow">
           <button type="button" className="close" onClick={() => loginModal()}>&times;</button>
           <h2 className="login_title">CONNEXION</h2>
           <p className="login_text">Use your Hiventive account</p>

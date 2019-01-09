@@ -87,6 +87,80 @@ $font-general: 'Dosis', sans-serif;
     margin-bottom: 30px;
     padding-bottom: 10px;
   }
+}
 
+%modal{
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 10;
+
+  %innerWindow{
+    background-color: $third-color;
+    margin: 15% auto;
+    border-radius: 5px;
+    padding: 20px;
+    color: $fourth-color;
+    width: 40%; 
+    min-width: 280px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.4);
   }
+  %closeButton{
+    color: $fourth-color;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  %closeButtonHoverFocus{
+    color: $third-color;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  %modalTitle{
+    text-align: center;
+    color: $primary-color;
+  }
+  %modalText{
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 20px 0;
+  }
+  %inputField{
+    display: block;
+    color: $fourth-color;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid $fourth-color;
+    background-color: transparent;
+  }
+  %modalButtons{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    %linkButton{
+      @extend %button_neg;
+      font-size: 1.1rem;
+      margin: 0;
+      border : none;
+      background: transparent;
+      color: $primary-color;
+      cursor: pointer;
+      text-transform: none;
+    }
+    %linkButtonHover{
+      text-decoration: underline;
+      color: $primary-color;
+      border : none;
+    }
+    %submitButton{
+      @extend %button_neg;
+      padding : 5px 15px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+}
 
