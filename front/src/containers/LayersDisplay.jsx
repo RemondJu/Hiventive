@@ -10,6 +10,11 @@ import API_SERVER from '../constants';
 
 
 class LayersDisplay extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   componentDidMount() {
     const { fetchData, location, filterTypeRedux } = this.props;
     if (location.state !== undefined) {
@@ -39,6 +44,7 @@ class LayersDisplay extends Component {
                 description={layer.description}
                 url={layer.url}
                 repository={layer.hostSite}
+                share={layer.share}
               />
             ))}
           </div>

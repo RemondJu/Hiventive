@@ -3,6 +3,8 @@ import './LayerFromCatalog.scss';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import info from '../images/info.png';
+import publiclayer from '../images/publiclayer.png';
+import privatelayer from '../images/privatelayer.png';
 import API_SERVER from '../constants';
 
 class LayerFromCatalog extends Component {
@@ -29,7 +31,7 @@ class LayerFromCatalog extends Component {
         },
         body: JSON.stringify(data),
       };
-
+      
       fetch(`${API_SERVER}/project-layer`, config)
         .then(this.setState({
           layerAdded: !layerAdded,
@@ -40,7 +42,7 @@ class LayerFromCatalog extends Component {
 
   render() {
     const {
-      name, description, url, repository,
+      name, description, url, repository, share,
     } = this.props;
     const { layerAdded } = this.state;
     return (
@@ -55,6 +57,13 @@ class LayerFromCatalog extends Component {
           <td>{description}</td>
           <td>{url}</td>
           <td>{repository}</td>
+          <td> 
+            <img 
+              className="isShare"
+              src={share ? publiclayer : privatelayer}
+              alt="pp"
+            />
+          </td>
           <td><button type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
         </tr>
       </div>
