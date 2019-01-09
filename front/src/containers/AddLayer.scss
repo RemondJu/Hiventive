@@ -1,52 +1,81 @@
 @import '../index.scss';
 
-.AddLayer{
-  display: flex;
+.modal_add_layer{
+  transition: all 0.5s ease-in-out;
+  display: table; 
+  position: fixed; 
+  flex-direction: column;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%; 
   height: 100%;
-  .text_title{
-    margin: 0px auto 5px auto;
-  }
-  .content_add_layer{
-    margin: 25px auto 0px auto;
-  }
-  .liste_input{
-    list-style-type: none;
-  }
-  .item_input{
-     margin: 5px 0px 10px 0px;
-  }
-  .label_chekbox{
-    display: flex;
-    justify-content: space-around;
-    padding: 45px 10px 0px 10px;
-  }
-  .text_area{
-     padding: 0px 50px 0px 50px;
-  }
-  .text_area_input{
-    border-radius: 10px;
-    border: 1px solid #a6a6a6;
-    background-color: #fafafa;
-    width: 235%;
-  }
-  .text_align_center{
-    margin: 25px 0px 0px 0px;
-    padding: 0px 25% 0px 25%;
-  }
-  .button_submit{
-    border-radius: 8px;
-      padding: 10px 10px 10px 10px;
-       margin: 0px 0px 10px 0px;
-    border: none;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+
+  .content_modal_add_layer{
     background-color: $third-color;
-    color: white;
-    align-self: center;
-    font-weight: bold;
-    transition: 0.4s;  
+    margin: 7% auto;
+    border-radius: 5px;
+    padding: 20px;
+    color: $fourth-color;
+    width: 60%; 
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+
+    .close {
+      color: $fourth-color;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    
+    .modal_title {
+      text-align: center;
+      color: $primary-color;
+    }
+
+    .modal_form{
+      list-style: none; 
+      margin: 0;
+      padding: 0;
+
+      .label_input{
+        margin: 20px;
+  
+        .login_input {
+          color: $fourth-color;
+          width: 100%;
+          border: none;
+          border-bottom: 2px solid $fourth-color;
+          background-color: transparent;
+        }
+  
+        .text_area_input{
+          border-radius: 5px;
+        }
+      }
+    }
+
+      .label_select{
+        border-radius: 5px;
+        background-color: transparent;
+      }
+  
+      .button_submit {
+        @extend %button_neg;
+        padding : 5px 15px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        text-align: center;
+      }
+  
+      }
+      *:focus{
+        outline: none;
+      }
+
   }
-  .button_submit:hover{
-    background-color: $fourth-color;
-    color: $third-color;
-    transition: 0.4s;
+
+  .hidden {
+    transform: scale(1.2); 
+    display: none;
   }
-}

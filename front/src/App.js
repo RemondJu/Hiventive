@@ -5,7 +5,7 @@ import HomePage from './components/homePage/Homepage';
 import ToolPage from './components/toolPage/ToolPage';
 import LayerInfos from './components/toolPage/LayerInfos';
 import NavBar from './containers/NavBar';
-import AddLayer from './containers/AddLayer';
+// import AddLayer from './containers/AddLayer';
 import LoadingContent from './containers/LoadingContent';
 import PageProject from './containers/PageProject';
 import ListProjects from './containers/ListProjects';

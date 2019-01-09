@@ -58,6 +58,7 @@ $font-general: 'Dosis', sans-serif;
 }
 
 %button_neg{
+  transition: 0.3s;
   font-family: 'Dosis', sans-serif; 
   border: 1px solid  $fourth-color;
   border-radius: 5px;
