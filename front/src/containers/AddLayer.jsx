@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Col, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import SideBar from './SideBar';
+import { withRouter } from 'react-router-dom';
 import { fetchCategoriesLayer } from '../actions/fetch';
-import { showToggleAdd } from '../actions';
+import { showToggleAdd, newLayerModal } from '../actions';
 import API_SERVER from '../constants';
 
 
@@ -31,8 +29,7 @@ class AddLayer extends Component {
 
 
   componentDidMount() {
-    const { fetchCategoriesLayerRedux, showToggleAddRedux } = this.props;
-    showToggleAddRedux();
+    const { fetchCategoriesLayerRedux } = this.props;
     fetchCategoriesLayerRedux();
   }
 
@@ -59,7 +56,7 @@ class AddLayer extends Component {
       layerTypeID,
       share,
     } = this.state;
-    const { history } = this.props;
+    const { history, newLayerModalRedux } = this.props;
     // id userId
     const layerSend = {
       userId: 1,
@@ -74,7 +71,7 @@ class AddLayer extends Component {
       hostSite,
       share,
     };
-    // id project provisoir
+    // id project provisoire
     const projectId = 1;
     if (layerTypeID !== 0) {
       const conf = {
@@ -88,6 +85,7 @@ class AddLayer extends Component {
         .then(() => history.push('/'))
         .catch();
     }
+    newLayerModalRedux();
   }
 
   render() {
@@ -99,86 +97,69 @@ class AddLayer extends Component {
       description,
       share,
     } = this.state;
-    const { categoryLayer } = this.props;
+
+    const {
+      categoryLayer,
+      modalLayer,
+      newLayerModalRedux,
+    } = this.props;
+
     return (
-      <div className="AddLayer">
-        <SideBar />
-        <div className="content_add_layer">
-          <Row>
-            <h2 className="text_title">
-              Make new layer
-            </h2>
-          </Row>
+      <div className={`modal_add_layer ${modalLayer}`}>
+        <div className="content_modal_add_layer">
+          <button className="close" type="button" onClick={newLayerModalRedux}>&times;</button>
+          <h2 className="modal_title">ADD A NEW LAYER</h2>
           <form onSubmit={this.sendForm}>
-            <Row>
-              <Col sm="6">
-                <ul className="liste_input">
-                  <li className="item_input">
-                    <label className="label_input" htmlFor="name">
-                      <p>Name</p>
-                      <input required name="name" id="name" onChange={this.inputChange} value={name} type="text" />
-                    </label>
-                  </li>
-                  <li className="item_input">
-                    <label className="label_input" htmlFor="url">
-                      <p>Url</p>
-                      <input required name="url" id="url" onChange={this.inputChange} value={url} type="text" />
-                    </label>
-                  </li>
-                  <li className="item_input">
-                    <p>Category</p>
-                    <select name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
-                      <option value={0}>Selecte type</option>
-                      {categoryLayer.length === 0 ? '...' : categoryLayer.categories.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
-                    </select>
-                  </li>
-                </ul>
-              </Col>
-              <Col sm="6">
-                <ul className="liste_input">
-                  <li className="item_input">
-                    <label className="label_input" htmlFor="version">
-                      <p>Version</p>
-                      <input required name="version" id="version" onChange={this.inputChange} value={version} type="text" />
-                    </label>
-                  </li>
-                  <li className="item_input">
-                    <label className="label_input" htmlFor="hostSite">
-                      <p>Host site</p>
-                      <input required name="hostSite" id="hostSite" onChange={this.inputChange} value={hostSite} type="text" />
-                    </label>
-                  </li>
-                  <li className="item_input">
-                    <label className="label_chekbox" htmlFor="share">
-                      <p>Share</p>
-                      <input name="share" id="share" onChange={this.inputChangeCheckbox} value={share} type="checkbox" />
-                    </label>
-                  </li>
-                </ul>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs="12" className="text_area">
+            <ul className="modal_form">
+              <li>
+                <label className="label_input" htmlFor="name">
+                  Name
+                  <input className="login_input" required name="name" id="name" onChange={this.inputChange} value={name} type="text" />
+                </label>
+                <label className="label_input" htmlFor="url">
+                  Url
+                  <input className="login_input" required name="url" id="url" onChange={this.inputChange} value={url} type="text" />
+                </label>
+              </li>
+
+              <li>
+                <label className="label_input" htmlFor="version">
+                  Version
+                  <input className="login_input" required name="version" id="version" onChange={this.inputChange} value={version} type="text" />
+                </label>
+                <label className="label_input" htmlFor="hostSite">
+                  Host site
+                  <input className="login_input" required name="hostSite" id="hostSite" onChange={this.inputChange} value={hostSite} type="text" />
+                </label>
+              </li>
+
+              <li>
+              Category
+                <div>
+                  <select name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
+                    <option value={0}>Select type</option>
+                    {categoryLayer.length === 0 ? '...' : categoryLayer.categories.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
+                  </select>
+                </div>
+              </li>
+
+              <li>
                 <label className="label_input" htmlFor="description">
                   <p>Description</p>
                   <textarea className="text_area_input" name="description" id="description" onChange={this.inputChange} value={description} />
                 </label>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs="6" className="text_align_center">
-                <NavLink to="/">
-                  <button className="button_submit" type="button">
-                    return
-                  </button>
-                </NavLink>
-              </Col>
-              <Col xs="6" className="text_align_center">
+              </li>
+
+              <li>
                 <button className="button_submit" type="submit">
                   Submit
                 </button>
-              </Col>
-            </Row>
+                <label className="label_input" htmlFor="share">
+                  <input className="login_input" name="share" id="share" onChange={this.inputChangeCheckbox} value={share} type="checkbox" />
+                  Share your layer
+                </label>
+              </li>
+            </ul>
           </form>
         </div>
       </div>
@@ -188,18 +169,20 @@ class AddLayer extends Component {
 
 AddLayer.propTypes = {
   fetchCategoriesLayerRedux: PropTypes.func.isRequired,
-  showToggleAddRedux: PropTypes.func.isRequired,
   categoryLayer: PropTypes.shape.isRequired,
+  newLayerModalRedux: PropTypes.func.isRequired,
 };
 
 const mstp = state => ({
   categoryLayer: state.categoryLayer,
+  modalLayer: state.newLayerModalToggle,
 });
 
 const mdtp = dispatch => bindActionCreators({
   fetchCategoriesLayerRedux: fetchCategoriesLayer,
   showToggleAddRedux: showToggleAdd,
+  newLayerModalRedux: newLayerModal,
 }, dispatch);
 
 
-export default connect(mstp, mdtp)(AddLayer);
+export default withRouter(connect(mstp, mdtp)(AddLayer));

@@ -6,6 +6,10 @@ export const newProjectModal = () => ({
   type: 'NEW_PROJECT_MODAL',
 });
 
+export const newLayerModal = () => ({
+  type: 'NEW_LAYER_MODAL',
+});
+
 export const showToggleAdd = () => ({
   type: 'SHOW_TOGGLE_ADD',
 });

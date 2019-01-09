@@ -51,7 +51,6 @@
       color: $third-color;
       transition: 0.5s;
     }
-
   }
 
   .button_login {
@@ -59,6 +58,13 @@
     padding : 10px 15px;
     margin: 0px 10px 0px 0px;
   }
+
+  .button_add {
+    @extend %button_neg;
+    padding : 10px 15px;
+    margin: 0px 10px 0px 0px;
+  }
+
   .popoversShow{
     background-color: white;
     transition: 0.2s;

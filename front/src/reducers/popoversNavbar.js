@@ -8,6 +8,9 @@ const popoversNavbar = (state = initialState, action) => {
     case 'SWITCH_LOGIN_MODAL':
       return { ...state, toggleAdd: false, toggleLog: false };
 
+    case 'NEW_LAYER_MODAL':
+      return { ...state, toggleAdd: false, toggleLog: false };
+
     case 'SHOW_TOGGLE_ADD':
       return { ...state, toggleAdd: !state.toggleAdd, toggleLog: false };
 
