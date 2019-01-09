@@ -61,10 +61,16 @@ export const fetchSearchLayer = wordSearch => (dispatch) => {
     .catch(() => dispatch(hasErrored(true)));
 };
 
-export const fetchLayerDetail = id => (dispatch) => {
+export const layerFetchDataSuccess = layer => ({
+  type: 'LAYER_FETCH_DATA_SUCCESS',
+  layer,
+});
+
+export const fetchLayerInfos = id => (dispatch) => {
   dispatch(isLoading(true));
-  fetch(`${API_SERVER}/layerdetail/${id}`)
+  fetch(`${API_SERVER}/layerdetail/${parseInt(id)}`)
     .then(res => res.json())
+    .then(layer => dispatch(layerFetchDataSuccess(layer)))
     .then(() => dispatch(isLoading(false)))
     .catch(() => dispatch(hasErrored(true)));
 };
