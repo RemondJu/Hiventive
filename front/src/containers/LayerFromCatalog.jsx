@@ -1,30 +1,97 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './LayerFromCatalog.scss';
 import { NavLink } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import info from '../images/info.png';
+import publiclayer from '../images/publiclayer.png';
+import privatelayer from '../images/privatelayer.png';
+import API_SERVER from '../constants';
 
+class LayerFromCatalog extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      layerAdded: false,
+    };
+    this.addLayerToProject = this.addLayerToProject.bind(this);
+  }
 
-const LayerFromCatalog = (props) => {
-  const {
-    name, description, url, repository,
-  } = props;
+  componentDidMount() {
+    const { activeProject, id } = this.props;
 
-  return (
-    <div className="LayerFromCatalog">
-      <tr className="Layer">
-        <NavLink to="/LayerInfos">
-          <td className="imageRow">
-            <img className="info" alt="logo_info" src={info} />
+    fetch(`${API_SERVER}/project-layers/${activeProject.id}/${id}`)
+      .then(res => res.json())
+      .then(data => (data === 'false' ? this.setState({ layerAdded: true }) : ''))
+      .catch();
+  }
+
+  addLayerToProject() {
+    const { activeProject, id } = this.props;
+    const { layerAdded } = this.state;
+    if (activeProject.id !== undefined) {
+      if (!layerAdded) {
+        const data = {
+          projectId: activeProject.id,
+          layerId: id,
+        };
+        const config = {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        };
+        fetch(`${API_SERVER}/project-layer`, config)
+          .then(this.setState({
+            layerAdded: !layerAdded,
+          }))
+          .catch();
+      } else {
+        const config = {
+          method: 'DELETE',
+        };
+        fetch(`${API_SERVER}/project-layer/${id}`, config)
+          .then(this.setState({
+            layerAdded: !layerAdded,
+          }))
+          .catch();
+      }
+    }
+  }
+
+  render() {
+    const {
+      id, name, description, url, repository, share,
+    } = this.props;
+    const { layerAdded } = this.state;
+    return (
+      <div className="LayerFromCatalog">
+        <tr className="Layer">
+          <NavLink to={`/layerinfos/${id}`}>
+            <td className="imageRow">
+              <img className="info" alt="logo_info" src={info} />
+            </td>
+          </NavLink>
+          <td>{name}</td>
+          <td>{description}</td>
+          <td>{url}</td>
+          <td>{repository}</td>
+          <td>
+            <img
+              className="isShare"
+              src={share ? publiclayer : privatelayer}
+              alt="pp"
+            />
           </td>
-        </NavLink>
-        <td>{name}</td>
-        <td>{description}</td>
-        <td>{url}</td>
-        <td>{repository}</td>
-      </tr>
-    </div>
-  );
-};
+          <td><button type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
+        </tr>
+      </div>
+    );
+  }
+}
 
-export default LayerFromCatalog;
+const mstp = state => ({
+  activeProject: state.activeProject,
+});
+
+export default connect(mstp)(LayerFromCatalog);

@@ -1,6 +1,6 @@
 @import '../../index.scss';
 .CardBestLayer{
-  width: 330px;
+  width: 350px;
   min-height: 200px;
   background-color: rgba(124, 83, 124, 0.495);
   padding: 20px;
@@ -34,4 +34,11 @@
     font-size: 1.5em;   
   }
  
+}
+
+@media screen and (max-width: 1075px) {
+  .CardBestLayer{
+    width: 100%;
+    height: 270px;
+  }
 }

@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint-all": "eslint src",
-    "build-preprod": "npm run build && rm ./build/static/**/*.map && rm -rf /var/www/html/hiventive/* && mv ./build/* /var/www/html/hiventive",
+    "build-preprod": "npm run build && rm ./build/static/**/*.map && rm -rf ../back/public/* && mv ./build/* ../back/public/",
     "lint": "eslint src --ext js,jsx",
     "lint-jsx": "eslint src --ext jsx"
   },
@@ -30,7 +30,7 @@
     "parser": "babel-eslint",
     "globals": {
       "fetch": false
-      },
+    },
     "env": {
       "es6": true
     },
