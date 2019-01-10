@@ -18,7 +18,7 @@ class LayersDisplay extends Component {
   componentDidMount() {
     const { fetchData, location, filterTypeRedux } = this.props;
     if (location.state !== undefined) {
-      fetchData(`${API_SERVER}/all-layers`);
+      fetchData(`${API_SERVER}/layers`);
     }
     filterTypeRedux('All');
   }
@@ -38,7 +38,6 @@ class LayersDisplay extends Component {
           <div className="layersScrolling">
             {layers.filter(element => element.type === typeFilter || typeFilter === 'All').map(layer => (
               <LayerFromCatalog
-                tempId={layer.id}
                 id={layer.id}
                 name={layer.name}
                 description={layer.description}
@@ -54,21 +53,17 @@ class LayersDisplay extends Component {
   }
 }
 
-function mstp(state) {
-  return {
-    layers: state.layersFetchDataSuccess,
-    error: state.layersHasErrored,
-    loading: state.layersIsLoading,
-    typeFilter: state.typeFilter,
-  };
-}
+const mstp = state => ({
+  layers: state.layersFetchDataSuccess,
+  error: state.layersHasErrored,
+  loading: state.layersIsLoading,
+  typeFilter: state.typeFilter,
+});
 
-function mdtp(dispatch) {
-  return bindActionCreators({
-    fetchData: layersFetchData,
-    filterTypeRedux: filterType,
-  }, dispatch);
-}
+const mdtp = dispatch => bindActionCreators({
+  fetchData: layersFetchData,
+  filterTypeRedux: filterType,
+}, dispatch);
 
 
 export default withRouter(connect(mstp, mdtp)(LayersDisplay));

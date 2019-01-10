@@ -28,3 +28,20 @@
 
   }
 }
+
+@media screen and (max-width: 768px) {
+  .Footer{
+    padding: 0px;
+
+    ul{
+      padding: 15px 0px;
+    }
+    a {
+      padding: 0px 10px;
+      img{
+        min-width: 45px;
+      }
+    }
+  }
+  
+}

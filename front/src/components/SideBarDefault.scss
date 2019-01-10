@@ -1,0 +1,18 @@
+@import '../index.scss';
+
+.SideBarDefault{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-image: linear-gradient(to bottom, $secondary-color, $primary-color);
+  color: $third-color;
+  font-size: 1.2em;
+  padding: 50px;
+}
+@media screen and (max-width: 1100px) {
+  .SideBar{
+    display: none;
+  }
+}
