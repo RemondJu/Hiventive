@@ -109,8 +109,12 @@ router.post('/project-layer', (req, res) => {
 /* GET layer details by ID */
 router.get('/layerdetail/:id', (req, res) => {
   const idLayer = req.params.id;
-  conf.query('SELECT Layer.description, Layer.name AS layerName, Layer.downloadsCounter, Layer.hostSite, Layer.id, Layer.imported, Layer.url, Layer.version, Layer.viewsCounter, Layer.share, LayerType.type, User.name AS userName FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id LEFT JOIN User ON Layer.userID = User.id WHERE Layer.id = ?', idLayer, (err, result) => {
+  const request = 'SELECT Layer.description, Layer.me AS layerName, Layer.downloadsCounter, Layer.hostSite, Layer.id, Layer.imported, Layer.url, Layer.version, Layer.viewsCounter, Layer.share, LayerType.type, User.name AS userName FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id LEFT JOIN User ON Layer.userID = User.id WHERE Layer.id = ?';
+  conf.query(request, idLayer, (err, result) => {
     if (err) {
+      if (err.errno === 1054) {
+        res.json({});
+      }
       logger.errorLog.error(err);
     } else {
       res.json(result[0]);
