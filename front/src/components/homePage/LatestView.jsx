@@ -5,7 +5,7 @@ import './LatestView.scss';
 
 const LatestView = () => (
   <div className="BestLayers">
-    <Container fluid className="mt-5 mb-5 ">
+    <Container fluid className="mt-lg-5 mb-5 ">
       <h2 className="titlebest">Latest OS</h2>
       <Row>
         <Col md={{ size: 4 }} className="mb-4 mt-4">

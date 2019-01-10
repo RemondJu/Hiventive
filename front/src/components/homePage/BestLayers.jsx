@@ -5,10 +5,10 @@ import './BestLayers.scss';
 
 const BestLayers = () => (
   <div className="BestLayers">
-    <Container fluid className="mt-5 mb-5 ">
+    <Container fluid className="mt-lg-5 mb-lg-5 ">
       <h2 className="titlebest">Most downloaded layers</h2>
       <Row>
-        <Col md={{ size: 4 }} className="mb-4 mt-4">
+        <Col md={{ size: 4 }} className="mb-4 mt-4 layerCard">
           <CardBestLayer
             nameLayer="meta-ti"
             download=" 540"
@@ -17,7 +17,7 @@ const BestLayers = () => (
             user=" Denys Dmytriyenkokola"
           />
         </Col>
-        <Col md={{ size: 4 }} className="mb-4 mt-4">
+        <Col md={{ size: 4 }} className="mb-4 mt-4 layerCard">
           <CardBestLayer
             nameLayer="meta-intel "
             download=" 430"
@@ -26,7 +26,7 @@ const BestLayers = () => (
             user=" Nitin A Kamble"
           />
         </Col>
-        <Col md={{ size: 4 }} className="mb-4 mt-4">
+        <Col md={{ size: 4 }} className="mb-4 mt-4 layerCard">
           <CardBestLayer
             nameLayer="meta-arago-distro"
             download=" 399"
