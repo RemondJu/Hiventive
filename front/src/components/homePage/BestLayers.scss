@@ -2,8 +2,8 @@
 
 .BestLayers{
   @extend %BestLayers;
+
   .titlebest{
     @extend %titlebest;
   }
-
-  }
+}
