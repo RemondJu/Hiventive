@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './LayerInfos.scss';
 import { Container, Row, Col } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import BackButton from './BackButton';
 import { fetchLayerInfos } from '../../actions/fetch';
 
 class LayerInfos extends Component {
@@ -21,15 +21,9 @@ class LayerInfos extends Component {
     const { layer } = this.props;
     return (
       <div className="LayerInfos">
-        <NavLink to="/ToolPage">
-          <Row>
-            <Col className="mt-3 ml-5" sm={{ size: 'auto', offset: 1 }}>
-              <button className="button" type="button">
-                <span className="arrowBack">↩︎</span>
-              </button>
-            </Col>
-          </Row>
-        </NavLink>
+        <div className="contentBackButton">
+          <BackButton />
+        </div>
         <Container>
           <Row>
             <Col className="pageHeader mt-2 ml-5 mb-5" sm="auto" md="auto">

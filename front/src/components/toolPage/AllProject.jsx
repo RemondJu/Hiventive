@@ -2,12 +2,12 @@ import React from 'react';
 import ProjectSideBar from '../../containers/ProjectSideBar';
 import './ToolPage.scss';
 
-const ProjectPage = () => (
-  <div className="ToolPage">
-    <div className="toolRow">
+const AllProject = () => (
+  <div className="AllProject">
+    <div className="projectRow">
       <ProjectSideBar />
     </div>
   </div>
 );
 
-export default ProjectPage;
+export default AllProject;
