@@ -81,6 +81,11 @@ class NavBar extends Component {
             </div>
           </div>
         </div>
+        <div className="burgerButton">
+          <button type="button">
+            <img className="burgerImg" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" alt="search glass" />
+          </button>
+        </div>
         <ModalLogin />
         <NewProjectModal />
       </div>

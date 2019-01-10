@@ -26,7 +26,7 @@
   .logo:hover{
     text-decoration: none;
   }
-  .searchButton{
+  .searchButton, .burgerButton{
     button{
       background: none;
       border: none;
@@ -121,14 +121,15 @@
     display: none !important;    
   }
   .buttonsForPopovers{
-    .button_login{
-      margin: 0px;
-    }
+    display: none;
   }
 }
 
-@media screen and (min-width: 540px){
+@media screen and (min-width: 541px){
   .searchButton{
     display: none !important;    
+  }
+  .burgerButton{
+    display: none;
   }
 }
