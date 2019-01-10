@@ -21,7 +21,7 @@ router.get('/users', (req, res) => {
 
 /* GET select all layers */
 router.get('/layers', (req, res) => {
-  conf.query('SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id', (err, result) => {
+  conf.query('SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, Layer.share, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id', (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
