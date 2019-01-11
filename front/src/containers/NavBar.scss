@@ -26,14 +26,30 @@
   .logo:hover{
     text-decoration: none;
   }
+  .searchButton, .burgerButton{
+    button{
+      background: none;
+      border: none;
+
+      img{
+        width: 45px;
+      }
+    }    
+  }
 
   .searchbar{
     display: flex;
+    flex-wrap: nowrap;
+
+
+    form{
+      display: flex;
+      flex-wrap: nowrap;
+    }
     
     .field{
       border-radius: 5px 0 0 5px;
       padding : 10px 15px;
-      width : 500px;
       border-style: none;
       font-family: 'Dosis', sans-serif;
     }
@@ -51,7 +67,6 @@
       color: $third-color;
       transition: 0.5s;
     }
-
   }
 
   .button_login {
@@ -59,18 +74,22 @@
     padding : 10px 15px;
     margin: 0px 10px 0px 0px;
   }
+
+  .button_add {
+    @extend %button_neg;
+    padding : 10px 15px;
+    margin: 0px 10px 0px 0px;
+  }
+
   .popoversShow{
-    background-color: white;
-    transition: 0.2s;
-    height: 50px;
     position: absolute;
-    border-radius: 5px;
+    transition: 0.2s;
   }
   .effectAdd{
- transform: translate(20px, 15px);
+  transform: translate(20px, 15px);
   }
   .effectLog{
- transform: translate(-10px, 15px);
+  transform: translate(-10px, 15px);
   }
   .popoversHid{
     height: 0px;
@@ -79,6 +98,11 @@
   }
   .textShow{
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid $third-color;
+    border-radius: 5px;
+    background-color: white;
   }
   .textHidden{
     display: none;
@@ -87,7 +111,8 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color:black
+    color:black;
+    margin: 10px 0px 10px 0px;
   }
   .button_link_log:hover{
     color: black;
@@ -96,6 +121,24 @@
 
 @media screen and (max-width: 1100px) {
   .title{
+    display: none;
+  }  
+}
+
+@media screen and (max-width: 540px){
+  .searchbar{
+    display: none !important;    
+  }
+  .buttonsForPopovers{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 541px){
+  .searchButton{
+    display: none !important;    
+  }
+  .burgerButton{
     display: none;
   }
 }

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './NewProjectModal.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { newProjectModal } from '../actions';
+import API_SERVER from '../constants';
 
 class NewProjectModal extends Component {
   constructor(props) {
@@ -24,10 +26,24 @@ class NewProjectModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({
-      projectName: '',
-      projectDescription: '',
-    });
+    const { userIsLogin, history, newProjectModalAction } = this.props;
+    const { projectName, projectDescription } = this.state;
+    const dataSend = {
+      name: projectName,
+      userId: userIsLogin.id,
+      description: projectDescription,
+    };
+    const conf = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataSend),
+    };
+    fetch(`${API_SERVER}/projects`, conf)
+      .then(() => history.push('/pageProject'))
+      .then(() => newProjectModalAction())
+      .catch();
   }
 
   render() {
@@ -57,14 +73,16 @@ class NewProjectModal extends Component {
 
 NewProjectModal.propTypes = {
   newProjectModalToggle: PropTypes.shape.isRequired,
+  userIsLogin: PropTypes.shape.isRequired,
   newProjectModalAction: PropTypes.func.isRequired,
 };
 
 
 const mstp = state => ({
   newProjectModalToggle: state.newProjectModalToggle,
+  userIsLogin: state.userIsLogin,
 });
 
 const mdtp = dispatch => bindActionCreators({ newProjectModalAction: newProjectModal }, dispatch);
 
-export default connect(mstp, mdtp)(NewProjectModal);
+export default withRouter(connect(mstp, mdtp)(NewProjectModal));

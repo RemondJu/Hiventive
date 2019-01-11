@@ -4,47 +4,58 @@
   background-color: $fourth-color;
   font-family: 'Dosis', sans-serif;
   text-align: center;
-  height: 600px;
+  min-height: 600px;
   align-content: center;
   padding-top: 30px;
-  .circles{
-  @extend %circles;
-  padding-top: 1%;
-    .circle{
-      @extend %circle;
-      padding: 2.2%;
-    }
-    .circleViolet{
-      @extend %circleViolet;
-      padding: 2.2%;
-      .HIWTitles {
-        padding-top: 40%;
-      }
-    }
 
-    .circleBlue{
-      @extend %circleBlue;
-      padding: 2.2%;
-      .HIWTitles {
-        padding-top: 40%;
-      }
-    }
-
-    .circleGreen{
-      @extend %circleGreen;
-      padding: 2.2%;
-      .HIWTitles {
-        padding-top: 40%;
-      }
-    }
-  }
   h2 {
     padding-top: 1%;
     font-size: 50px;
+    text-align: center;
   }
 
-  p {
-    font-size: 1.2em;
-    width: 150px;
-  }
+  .circles{
+    @extend %circles;
+    padding-top: 1%;
+    flex-wrap: wrap;
+
+    .step{
+      
+      .circle{
+        @extend %circle;
+        padding: 2.2%;
+      }
+
+      .circleViolet{
+        @extend %circleViolet;
+        padding: 2.2%;
+      }
+    }
+    
+    .step{
+
+      .circleBlue{
+        @extend %circleBlue;
+        padding: 2.2%;
+      }
+    }
+
+    .step{
+
+      .circleGreen{
+        @extend %circleGreen;
+        padding: 2.2%;
+      }
+    }
+    .HIWTitles {
+      margin: 15px 0px;
+    }
+
+    p {
+      font-size: 1.3em;
+      width: 150px;
+      text-align: center;
+      margin: 15px auto ;
+    }
+  }  
 }
