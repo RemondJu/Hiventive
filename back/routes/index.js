@@ -132,7 +132,7 @@ router.get('/layerdetail/:id', (req, res) => {
 });
 
 /* Get layer all-view, all-download and all-contributors */
-router.get('/layer_allView_allDwld_allContributors/', (req, res) => {
+router.get('/community/', (req, res) => {
   conf.query('SELECT SUM(Layer.downloadsCounter) AS allDownload, SUM(Layer.viewsCounter) AS allView, COUNT(DISTINCT email) AS contributors FROM Layer, User', (err, result) => {
     if (err) {
       logger.errorLog.error(err);

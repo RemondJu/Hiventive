@@ -16,7 +16,7 @@ class Join extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API_SERVER}/layer_allView_allDwld_allContributors/`)
+    fetch(`${API_SERVER}/community/`)
       .then(res => res.json())
       .then(data => this.setState({
         contributors: data.contributors,
