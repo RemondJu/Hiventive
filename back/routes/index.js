@@ -86,6 +86,7 @@ router.get('/projects/user/:id', (req, res) => {
   });
 });
 
+/* Post new project-layer */
 router.post('/project-layer', (req, res) => {
   conf.query('INSERT INTO ProjectLayer SET ? ', req.body, (err) => {
     if (err) {
@@ -96,6 +97,7 @@ router.post('/project-layer', (req, res) => {
   });
 });
 
+/* Delete layer by id */
 router.delete('/project-layer/:id', (req, res) => {
   conf.query('DELETE FROM `ProjectLayer` WHERE `layerId`= ?', req.params.id, (err) => {
     if (err) {
@@ -106,6 +108,7 @@ router.delete('/project-layer/:id', (req, res) => {
   });
 });
 
+/* Get layer by id */
 router.get('/project-layers/:id/:layerId', (req, res) => {
   conf.query('SELECT `layerId` FROM `ProjectLayer` WHERE `projectId` = ? AND `layerId` = ?', [req.params.id, req.params.layerId], (err, result) => {
     if (err) {
@@ -120,6 +123,17 @@ router.get('/project-layers/:id/:layerId', (req, res) => {
 router.get('/layerdetail/:id', (req, res) => {
   const idLayer = req.params.id;
   conf.query('SELECT Layer.description, Layer.name AS layerName, Layer.downloadsCounter, Layer.hostSite, Layer.id, Layer.imported, Layer.url, Layer.version, Layer.viewsCounter, Layer.share, LayerType.type, User.name AS userName FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id LEFT JOIN User ON Layer.userID = User.id WHERE Layer.id = ?', idLayer, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
+
+/* Get layer all-view, all-download and all-contributors */
+router.get('/layer_allView_allDwld_allContributors/', (req, res) => {
+  conf.query('SELECT SUM(Layer.downloadsCounter) AS allDownload, SUM(Layer.viewsCounter) AS allView, COUNT(DISTINCT email) AS contributors FROM Layer, User', (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
