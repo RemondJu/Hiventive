@@ -1,21 +1,56 @@
 @import '../index.scss';
 
 .LayersDisplay{
-  margin-top: 25px;
   width:100%;  
   display: flex;
-  justify-content: center;
-}
+  .filters{
+    h2{
+      font-weight: bold;
+    }
+    display: flex;
+    margin-bottom: 100px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 15px;
 
-.layersTitles{
+    .filter{
+      margin-top: 15px;
+      background: none;
+      color: $third-color;
+      width: 70%;
+      text-align: left;
+      font-weight: 200;
+    }
+    .filter:hover{
+      background-color: $fourth-color;
+      transition: all 0.5s ease;
+      width: 100%;
+    }
+  }
+  button{
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: none;
+    background-color: $third-color;
+    color: white;
+    align-self: center;
+    font-weight: bold;
+    transition: 0.4s;
+    span{
+      font-size: 1em;
+    }
+  }
+  button:hover{
+    background-color: $fourth-color;
+    color: $third-color;
+    transition: 0.4s;
+  }
+  .layersTitles{
   color: $third-color;
   text-align: center;
-  width:100%;
-  
   th{
     font-size: 1.4em;
   }
-
   tr{
     display: flex;
     justify-content: space-around;
@@ -71,3 +106,5 @@
   outline: 1px solid slategrey;
   border-radius: 15px;
 }
+}
+

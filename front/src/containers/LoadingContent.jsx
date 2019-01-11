@@ -18,13 +18,13 @@ class LoadingContent extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.sendError();
-    }, 15000);
+    }, 5000);
   }
 
   componentDidUpdate() {
     setTimeout(() => {
       this.sendError();
-    }, 15000);
+    }, 5000);
   }
 
   sendError() {

@@ -3,11 +3,12 @@ import './LayersDisplay.scss';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { layersFetchData } from '../actions/fetch';
+import PropTypes from 'prop-types';
+import { layersFetchData, fetchCategoriesLayer } from '../actions/fetch';
 import LayerFromCatalog from './LayerFromCatalog';
-import { filterType } from '../actions';
+import { filterType, newProjectModal } from '../actions';
 import API_SERVER from '../constants';
-
+import SideBarDefault from '../components/toolPage/SideBarDefault';
 
 class LayersDisplay extends Component {
   constructor(props) {
@@ -16,17 +17,41 @@ class LayersDisplay extends Component {
   }
 
   componentDidMount() {
-    const { fetchData, location, filterTypeRedux } = this.props;
+    const {
+      fetchData,
+      location,
+      filterTypeRedux,
+      fetchCategoriesLayerRedux,
+    } = this.props;
     if (location.state !== undefined) {
       fetchData(`${API_SERVER}/layers`);
     }
     filterTypeRedux('All');
+    fetchCategoriesLayerRedux();
   }
 
   render() {
-    const { layers, typeFilter } = this.props;
+    const {
+      layers,
+      typeFilter,
+      newProjectModalAction,
+      filterTypeRedux,
+      categoryLayer,
+    } = this.props;
     return (
       <div className="LayersDisplay">
+        <SideBarDefault>
+          <div className="filters">
+            <h2>Sort layers by</h2>
+            <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
+            {(categoryLayer.categories !== undefined)
+              ? categoryLayer.categories.map(type => <button type="button" onClick={() => filterTypeRedux(type.type)} className="filter">{type.type}</button>)
+              : '. . .'}
+          </div>
+          <button className="button_new_project" type="button" onClick={newProjectModalAction}>
+            + New project
+          </button>
+        </SideBarDefault>
         <table className="layersTitles">
           <tr>
             <th />
@@ -53,16 +78,45 @@ class LayersDisplay extends Component {
   }
 }
 
+LayersDisplay.defaultProps = {
+  layers: [],
+  typeFilter: '',
+  categoryLayer: {},
+};
+
+LayersDisplay.propTypes = {
+  // Props type shape
+  layers: PropTypes.shape({
+    color: PropTypes.string,
+    fontSize: PropTypes.number,
+  }),
+  typeFilter: PropTypes.shape({
+    color: PropTypes.string,
+    fontSize: PropTypes.number,
+  }),
+  categoryLayer: PropTypes.shape({
+    id: PropTypes.number,
+    type: PropTypes.string,
+  }),
+  // Props type func
+  fetchData: PropTypes.func.isRequired,
+  filterTypeRedux: PropTypes.func.isRequired,
+  newProjectModalAction: PropTypes.func.isRequired,
+  fetchCategoriesLayerRedux: PropTypes.func.isRequired,
+
+};
+
 const mstp = state => ({
   layers: state.layersFetchDataSuccess,
-  error: state.layersHasErrored,
-  loading: state.layersIsLoading,
   typeFilter: state.typeFilter,
+  categoryLayer: state.categoryLayer,
 });
 
 const mdtp = dispatch => bindActionCreators({
   fetchData: layersFetchData,
   filterTypeRedux: filterType,
+  newProjectModalAction: newProjectModal,
+  fetchCategoriesLayerRedux: fetchCategoriesLayer,
 }, dispatch);
 
 
