@@ -27,7 +27,7 @@ class PageProject extends Component {
   }
 
   render() {
-    const { projectUser, activeProjectId, projectLayers } = this.props;
+    const { projectUser, activeProjectId } = this.props;
     return (
       <div className="PageProject">
         <div className="sideBarProject">
@@ -41,7 +41,6 @@ class PageProject extends Component {
         </div>
         <div className="titleProject">
           <h1>{`Welcome to project ${activeProjectId}`}</h1>
-          {console.log(projectLayers)}
         </div>
         <div className="projectBackButton">
           <BackButton />
