@@ -106,6 +106,26 @@ router.post('/project-layer', (req, res) => {
   });
 });
 
+router.delete('/project-layer/:id', (req, res) => {
+  conf.query('DELETE FROM `ProjectLayer` WHERE `layerId`= ?', req.params.id, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+router.get('/project-layers/:id/:layerId', (req, res) => {
+  conf.query('SELECT `layerId` FROM `ProjectLayer` WHERE `projectId` = ? AND `layerId` = ?', [req.params.id, req.params.layerId], (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result[0] === undefined ? 'true' : 'false');
+    }
+  });
+});
+
 /* GET layer details by ID */
 router.get('/layerdetail/:id', (req, res) => {
   const idLayer = req.params.id;
@@ -115,6 +135,17 @@ router.get('/layerdetail/:id', (req, res) => {
       logger.errorLog.error(err);
     } else {
       res.json(result[0]);
+    }
+  });
+});
+
+router.get('/layers-from-project/:id', (req, res) => {
+  const projectId = req.params.id;
+  conf.query('SELECT `Layer`.`name`,`Layer`.`url`,`Layer`.`description`,`Layer`.`hostSite` FROM `Layer` LEFT JOIN `ProjectLayer` ON `Layer`.id = `ProjectLayer`.`layerId` WHERE `ProjectLayer`.`projectId` = ?', projectId, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
     }
   });
 });

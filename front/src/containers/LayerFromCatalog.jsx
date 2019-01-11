@@ -17,21 +17,21 @@ class LayerFromCatalog extends Component {
   }
 
   componentDidMount() {
-    const { activeProject, id } = this.props;
+    const { activeProjectId, id } = this.props;
 
-    fetch(`${API_SERVER}/project-layers/${activeProject.id}/${id}`)
+    fetch(`${API_SERVER}/project-layers/${activeProjectId}/${id}`)
       .then(res => res.json())
       .then(data => (data === 'false' ? this.setState({ layerAdded: true }) : ''))
       .catch();
   }
 
   addLayerToProject() {
-    const { activeProject, id } = this.props;
+    const { activeProjectId, id } = this.props;
     const { layerAdded } = this.state;
-    if (activeProject.id !== undefined) {
+    if (activeProjectId !== undefined) {
       if (!layerAdded) {
         const data = {
-          projectId: activeProject.id,
+          projectId: activeProjectId,
           layerId: id,
         };
         const config = {
@@ -91,7 +91,7 @@ class LayerFromCatalog extends Component {
 }
 
 const mstp = state => ({
-  activeProject: state.activeProject,
+  activeProjectIdId: state.activeProjectIdId,
 });
 
 export default connect(mstp)(LayerFromCatalog);

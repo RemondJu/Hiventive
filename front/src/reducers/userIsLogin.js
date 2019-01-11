@@ -1,5 +1,5 @@
 const initialState = {
-  id: 1,
+  id: 2,
 };
 
 const userIsLogin = (state = initialState, action) => {
