@@ -1,6 +1,5 @@
 import React from 'react';
 import ProjectSideBar from '../../containers/ProjectSideBar';
-import './ToolPage.scss';
 
 const AllProject = () => (
   <div className="AllProject">
