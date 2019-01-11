@@ -8,7 +8,7 @@ const logger = require('./logger');
 logger.accessLog.info(`Request API to use ${new Date().toISOString()}`);
 
 /* GET select all users */
-router.get('/all-users', (req, res) => {
+router.get('/users', (req, res) => {
   conf.query('SELECT * FROM User', (err, result) => {
     if (err) {
       logger.errorLog.error(err);
@@ -20,7 +20,7 @@ router.get('/all-users', (req, res) => {
 
 
 /* GET select all projects */
-router.get('/all-projects', (req, res) => {
+router.get('/projects', (req, res) => {
   conf.query('SELECT * FROM Project', (err, result) => {
     if (err) {
       logger.errorLog.error(err);
