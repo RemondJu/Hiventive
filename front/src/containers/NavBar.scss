@@ -26,14 +26,30 @@
   .logo:hover{
     text-decoration: none;
   }
+  .searchButton, .burgerButton{
+    button{
+      background: none;
+      border: none;
+
+      img{
+        width: 45px;
+      }
+    }    
+  }
 
   .searchbar{
     display: flex;
+    flex-wrap: nowrap;
+
+
+    form{
+      display: flex;
+      flex-wrap: nowrap;
+    }
     
     .field{
       border-radius: 5px 0 0 5px;
       padding : 10px 15px;
-      width : 500px;
       border-style: none;
       font-family: 'Dosis', sans-serif;
     }
@@ -105,6 +121,24 @@
 
 @media screen and (max-width: 1100px) {
   .title{
+    display: none;
+  }  
+}
+
+@media screen and (max-width: 540px){
+  .searchbar{
+    display: none !important;    
+  }
+  .buttonsForPopovers{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 541px){
+  .searchButton{
+    display: none !important;    
+  }
+  .burgerButton{
     display: none;
   }
 }
