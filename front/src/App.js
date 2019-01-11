@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from './components/homePage/Homepage';
-import ToolPage from './components/toolPage/ToolPage';
+import LayersDisplay from './containers/LayersDisplay';
 import LayerInfos from './components/toolPage/LayerInfos';
 import NavBar from './containers/NavBar';
 import AddLayer from './containers/AddLayer';
@@ -16,7 +16,7 @@ const App = () => (
     <LoadingContent />
     <Switch>
       <Route exact path="/" component={HomePage} />
-      <Route path="/ToolPage" component={ToolPage} />
+      <Route path="/ToolPage" component={LayersDisplay} />
       <Route path="/layerinfos/:id" component={LayerInfos} />
       <Route path="/newLayer/" component={AddLayer} />
       <Route path="/pageProject" component={PageProject} />
