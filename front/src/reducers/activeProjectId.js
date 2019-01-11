@@ -1,4 +1,4 @@
-const initialState = 8;
+const initialState = 0;
 
 const activeProjectId = (state = initialState, action) => {
   switch (action.type) {

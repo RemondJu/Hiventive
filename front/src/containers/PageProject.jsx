@@ -6,7 +6,7 @@ import { fetchProjectUser, fetchLayersFromActiveProject } from '../actions/fetch
 import { selectActiveProject } from '../actions';
 import BackButton from '../components/toolPage/BackButton';
 import SideBarDefault from '../components/toolPage/SideBarDefault';
-
+import LayerFromCatalog from './LayerFromCatalog';
 
 class PageProject extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class PageProject extends Component {
   }
 
   render() {
-    const { projectUser, activeProjectId } = this.props;
+    const { projectUser, activeProjectId, projectLayers } = this.props;
     return (
       <div className="PageProject">
         <div className="sideBarProject">
@@ -40,7 +40,20 @@ class PageProject extends Component {
           </div>
         </div>
         <div className="titleProject">
-          <h1>{`Welcome to project ${activeProjectId}`}</h1>
+          <h1>{activeProjectId !== 0 ? `Welcome to project ${activeProjectId}` : 'Select one of your projects'}</h1>
+          <table className="layersTitles">
+            {projectLayers[0] ? projectLayers.map(projectLayer => (
+              <LayerFromCatalog
+                key={projectLayer.id}
+                id={projectLayer.id}
+                name={projectLayer.name}
+                description={projectLayer.description}
+                url={projectLayer.url}
+                repository={projectLayer.repository}
+                share={projectLayer.share}
+              />)) : <p>No selected project</p>
+            }
+          </table>
         </div>
         <div className="projectBackButton">
           <BackButton />
