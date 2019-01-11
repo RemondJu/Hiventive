@@ -143,6 +143,17 @@ router.get('/layerdetail/:id', (req, res) => {
   });
 });
 
+router.get('/layers-from-project/:id', (req, res) => {
+  const projectId = req.params.id;
+  conf.query('SELECT `Layer`.`name`,`Layer`.`url`,`Layer`.`description`,`Layer`.`hostSite` FROM `Layer` LEFT JOIN `ProjectLayer` ON `Layer`.id = `ProjectLayer`.`layerId` WHERE `ProjectLayer`.`projectId` = ?', projectId, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 /* Get layer all-view, all-download and all-contributors */
 router.get('/community/', (req, res) => {
   conf.query('SELECT SUM(Layer.downloadsCounter) AS allDownload, SUM(Layer.viewsCounter) AS allView, COUNT(DISTINCT email) AS contributors FROM Layer, User', (err, result) => {
