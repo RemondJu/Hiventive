@@ -31,7 +31,7 @@
     border-radius: 8px;
     padding: 10px 15px;
     border: none;
-    background-color: $third-color;
+    background-color: $button-third;
     color: white;
     align-self: center;
     font-weight: bold;
@@ -53,35 +53,14 @@
   }
   tr{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-left: 1%;
+    padding-right: 1%;
     font-size: 1.1em;
     margin-top: 15px;
     height: 65px;
     align-items: center;
   }
-  .imageRow{
-    width: 65px;
-    height: 65px;
-    background-color: $third-color;
-    transition: 0.5s;
-
-    .info {
-      width: 50px;
-      height: 50px;
-      margin-top: 11%;
-      transition: 0.5s;
-    }
-
-  }
-  .imageRow:hover {
-    background-color: $secondary-color;
-    transition: 0.5s;
-    
-    .info:hover {
-      content: url(../images/infohover.png);
-      transition: 0.5s;
-    }
-
   }
 }
 
@@ -106,5 +85,5 @@
   outline: 1px solid slategrey;
   border-radius: 15px;
 }
-}
+
 

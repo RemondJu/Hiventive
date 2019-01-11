@@ -67,23 +67,23 @@ class LayerFromCatalog extends Component {
     return (
       <div className="LayerFromCatalog">
         <tr className="Layer">
-          <NavLink to={`/layerinfos/${id}`}>
+          <NavLink className="test" to={`/layerinfos/${id}`}>
             <td className="imageRow">
               <img className="info" alt="logo_info" src={info} />
             </td>
           </NavLink>
-          <td>{name}</td>
-          <td>{description}</td>
-          <td>{url}</td>
-          <td>{repository}</td>
-          <td>
+          <td className="tableText">{name}</td>
+          <td className="tableDescription">{description.length > 50 ? `${description.slice(0, 22)} ...` : description }</td>
+          <td className="tableText">{url}</td>
+          <td className="tableText">{repository}</td>
+          <td className="tableText">
             <img
               className="isShare"
               src={share ? publiclayer : privatelayer}
               alt="pp"
             />
           </td>
-          <td><button type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
+          <td><button className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
         </tr>
       </div>
     );
