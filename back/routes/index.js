@@ -145,7 +145,7 @@ router.get('/layerdetail/:id', (req, res) => {
 
 router.get('/layers-from-project/:id', (req, res) => {
   const projectId = req.params.id;
-  conf.query('SELECT `Layer`.`name`,`Layer`.`url`,`Layer`.`description`,`Layer`.`hostSite` FROM `Layer` LEFT JOIN `ProjectLayer` ON `Layer`.id = `ProjectLayer`.`layerId` WHERE `ProjectLayer`.`projectId` = ?', projectId, (err, result) => {
+  conf.query('SELECT `Layer`.`id`, `Layer`.`name`,`Layer`.`url`,`Layer`.`description`,`Layer`.`hostSite`, `Layer`.`share` FROM `Layer` LEFT JOIN `ProjectLayer` ON `Layer`.id = `ProjectLayer`.`layerId` WHERE `ProjectLayer`.`projectId` = ?', projectId, (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {

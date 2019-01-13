@@ -19,7 +19,7 @@ const App = () => (
       <Route path="/ToolPage" component={LayersDisplay} />
       <Route path="/layerinfos/:id" component={LayerInfos} />
       <Route path="/newLayer/" component={AddLayer} />
-      <Route path="/pageProject" component={PageProject} />
+      <Route path="/project-page" component={PageProject} />
       <Route path="/list-projects/" component={ListProjects} />
     </Switch>
   </div>
