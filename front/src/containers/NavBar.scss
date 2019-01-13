@@ -52,6 +52,7 @@
       padding : 10px 15px;
       border-style: none;
       font-family: 'Dosis', sans-serif;
+      width: 600px;
     }
 
     .button_search {
@@ -119,10 +120,19 @@
   }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1270px) {
   .title{
     display: none;
   }  
+  .field {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .field {
+    max-width: 185px;
+  }
 }
 
 @media screen and (max-width: 540px){
