@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './LayerFromCatalog.scss';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchLayersFromActiveProject } from '../actions/fetch';
 import info from '../images/info.png';
 import publiclayer from '../images/publiclayer.png';
 import privatelayer from '../images/privatelayer.png';
@@ -18,17 +20,21 @@ class LayerFromCatalog extends Component {
 
   componentDidMount() {
     const { activeProjectId, id } = this.props;
-
     fetch(`${API_SERVER}/project-layers/${activeProjectId}/${id}`)
       .then(res => res.json())
       .then(data => (data === 'false' ? this.setState({ layerAdded: true }) : ''))
       .catch();
   }
 
+  componentDidUpdate() {
+    const { fetchLayersFromActiveProjectAction, activeProjectId } = this.props;
+    fetchLayersFromActiveProjectAction(activeProjectId);
+  }
+
   addLayerToProject() {
     const { activeProjectId, id } = this.props;
     const { layerAdded } = this.state;
-    if (activeProjectId !== undefined) {
+    if (activeProjectId !== 0) {
       if (!layerAdded) {
         const data = {
           projectId: activeProjectId,
@@ -91,7 +97,11 @@ class LayerFromCatalog extends Component {
 }
 
 const mstp = state => ({
-  activeProjectIdId: state.activeProjectIdId,
+  activeProjectId: state.activeProjectId,
 });
 
-export default connect(mstp)(LayerFromCatalog);
+const mdtp = dispatch => bindActionCreators({
+  fetchLayersFromActiveProjectAction: fetchLayersFromActiveProject,
+}, dispatch);
+
+export default connect(mstp, mdtp)(LayerFromCatalog);
