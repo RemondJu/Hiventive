@@ -50,7 +50,7 @@ class NavBar extends Component {
   goToListProject() {
     const { history, hidAllModalNavBarRedux } = this.props;
     hidAllModalNavBarRedux();
-    history.push('/list-projects');
+    history.push('/project-page');
   }
 
   render() {

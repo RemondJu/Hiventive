@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { fetchProjectUser } from '../actions/fetch';
 import ProjectDisplay from './ProjectDisplay';
-
 import './ListProjects.scss';
 import SideBarDefault from '../components/toolPage/SideBarDefault';
 
