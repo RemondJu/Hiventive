@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import BackButton from './BackButton';
 import { fetchLayerInfos } from '../../actions/fetch';
 import API_SERVER from '../../constants';
-
 import './LayerInfos.scss';
 
 class LayerInfos extends Component {
@@ -18,14 +17,24 @@ class LayerInfos extends Component {
     this.changeDeleteButton = this.changeDeleteButton.bind(this);
     this.deleteLayer = this.deleteLayer.bind(this);
     this.changeDeleteButtonMouseOut = this.changeDeleteButtonMouseOut.bind(this);
+    this.addLayerView = this.addLayerView.bind(this);
   }
 
   componentDidMount() {
     const { match, fetchData } = this.props;
     fetchData(match.params.id);
+    this.addLayerView();
     this.setState({
       boolButtonDelete: false,
     });
+  }
+
+  addLayerView() {
+    const { match } = this.props;
+    const config = {
+      method: 'PUT',
+    };
+    fetch(`${API_SERVER}/layerid/${parseInt((match.params.id), 10)}`, config);
   }
 
   deleteLayer() {
