@@ -84,11 +84,10 @@ class LayerFromCatalog extends Component {
           <td className="tableText">{url}</td>
           <td className="tableText">{repository}</td>
           <td className="tableText">
-            <img
-              className="isShare"
-              src={share ? publiclayer : privatelayer}
-              alt="pp"
-            />
+            {share
+              ? ''
+              : <img className="isShare" src={privatelayer} alt="private" />
+            }
           </td>
           <td><button className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
         </tr>

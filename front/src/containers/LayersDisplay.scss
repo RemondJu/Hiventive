@@ -26,6 +26,12 @@
       transition: all 0.5s ease;
       width: 100%;
     }
+    .activeProject {
+      color: white;
+      font-size: 50px;
+      margin-bottom: 30%;
+      font-family: 'ZCOOL QingKe HuangYou', cursive;
+    }
   }
   button{
     border-radius: 8px;
@@ -62,6 +68,10 @@
     align-items: center;
   }
   }
+}
+
+.title-page {
+  margin: 10px;
 }
 
 .layersScrolling{

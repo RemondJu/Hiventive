@@ -37,11 +37,13 @@ class LayersDisplay extends Component {
       newProjectModalAction,
       filterTypeRedux,
       categoryLayer,
+      activeProjectId,
     } = this.props;
     return (
       <div className="LayersDisplay">
         <SideBarDefault>
           <div className="filters">
+            {activeProjectId ? <h2 className="activeProject">PROJECT {activeProjectId} </h2> : ''}
             <h2>Sort layers by</h2>
             <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
             {(categoryLayer.categories !== undefined)
@@ -53,6 +55,7 @@ class LayersDisplay extends Component {
           </button>
         </SideBarDefault>
         <table className="layersTitles">
+          <h1 className="title-page">Layers</h1>
           <tr>
             <th />
             <th>Layer name</th>
@@ -111,6 +114,7 @@ const mstp = state => ({
   layers: state.layersFetchDataSuccess,
   typeFilter: state.typeFilter,
   categoryLayer: state.categoryLayer,
+  activeProjectId: state.activeProjectId,
 });
 
 const mdtp = dispatch => bindActionCreators({
