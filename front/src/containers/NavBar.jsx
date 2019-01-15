@@ -18,6 +18,7 @@ import { fetchSearchLayer } from '../actions/fetch';
 import ModalLogin from '../components/ModalLogin';
 import logoHiventiveWhite from '../images/logoHiventive_white.png';
 import glass from '../images/search.png';
+import burger from '../images/burgerMenu.png';
 import AddLayer from './AddLayer';
 import NewProjectModal from './NewProjectModal';
 
@@ -99,7 +100,7 @@ class NavBar extends Component {
         </div>
         <div className="burgerButton">
           <button type="button">
-            <img className="burgerImg" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" alt="search glass" />
+            <img className="burgerImg" src={burger} alt="search glass" />
           </button>
         </div>
         <ModalLogin />
