@@ -5,16 +5,27 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchLayerInfos } from '../../actions/fetch';
+import API_SERVER from '../../constants';
 
 class LayerInfos extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.addLayerView = this.addLayerView.bind(this);
   }
 
   componentDidMount() {
     const { match, fetchData } = this.props;
     fetchData(match.params.id);
+    this.addLayerView();
+  }
+
+  addLayerView() {
+    const { match } = this.props;
+    const config = {
+      method: 'PUT',
+    };
+    fetch(`${API_SERVER}/layerid/${parseInt((match.params.id), 10)}`, config);
   }
 
   render() {

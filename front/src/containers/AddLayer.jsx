@@ -58,7 +58,7 @@ class AddLayer extends Component {
     } = this.state;
 
     const { history, newLayerModalRedux, userIsLogin } = this.props;
-    
+
     // id userId
     const layerSend = {
       userId: userIsLogin.id,
@@ -73,7 +73,7 @@ class AddLayer extends Component {
       hostSite,
       share,
     };
-    
+
     // id project temp
     const projectId = 1;
     if (layerTypeID !== 0) {
