@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './PageProject.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -51,7 +52,7 @@ class PageProject extends Component {
                 url={projectLayer.url}
                 repository={projectLayer.repository}
                 share={projectLayer.share}
-              />)) : <p>No selected project</p>
+              />)) : <p>No layers yet...</p>
             }
           </table>
         </div>
@@ -59,10 +60,16 @@ class PageProject extends Component {
           <BackButton />
         </div>
       </div>
-
     );
   }
 }
+
+PageProject.propTypes = {
+  fetchProjectUserRedux: PropTypes.func.isRequired,
+  selectActiveProjectAction: PropTypes.func.isRequired,
+  fetchLayersFromActiveProjectAction: PropTypes.func.isRequired,
+  projectLayers: PropTypes.arrayOf(PropTypes.shape).isRequired,
+};
 
 const mstp = state => ({
   userIsLogin: state.userIsLogin,
