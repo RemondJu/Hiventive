@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './LayerFromCatalog.scss';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { fetchLayersFromActiveProject } from '../actions/fetch';
 import info from '../images/info.png';
@@ -95,6 +96,27 @@ class LayerFromCatalog extends Component {
     );
   }
 }
+
+LayerFromCatalog.propTypes = {
+  activeProjectId: PropTypes.number,
+  fetchLayersFromActiveProjectAction: PropTypes.func.isRequired,
+  id: PropTypes.number,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  url: PropTypes.string,
+  repository: PropTypes.string,
+  share: PropTypes.number,
+};
+
+LayerFromCatalog.defaultProps = {
+  activeProjectId: 0,
+  id: 1,
+  name: 'layer name',
+  description: 'layer description',
+  url: 'layer url',
+  repository: 'layer repository',
+  share: 1,
+};
 
 const mstp = state => ({
   activeProjectId: state.activeProjectId,
