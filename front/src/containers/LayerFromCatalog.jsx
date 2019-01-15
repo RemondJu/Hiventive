@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { fetchLayersFromActiveProject } from '../actions/fetch';
 import info from '../images/info.png';
-import publiclayer from '../images/publiclayer.png';
 import privatelayer from '../images/privatelayer.png';
 import API_SERVER from '../constants';
 
@@ -84,11 +83,10 @@ class LayerFromCatalog extends Component {
           <td className="tableText">{url}</td>
           <td className="tableText">{repository}</td>
           <td className="tableText">
-            <img
-              className="isShare"
-              src={share ? publiclayer : privatelayer}
-              alt="pp"
-            />
+            {share
+              ? ''
+              : <img className="isShare" src={privatelayer} alt="private" />
+            }
           </td>
           <td><button className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
         </tr>
