@@ -108,7 +108,7 @@ router.post('/project-layer', (req, res) => {
 });
 
 
-/* Delete layer by id */
+/* Delete layer by id from project */
 router.delete('/project-layer/:id', (req, res) => {
   conf.query('DELETE FROM `ProjectLayer` WHERE `layerId`= ?', req.params.id, (err) => {
     if (err) {
@@ -161,6 +161,17 @@ router.get('/community/', (req, res) => {
       logger.errorLog.error(err);
     } else {
       res.json(result[0]);
+    }
+  });
+});
+
+/* Delete layer by id */
+router.delete('/layer/:id', (req, res) => {
+  conf.query('DELETE FROM `Layer` WHERE `id`= ?', req.params.id, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
     }
   });
 });
