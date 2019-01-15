@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
-import './LayerInfos.scss';
 import { Container, Row, Col } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import BackButton from './BackButton';
 import { fetchLayerInfos } from '../../actions/fetch';
 import API_SERVER from '../../constants';
+import './LayerInfos.scss';
 
 class LayerInfos extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      boolButtonDelete: '',
+    };
+    this.changeDeleteButton = this.changeDeleteButton.bind(this);
+    this.deleteLayer = this.deleteLayer.bind(this);
+    this.changeDeleteButtonMouseOut = this.changeDeleteButtonMouseOut.bind(this);
     this.addLayerView = this.addLayerView.bind(this);
   }
 
@@ -18,6 +24,9 @@ class LayerInfos extends Component {
     const { match, fetchData } = this.props;
     fetchData(match.params.id);
     this.addLayerView();
+    this.setState({
+      boolButtonDelete: false,
+    });
   }
 
   addLayerView() {
@@ -28,20 +37,38 @@ class LayerInfos extends Component {
     fetch(`${API_SERVER}/layerid/${parseInt((match.params.id), 10)}`, config);
   }
 
+  deleteLayer() {
+    const { match, history } = this.props;
+    const conf = {
+      method: 'DELETE',
+    };
+    fetch(`${API_SERVER}/layer/${match.params.id}`, conf)
+      .then(() => history.goBack());
+  }
+
+  changeDeleteButton() {
+    this.setState({
+      boolButtonDelete: true,
+    });
+  }
+
+  changeDeleteButtonMouseOut() {
+    this.setState({
+      boolButtonDelete: false,
+    });
+  }
+
   render() {
     const { layer } = this.props;
+    const { boolButtonDelete } = this.state;
+    const textButtonDelete = boolButtonDelete ? 'Double click here for confirm' : 'Delete';
+    const doubleClickForDelete = boolButtonDelete ? () => this.deleteLayer() : () => { };
     return (
       <div className="LayerInfos">
-        <NavLink to="/ToolPage">
-          <Row>
-            <Col className="mt-3 ml-5" sm={{ size: 'auto', offset: 1 }}>
-              <button className="button" type="button">
-                <span className="arrowBack">↩︎</span>
-              </button>
-            </Col>
-          </Row>
-        </NavLink>
-        <Container>
+        <div className="contentBackButton">
+          <BackButton />
+        </div>
+        <Container className="card_layer">
           <Row>
             <Col className="pageHeader mt-2 ml-5 mb-5" sm="auto" md="auto">
               <h1 className="titleLayerInfo">
@@ -49,6 +76,20 @@ class LayerInfos extends Component {
                 {' '}
                 <span className="nameLayerInfo">{layer.layerName}</span>
               </h1>
+            </Col>
+            <Col className="buttons_for_admin mt-2 mr-5 mb-5">
+              <button className="button_display" type="button" onClick={() => this.changeDeleteButton()}>
+                <span>edit</span>
+              </button>
+              <button
+                className="button_display"
+                type="button"
+                onMouseOut={this.changeDeleteButtonMouseOut}
+                onClick={() => this.changeDeleteButton()}
+                onDoubleClick={doubleClickForDelete}
+              >
+                <span>{textButtonDelete}</span>
+              </button>
             </Col>
           </Row>
           <div className="cardCss">
@@ -153,4 +194,4 @@ function mdtp(dispatch) {
 }
 
 
-export default connect(mstp, mdtp)(LayerInfos);
+export default withRouter(connect(mstp, mdtp)(LayerInfos));

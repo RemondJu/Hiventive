@@ -8,6 +8,7 @@
   .circles{
     @extend %circles;
     padding-top: 1%;
+    display: flex;
       .circle{
         @extend %circle;
         padding: 2.2%;
@@ -28,4 +29,29 @@
     padding-top: 3%;
     font-size: 50px;
   }
+}
+
+@media screen and (max-width: 650px) {
+  .Join{
+    .circles{
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      .circle{
+        margin: 20px 0px;
+      }
+    }
+    .JoinText{
+      font-size: 1.5em;
+  
+      .ImportantWords {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: $secondary-color;
+      }
+      
+      
+    }
+  }
+  
 }

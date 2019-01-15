@@ -88,3 +88,17 @@ export const fetchLayerInfos = id => (dispatch) => {
     .then(() => dispatch(isLoading(false)))
     .catch(() => dispatch(hasErrored(true)));
 };
+
+export const activeProjectLayersFetchSuccess = projectLayers => ({
+  type: 'ACTIVE_PROJECT_LAYERS_FETCH_SUCCESS',
+  projectLayers,
+});
+
+export const fetchLayersFromActiveProject = id => (dispatch) => {
+  dispatch(isLoading(true));
+  fetch(`${API_SERVER}/layers-from-project/${id}`)
+    .then(res => res.json())
+    .then(layers => dispatch(activeProjectLayersFetchSuccess(layers)))
+    .then(() => dispatch(isLoading(false)))
+    .catch(() => dispatch(hasErrored(true)));
+};

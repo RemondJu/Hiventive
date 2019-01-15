@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Col, Row } from 'reactstrap';
-
 import info from '../images/project.svg';
 import './ProjectDisplay.scss';
 
