@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { fetchLayersFromActiveProject } from '../actions/fetch';
 import info from '../images/info.png';
-import publiclayer from '../images/publiclayer.png';
 import privatelayer from '../images/privatelayer.png';
 import API_SERVER from '../constants';
 

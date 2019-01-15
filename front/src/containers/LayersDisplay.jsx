@@ -43,7 +43,12 @@ class LayersDisplay extends Component {
       <div className="LayersDisplay">
         <SideBarDefault>
           <div className="filters">
-            {activeProjectId ? <h2 className="activeProject">PROJECT {activeProjectId} </h2> : ''}
+            {activeProjectId ? (
+              <h2 className="activeProject">
+            PROJECT
+                {activeProjectId}
+              </h2>
+            ) : '' }
             <h2>Sort layers by</h2>
             <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
             {(categoryLayer.categories !== undefined)
