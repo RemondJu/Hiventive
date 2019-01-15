@@ -176,4 +176,27 @@ router.delete('/layer/:id', (req, res) => {
   });
 });
 
+/* Get most downloaded layers */
+router.get('/mostdownload/', (req, res) => {
+  conf.query('SELECT Layer.downloadsCounter AS mostDownload, Layer.id, Layer.name, Layer.viewsCounter AS mostView, User.name AS alias FROM Layer LEFT JOIN User ON Layer.userID = User.id ORDER BY mostDownload DESC LIMIT 3', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+/* Get most views layers */
+router.get('/mostview/', (req, res) => {
+  conf.query('SELECT Layer.viewsCounter AS mostView, Layer.id, Layer.name, Layer.downloadsCounter AS mostDownload, User.name AS alias FROM Layer LEFT JOIN User ON Layer.userID = User.id ORDER BY mostView DESC LIMIT 3', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
 export default router;
