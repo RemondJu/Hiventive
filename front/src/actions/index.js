@@ -26,3 +26,8 @@ export const filterType = typeFilter => ({
 export const hidAllModalNavBar = () => ({
   type: 'SWITCH_LOGIN_MODAL_HID',
 });
+
+export const selectActiveProject = projectId => ({
+  type: 'SELECT_ACTIVE_PROJECT',
+  projectId,
+});

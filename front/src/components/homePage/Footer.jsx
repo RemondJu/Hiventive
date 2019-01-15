@@ -6,14 +6,14 @@ const Footer = () => (
   <div className="Footer">
     <Container fluid>
       <Row>
-        <Col md={{ size: 4 }} className="mb-4 mt-4">
+        <Col md={{ size: 4 }} className="mb-md-4 mt-md-4">
           <ul>
             <li><h4 className="titlefooter">Help</h4></li>
             <li>Need Help</li>
             <li>Documentation</li>
           </ul>
         </Col>
-        <Col md={{ size: 4 }} className="mb-4 mt-4">
+        <Col md={{ size: 4 }} className="mb-md-4 mt-md-4">
           <ul>
             <li><h4 className="titlefooter">Informations</h4></li>
             <li>About us</li>
