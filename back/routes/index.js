@@ -65,7 +65,7 @@ router.post('/layer/', (req, res) => {
 
 /* GET search layer */
 router.get('/layer/search/', (req, res) => {
-  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.viewsCounter DESC LIMIT 20`, (err, result) => {
+  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.viewsCounter DESC`, (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
