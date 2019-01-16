@@ -93,13 +93,39 @@
   }
   .button_display_submit:hover{
     background-color: $secondary-color;
-      color: $third-color;
+    color: $third-color;
   }
   .login_input_title{
     width: 75%;
+    font-size: 0.7em;
+    color: $secondary-color;
+    background-color: #fcfcfc18;
+    border-radius: 8px;
   }
   .text_area_input{
     width: 50vw;
     border-radius: 8px;
+    background-color: #fcfcfc18;
+    color: $secondary-color;
   }
+  .button_checbox{
+    background-color: #fcfcfc18;
+    border-radius: 8px;
+    color: $secondary-color;
+  }
+  .button_checbox:hover{
+    background-color: #fcfcfc85;
+    color: black;
+  }
+  .login_input{
+    border-radius: 8px;
+    color: $secondary-color;
+    background-color: #fcfcfc18;
+  }
+  .select_input{
+    border-radius: 8px;
+    color: $secondary-color;
+    background-color: #fcfcfc18;
+  }
+  
 }
