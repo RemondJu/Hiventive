@@ -119,7 +119,7 @@ router.get('/layerdetail/:id', (req, res) => {
 
 
 /* PUT a layer view by ID */
-router.put('/layerid/:id', (req, res) => {
+router.put('/layer-view-counter/:id', (req, res) => {
   const idLayer = req.params.id;
   conf.query('UPDATE Layer SET viewsCounter = viewsCounter + 1 WHERE id=?', idLayer, (err, result) => {
     if (err) {
