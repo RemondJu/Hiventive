@@ -1,20 +1,20 @@
 @import '../../index.scss';
 
 .SideBarDefault{
-  position: unset;  
-  height: 100vh;
+  position: relative;
+  height: 100%;
   width: 250px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
   background-image: linear-gradient(to bottom, $secondary-color, $primary-color);
   color: $third-color;
   font-size: 1.2em;
-  padding: 50px;
+  padding: 40px 50px 40px 50px;
 }
 @media screen and (max-width: 1100px) {
   .SideBarDefault{
     display: none;
   }
+  
 }

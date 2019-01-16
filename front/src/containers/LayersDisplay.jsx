@@ -68,11 +68,11 @@ class LayersDisplay extends Component {
     const { displayPublicPrivate, shareFilter } = this.state;
     return (
       <div className="LayersDisplay">
-        <SideBarDefault>
+        <SideBarDefault title={activeProjectId ? (
+          <h2 className="activeProject">{`PROJECT ${activeProjectId}`}</h2>
+        ) : ''}
+        >
           <div className="filters">
-            {activeProjectId ? (
-              <h2 className="activeProject">{`PROJECT ${activeProjectId}`}</h2>
-            ) : '' }
             <h2>Sort layers by</h2>
             <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
             {(categoryLayer.categories !== undefined)
@@ -83,30 +83,32 @@ class LayersDisplay extends Component {
             + New project
           </button>
         </SideBarDefault>
-        <table className="layersTitles">
-          <h1 className="title-page">Layers</h1>
-          <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
-          <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
-          <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
-          <tr>
-            <th />
-            <th>Layer name</th>
-            <th>Description</th>
-            <th>Maintainer</th>
-            <th>Repository</th>
-          </tr>
+        <table className="layersTitles ">
           <div className="layersScrolling">
-            {layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
-              <LayerFromCatalog
-                key={layer.id}
-                id={layer.id}
-                name={layer.name}
-                description={layer.description}
-                url={layer.url}
-                repository={layer.hostSite}
-                share={layer.share}
-              />
-            ))}
+            <h1 className="title-page">Layers</h1>
+            <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
+            <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
+            <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
+            <tr>
+              <th />
+              <th>Layer name</th>
+              <th>Description</th>
+              <th>Maintainer</th>
+              <th>Repository</th>
+            </tr>
+            <div>
+              {layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
+                <LayerFromCatalog
+                  key={layer.id}
+                  id={layer.id}
+                  name={layer.name}
+                  description={layer.description}
+                  url={layer.url}
+                  repository={layer.hostSite}
+                  share={layer.share}
+                />
+              ))}
+            </div>
           </div>
         </table>
       </div>

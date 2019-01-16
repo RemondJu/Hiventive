@@ -8,13 +8,13 @@
       font-weight: bold;
     }
     display: flex;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     flex-direction: column;
     align-items: flex-start;
     padding-left: 15px;
 
     .filter{
-      margin-top: 15px;
+      margin-top: 10px;
       background: none;
       color: $third-color;
       width: 70%;
@@ -79,7 +79,7 @@
 
 .layersScrolling{
   overflow-y: scroll; 
-  max-height: 500px;;
+  max-height: 550px;;
   margin-top: 20px;
 }
 
