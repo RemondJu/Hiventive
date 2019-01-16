@@ -34,7 +34,7 @@ class LayerInfos extends Component {
     const config = {
       method: 'PUT',
     };
-    fetch(`${API_SERVER}/layerid/${parseInt((match.params.id), 10)}`, config);
+    fetch(`${API_SERVER}/layer-view-counter/${parseInt((match.params.id), 10)}`, config);
   }
 
   deleteLayer() {

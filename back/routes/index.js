@@ -18,7 +18,6 @@ router.get('/users', (req, res) => {
   });
 });
 
-
 /* GET select all projects */
 router.get('/projects', (req, res) => {
   conf.query('SELECT * FROM Project', (err, result) => {
@@ -164,6 +163,20 @@ router.get('/community/', (req, res) => {
     }
   });
 });
+
+
+/* PUT a layer view by ID */
+router.put('/layer-view-counter/:id', (req, res) => {
+  const idLayer = req.params.id;
+  conf.query('UPDATE Layer SET viewsCounter = viewsCounter + 1 WHERE id=?', idLayer, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
+
 
 /* Delete layer by id */
 router.delete('/layer/:id', (req, res) => {
