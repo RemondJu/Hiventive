@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import BackButton from './BackButton';
 import { fetchLayerInfos } from '../../actions/fetch';
 import API_SERVER from '../../constants';
+
 import './LayerInfos.scss';
 
 class LayerInfos extends Component {
@@ -153,7 +155,6 @@ class LayerInfos extends Component {
     const doubleClickForDelete = boolButtonDelete ? () => this.deleteLayer() : () => { };
     const textButtonEdit = boolButtonEdite ? 'Double click for exit edit mode' : 'Edit your layer';
     const doubleClickForExitEdit = boolButtonEdite ? () => this.editModeOff() : () => { };
-    const showShare = share ? 'Public' : 'Private';
     return (
       <div className="LayerInfos">
         <div className="contentBackButton">
@@ -202,7 +203,7 @@ class LayerInfos extends Component {
                     Type :
                     {' '}
                     {boolButtonEdite ? (
-                      <select name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
+                      <select className="select_input" name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
                         <option value={layerTypeID}>{layer.type}</option>
                         {categoryLayer.length === 0 ? '...' : categoryLayer.categories.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
                       </select>
@@ -229,15 +230,6 @@ class LayerInfos extends Component {
               <Row>
                 <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                   <p className="titleSecLayerInfo">
-                    Owner :
-                    {' '}
-                    <span className="elementLayerInfo">{layer.userName}</span>
-                  </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
-                  <p className="titleSecLayerInfo">
                     Version :
                     {' '}
                     {boolButtonEdite ? (
@@ -245,6 +237,17 @@ class LayerInfos extends Component {
                         <input className="login_input" required name="version" id="version" onChange={this.inputChange} value={version} type="text" />
                       </label>
                     ) : (<span className="elementLayerInfo">{layer.version}</span>)}
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
+                  <p className="titleSecLayerInfo">
+                    Share :
+                    {' '}
+                    {boolButtonEdite ? (
+                      <button className="button_checbox" type="button" onClick={() => this.inputChangeCheckbox()}>{share ? 'Public' : 'Private'}</button>
+                    ) : (<span className="elementLayerInfo">{layer.share ? 'Public' : 'Private'}</span>)}
                   </p>
                 </Col>
               </Row>
@@ -278,6 +281,15 @@ class LayerInfos extends Component {
               <Row>
                 <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                   <p className="titleSecLayerInfo">
+                    Owner :
+                    {' '}
+                    <span className="elementLayerInfo">{layer.userName}</span>
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
+                  <p className="titleSecLayerInfo">
                     Download :
                     {' '}
                     <span className="elementLayerInfo">{layer.downloadsCounter}</span>
@@ -294,23 +306,7 @@ class LayerInfos extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
-                  <p className="titleSecLayerInfo">
-                    {boolButtonEdite
-                      ? showShare
-                      : 'Share :'}
-                    {' '}
-                    {boolButtonEdite ? (
-                      <label className="label_input" htmlFor="share">
-                        <input className="login_input" name="share" id="share" onChange={this.inputChangeCheckbox} value={share} type="checkbox" />
-                      </label>
-                    ) : (<span className="elementLayerInfo">{layer.share ? 'Public' : 'Private'}</span>)}
-                  </p>
-                </Col>
-              </Row>
-              <Row>
                 <Col className="pageHeader mt-2 ml-auto mr-auto " sm="auto" md="auto">
-
                   {boolButtonEdite ? (
                     <button className="button_display_submit" type="submit">Submit this changes</button>
                   ) : ''}
@@ -323,6 +319,13 @@ class LayerInfos extends Component {
     );
   }
 }
+
+LayerInfos.propTypes = {
+  layer: PropTypes.shape.isRequired,
+  categoryLayer: PropTypes.shape.isRequired,
+  history: PropTypes.shape.isRequired,
+  fetchData: PropTypes.func.isRequired,
+};
 
 function mstp(state) {
   return {
