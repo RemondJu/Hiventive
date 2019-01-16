@@ -63,15 +63,17 @@ class LayersDisplay extends Component {
       newProjectModalAction,
       filterTypeRedux,
       categoryLayer,
+      projectUser,
       activeProjectId,
     } = this.props;
+    const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
     const { displayPublicPrivate, shareFilter } = this.state;
     return (
       <div className="LayersDisplay">
         <SideBarDefault>
           <div className="filters">
-            {activeProjectId ? (
-              <h2 className="activeProject">{`PROJECT ${activeProjectId}`}</h2>
+            {projectUser[0] ? (
+              <h2 className="activeProject">{`project ${projectUser[pos].name}`}</h2>
             ) : '' }
             <h2>Sort layers by</h2>
             <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
@@ -146,6 +148,7 @@ const mstp = state => ({
   layers: state.layersFetchDataSuccess,
   typeFilter: state.typeFilter,
   categoryLayer: state.categoryLayer,
+  projectUser: state.projectUser,
   activeProjectId: state.activeProjectId,
 });
 
