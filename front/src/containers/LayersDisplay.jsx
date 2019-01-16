@@ -16,10 +16,12 @@ class LayersDisplay extends Component {
     this.state = {
       shareFilter: 1,
       displayPublicPrivate: true,
+      nbLayersShow: 5,
     };
     this.showPrivateLayers = this.showPrivateLayers.bind(this);
     this.showPublicLayers = this.showPublicLayers.bind(this);
     this.showAllLayers = this.showAllLayers.bind(this);
+    this.moreLayers = this.moreLayers.bind(this);
   }
 
   componentDidMount() {
@@ -56,7 +58,14 @@ class LayersDisplay extends Component {
     });
   }
 
+  moreLayers() {
+    this.setState(prevState => ({
+      nbLayersShow: prevState.nbLayersShow + 5,
+    }));
+  }
+
   render() {
+    const { nbLayersShow } = this.state;
     const {
       layers,
       typeFilter,
@@ -77,7 +86,7 @@ class LayersDisplay extends Component {
           <div className="filters">
             {projectUser[0] ? (
               <h2 className="activeProject">{`project ${projectUser[pos].name}`}</h2>
-            ) : '' }
+            ) : ''}
             <h2>Sort layers by</h2>
             <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
             {(categoryLayer.categories !== undefined)
@@ -112,7 +121,8 @@ class LayersDisplay extends Component {
                   repository={layer.hostSite}
                   share={layer.share}
                 />
-              ))}
+              )).slice(0, nbLayersShow)}
+              <button type="button" onClick={() => this.moreLayers()}>More layers </button>
             </div>
           </div>
         </table>
