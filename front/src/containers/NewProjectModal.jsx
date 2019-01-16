@@ -40,8 +40,8 @@ class NewProjectModal extends Component {
       },
       body: JSON.stringify(dataSend),
     };
-    fetch(`${API_SERVER}/projects`, conf)
-      .then(() => history.push('/pageProject'))
+    fetch(`${API_SERVER}/project`, conf)
+      .then(() => history.push('/project-page'))
       .then(() => newProjectModalAction())
       .catch();
   }
