@@ -1,43 +1,55 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 import CardBestLayer from './CardBestLayer';
+import API_SERVER from '../../constants';
 import './LatestView.scss';
 
-const LatestView = () => (
-  <div className="BestLayers">
-    <Container fluid className="mt-lg-5 mb-5 ">
-      <h2 className="titlebest">Latest OS</h2>
-      <Row>
-        <Col md={{ size: 4 }} className="mb-4 mt-4">
-          <CardBestLayer
-            nameLayer="meta-intel"
-            download=" 10"
-            view=" 21"
-            date="2018-11-22"
-            user=" Saul Wold"
-          />
-        </Col>
-        <Col md={{ size: 4 }} className="mb-4 mt-4">
-          <CardBestLayer
-            nameLayer="meta-yocto-bsp"
-            download=" 7"
-            view=" 11"
-            date="2018-12-05"
-            user="Richard Purdie"
-          />
-        </Col>
-        <Col md={{ size: 4 }} className="mb-4 mt-4">
-          <CardBestLayer
-            nameLayer="meta-intel"
-            download=" 5"
-            view=" 8"
-            date="2018-12-07"
-            user=" Saul Wold"
-          />
-        </Col>
-      </Row>
-    </Container>
-  </div>
-);
+class LatestView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mostviews: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch(`${API_SERVER}/mostview/`)
+      .then(res => res.json())
+      .then(data => this.setState({
+        mostviews: data,
+      }))
+      .catch();
+  }
+
+  render() {
+    const { mostviews } = this.state;
+    return (
+      <div className="LatestView">
+        <Container fluid className="mt-lg-5 mb-1 ">
+          <h2 className="titlebest">Latest View</h2>
+          <Row>
+            {
+              mostviews.map((view, index) => (
+                <Col md={{ size: 4 }} className="mb-5 mt-1">
+                  <NavLink className="test" to={`/layerinfos/${view.id}`}>
+                    <CardBestLayer
+                      className="overlay"
+                      key={view.id}
+                      rank={index + 1}
+                      nameLayer={view.name}
+                      download={view.mostDownload}
+                      view={view.mostView}
+                      user={view.alias}
+                    />
+                  </NavLink>
+                </Col>))
+            }
+          </Row>
+        </Container>
+      </div>
+    );
+  }
+}
 
 export default LatestView;

@@ -72,7 +72,7 @@ class Join extends Component {
             />
           </span>
           <span className="ImportantWords"> projects </span>
-          created and
+          created,
           {' '}
           <span className="ImportantWords">
             <CountUp
