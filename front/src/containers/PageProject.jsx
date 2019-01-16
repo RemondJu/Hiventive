@@ -28,7 +28,8 @@ class PageProject extends Component {
   }
 
   render() {
-    const { projectUser, activeProjectId, projectLayers } = this.props;
+    const { projectUser, projectLayers, activeProjectId } = this.props;
+    const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
     return (
       <div className="PageProject">
         <div className="sideBarProject">
@@ -41,7 +42,12 @@ class PageProject extends Component {
           </div>
         </div>
         <div className="titleProject">
-          <h1>{activeProjectId !== 0 ? `Welcome to project ${activeProjectId}` : 'Select one of your projects'}</h1>
+          <div className="titleDisplay">
+            <h1>{activeProjectId !== 0 ? `Project ${projectUser[pos].name}` : 'Select one of your projects'}</h1>
+            <div className="projectBackButton">
+              <BackButton />
+            </div>
+          </div>
           <table className="layersTitles">
             {projectLayers[0] ? projectLayers.map(projectLayer => (
               <LayerFromCatalog
@@ -55,9 +61,6 @@ class PageProject extends Component {
               />)) : <p>No layers yet...</p>
             }
           </table>
-        </div>
-        <div className="projectBackButton">
-          <BackButton />
         </div>
       </div>
     );
