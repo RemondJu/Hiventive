@@ -45,13 +45,9 @@ class AddLayer extends Component {
 
   inputChangeCheckbox() {
     const { share } = this.state;
-    // console.log(share);
     this.setState({
       share: !share,
     });
-    // this.setState(prevState => ({
-    //   share: !prevState.share,
-    // }));
   }
 
   sendForm(event) {
