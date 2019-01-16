@@ -65,6 +65,7 @@ class LayersDisplay extends Component {
       categoryLayer,
       activeProjectId,
     } = this.props;
+    const { displayPublicPrivate, shareFilter } = this.state;
     return (
       <div className="LayersDisplay">
         <SideBarDefault>
@@ -95,7 +96,7 @@ class LayersDisplay extends Component {
             <th>Repository</th>
           </tr>
           <div className="layersScrolling">
-            {layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (this.state.displayPublicPrivate ? element : element.share === this.state.shareFilter)).map(layer => (
+            {layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
               <LayerFromCatalog
                 key={layer.id}
                 id={layer.id}
