@@ -7,7 +7,6 @@ import { bindActionCreators } from 'redux';
 import { newProjectModal } from '../actions';
 import API_SERVER from '../constants';
 
-
 class NewProjectModal extends Component {
   constructor(props) {
     super(props);
@@ -41,8 +40,8 @@ class NewProjectModal extends Component {
       },
       body: JSON.stringify(dataSend),
     };
-    fetch(`${API_SERVER}/project`, conf)
-      .then(() => history.push('/'))
+    fetch(`${API_SERVER}/projects`, conf)
+      .then(() => history.push('/pageProject'))
       .then(() => newProjectModalAction())
       .catch();
   }

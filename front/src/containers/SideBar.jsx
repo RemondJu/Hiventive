@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { newProjectModal, filterType } from '../actions';
 
+
 const SideBar = (props) => {
   const { newProjectModalAction, filterTypeRedux } = props;
   return (

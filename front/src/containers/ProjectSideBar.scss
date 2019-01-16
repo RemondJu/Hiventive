@@ -1,17 +1,28 @@
 @import '../index.scss';
 
-.SideBar{
-  .filters{
-    h2{
+.SideBar {
+  width: 30%;
+  display: flex;
+  height: 90%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  background-image: linear-gradient(to bottom, $secondary-color, $primary-color);
+  color: $third-color;
+  font-size: 1.2em;
+
+  .filters {
+    h2 {
       font-weight: bold;
     }
+
     display: flex;
     margin-bottom: 100px;
     flex-direction: column;
     align-items: flex-start;
     padding-left: 15px;
 
-    .filter{
+    .filter {
       margin-top: 15px;
       background: none;
       color: $third-color;
@@ -20,30 +31,15 @@
       font-weight: 200;
     }
 
-    .filter:hover{
+    .filter:hover {
       background-color: $fourth-color;
       transition: all 0.5s ease;
       width: 100%;
     }
 
   }
-  button{
-    border-radius: 8px;
-    padding: 10px 15px;
-    border: none;
-    background-color: $third-color;
-    color: white;
-    align-self: center;
-    font-weight: bold;
-    transition: 0.4s;
-    span{
-      font-size: 1em;
-    }
-    
-  }
-  button:hover{
-    background-color: $fourth-color;
-    color: $third-color;
-    transition: 0.4s;
+
+  .buildButton {
+    left: 2%;
   }
 }

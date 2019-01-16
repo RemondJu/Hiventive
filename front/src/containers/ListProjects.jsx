@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import SideBar from './SideBar';
 import { fetchProjectUser } from '../actions/fetch';
 import ProjectDisplay from './ProjectDisplay';
-
 import './ListProjects.scss';
+import SideBarDefault from '../components/toolPage/SideBarDefault';
 
 class ListProjects extends Component {
   constructor(props) {
@@ -23,7 +22,7 @@ class ListProjects extends Component {
     const { projectUser } = this.props;
     return (
       <div className="ListProjects">
-        <SideBar />
+        <SideBarDefault />
         <div className="content_page">
           <h1 className="title_all_projects">All projects</h1>
           {projectUser.map(project => (

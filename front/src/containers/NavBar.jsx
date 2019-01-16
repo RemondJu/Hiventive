@@ -17,9 +17,9 @@ import {
 import { fetchSearchLayer } from '../actions/fetch';
 import ModalLogin from '../components/ModalLogin';
 import logoHiventiveWhite from '../images/logoHiventive_white.png';
+import glass from '../images/search.png';
 import AddLayer from './AddLayer';
 import NewProjectModal from './NewProjectModal';
-
 
 class NavBar extends Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class NavBar extends Component {
   goToListProject() {
     const { history, hidAllModalNavBarRedux } = this.props;
     hidAllModalNavBarRedux();
-    history.push('/list-projects');
+    history.push('/project-page');
   }
 
   render() {
@@ -74,7 +74,11 @@ class NavBar extends Component {
             <button className="button_search" type="submit">Search</button>
           </form>
         </div>
-
+        <div className="searchButton">
+          <button type="button">
+            <img className="searchLogo" src={glass} alt="search glass" />
+          </button>
+        </div>
         <div className="buttonsForPopovers">
 
           <button className="button_add" onClick={() => showToggleAddRedux()} type="button">Add</button>
@@ -92,6 +96,11 @@ class NavBar extends Component {
               <button className="button_link_log" type="button" onClick={() => this.goToListProject()}>Your projects</button>
             </div>
           </div>
+        </div>
+        <div className="burgerButton">
+          <button type="button">
+            <img className="burgerImg" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" alt="search glass" />
+          </button>
         </div>
         <ModalLogin />
         <NewProjectModal />
