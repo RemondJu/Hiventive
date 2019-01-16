@@ -82,5 +82,24 @@
     background-color: $secondary-color;
     color: $third-color;
   }
+  .button_display_submit{
+    background-color: white;
+    color: $button-third;
+    font-weight: bold;
+    transition: 0.4s;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 0px 0px 25px 0px;
+  }
+  .button_display_submit:hover{
+    background-color: $secondary-color;
+      color: $third-color;
+  }
+  .login_input_title{
+    width: 75%;
+  }
+  .text_area_input{
+    width: 50vw;
+    border-radius: 8px;
+  }
 }
-

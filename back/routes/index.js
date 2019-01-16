@@ -132,7 +132,7 @@ router.get('/project-layers/:id/:layerId', (req, res) => {
 /* GET layer details by ID */
 router.get('/layerdetail/:id', (req, res) => {
   const idLayer = req.params.id;
-  const request = 'SELECT Layer.description, Layer.name AS layerName, Layer.downloadsCounter, Layer.hostSite, Layer.id, Layer.imported, Layer.url, Layer.version, Layer.viewsCounter, Layer.share, LayerType.type, User.name AS userName FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id LEFT JOIN User ON Layer.userID = User.id WHERE Layer.id = ?';
+  const request = 'SELECT Layer.description, Layer.name AS layerName, Layer.downloadsCounter, Layer.hostSite, Layer.id, Layer.imported, Layer.url, Layer.version, Layer.viewsCounter, Layer.share, LayerType.type, User.name AS userName, LayerType.id AS typeID FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id LEFT JOIN User ON Layer.userID = User.id WHERE Layer.id = ?';
   conf.query(request, idLayer, (err, result) => {
     if (err) {
       logger.errorLog.error(err);
@@ -181,6 +181,17 @@ router.put('/layer-view-counter/:id', (req, res) => {
 /* Delete layer by id */
 router.delete('/layer/:id', (req, res) => {
   conf.query('DELETE FROM `Layer` WHERE `id`= ?', req.params.id, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+/* edit layer by id */
+router.put('/layer/:id', (req, res) => {
+  conf.query('UPDATE `Layer` SET ? WHERE `id`= ?', [req.body, req.params.id], (err) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
