@@ -17,9 +17,9 @@
     background-color: $third-color;
     margin: 7% auto;
     border-radius: 5px;
-    padding: 20px;
+    padding: 25px;
     color: $fourth-color;
-    width: 60%; 
+    width: 50%; 
     box-shadow: 1px 1px 5px rgba(0,0,0,0.4);
 
     .close {
@@ -38,44 +38,83 @@
       margin: 0;
       padding: 0;
 
-      .label_input{
-        margin: 20px;
-  
-        .login_input {
-          color: $fourth-color;
+      .row{
+        align-items: baseline;
+      }
+
+      .form-control{
+        color: $fourth-color; 
+        background-color: transparent; 
+        width: 100%;
+        border-radius: 0;
+        border: none;
+        border-bottom: 2px solid $fourth-color;
+      }
+
+      .option-style
+        {
+          display: block;
           width: 100%;
-          border: none;
-          border-bottom: 2px solid $fourth-color;
-          background-color: transparent;
-        }
-  
-        .text_area_input{
-          border-radius: 5px;
-        }
+          height: calc(2.25rem + 2px);
+          padding: .375rem .75rem;
+          font-size: 1rem;
+          line-height: 1.5;
+          color: #495057;
+          background-color: #fff;
+          background-clip: padding-box;
+          border: 1px solid #ced4da;
+          border-radius: .25rem;
+          -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+          transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
       }
-    }
+      
 
-      .label_select{
-        border-radius: 5px;
-        background-color: transparent;
-      }
-  
-      .button_submit {
-        @extend %button_neg;
-        padding : 5px 15px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        text-align: center;
-      }
-  
-      }
-      *:focus{
-        outline: none;
-      }
-
+      .btn {
+              @extend %button_neg;
+              margin-top: 10px;
+              padding : 5px 15px;
+              font-size: 1.2rem;
+              cursor: pointer;
+              text-align: center;
+            }
+    } 
   }
+}
+.hidden {
+  transform: scale(1.2); 
+  display: none;
+}
 
-  .hidden {
-    transform: scale(1.2); 
-    display: none;
-  }
+
+
+            // .label_input{
+            //   margin: 20px;
+            // }
+            // .login_input {
+            //   color: $fourth-color; 
+            //   width: 100%;
+            //   border: none;
+            //   border-bottom: 2px solid $fourth-color;
+            //   background-color: transparent;
+            // }
+
+            // .label_select{
+            //   border-radius: 5px;
+            //   background-color: transparent;
+            // }
+      
+            // .text_area_input{
+            //   border-radius: 5px;
+            // }
+
+            // .button_submit {
+            //   @extend %button_neg;
+            //   padding : 5px 15px;
+            //   font-size: 1.2rem;
+            //   cursor: pointer;
+            //   text-align: center;
+            // }
+        
+            // }
+            // *:focus{
+            //   outline: none;
