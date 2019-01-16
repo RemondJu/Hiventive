@@ -13,7 +13,13 @@ import SideBarDefault from '../components/toolPage/SideBarDefault';
 class LayersDisplay extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      shareFilter: 1,
+      displayPublicPrivate: true,
+    };
+    this.showPrivateLayers = this.showPrivateLayers.bind(this);
+    this.showPublicLayers = this.showPublicLayers.bind(this);
+    this.showAllLayers = this.showAllLayers.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +36,26 @@ class LayersDisplay extends Component {
     fetchCategoriesLayerRedux();
   }
 
+  showPrivateLayers() {
+    this.setState({
+      shareFilter: 0,
+      displayPublicPrivate: false,
+    });
+  }
+
+  showPublicLayers() {
+    this.setState({
+      shareFilter: 1,
+      displayPublicPrivate: false,
+    });
+  }
+
+  showAllLayers() {
+    this.setState({
+      displayPublicPrivate: true,
+    });
+  }
+
   render() {
     const {
       layers,
@@ -44,10 +70,7 @@ class LayersDisplay extends Component {
         <SideBarDefault>
           <div className="filters">
             {activeProjectId ? (
-              <h2 className="activeProject">
-            PROJECT
-                {activeProjectId}
-              </h2>
+              <h2 className="activeProject">{`PROJECT ${activeProjectId}`}</h2>
             ) : '' }
             <h2>Sort layers by</h2>
             <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
@@ -61,6 +84,9 @@ class LayersDisplay extends Component {
         </SideBarDefault>
         <table className="layersTitles">
           <h1 className="title-page">Layers</h1>
+          <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
+          <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
+          <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
           <tr>
             <th />
             <th>Layer name</th>
@@ -69,7 +95,7 @@ class LayersDisplay extends Component {
             <th>Repository</th>
           </tr>
           <div className="layersScrolling">
-            {layers.filter(element => element.type === typeFilter || typeFilter === 'All').map(layer => (
+            {layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (this.state.displayPublicPrivate ? element : element.share === this.state.shareFilter)).map(layer => (
               <LayerFromCatalog
                 key={layer.id}
                 id={layer.id}
