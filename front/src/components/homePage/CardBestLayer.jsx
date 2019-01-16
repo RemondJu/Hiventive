@@ -24,8 +24,7 @@ class CardBestLayer extends Component {
       <div className="CardBestLayer">
         <div className="frontLayer">
           <h3>
-            Layer
-            <span className="bestcardcontentname">{nameLayer}</span>
+            <span className="bestcardcontentname">{nameLayer.length > 10 ? `${nameLayer.slice(0, 18)} ...` : nameLayer }</span>
           </h3>
           <span>
             <img src={dll} alt="dll" width="10%" />
