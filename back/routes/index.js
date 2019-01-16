@@ -18,7 +18,6 @@ router.get('/users', (req, res) => {
   });
 });
 
-
 /* GET select all projects */
 router.get('/projects', (req, res) => {
   conf.query('SELECT * FROM Project', (err, result) => {
@@ -165,6 +164,20 @@ router.get('/community/', (req, res) => {
   });
 });
 
+
+/* PUT a layer view by ID */
+router.put('/layer-view-counter/:id', (req, res) => {
+  const idLayer = req.params.id;
+  conf.query('UPDATE Layer SET viewsCounter = viewsCounter + 1 WHERE id=?', idLayer, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
+
+
 /* Delete layer by id */
 router.delete('/layer/:id', (req, res) => {
   conf.query('DELETE FROM `Layer` WHERE `id`= ?', req.params.id, (err) => {
@@ -183,6 +196,28 @@ router.put('/layer/:id', (req, res) => {
       logger.errorLog.error(err);
     } else {
       res.sendStatus(204);
+    }
+  });
+});
+
+/* Get most downloaded layers */
+router.get('/mostdownload/', (req, res) => {
+  conf.query('SELECT Layer.downloadsCounter AS mostDownload, Layer.id, Layer.name, Layer.viewsCounter AS mostView, User.name AS alias FROM Layer LEFT JOIN User ON Layer.userID = User.id ORDER BY mostDownload DESC LIMIT 3', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+/* Get most views layers */
+router.get('/mostview/', (req, res) => {
+  conf.query('SELECT Layer.viewsCounter AS mostView, Layer.id, Layer.name, Layer.downloadsCounter AS mostDownload, User.name AS alias FROM Layer LEFT JOIN User ON Layer.userID = User.id ORDER BY mostView DESC LIMIT 3', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
     }
   });
 });

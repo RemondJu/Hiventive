@@ -32,7 +32,7 @@ class LayerFromCatalog extends Component {
   }
 
   addLayerToProject() {
-    const { activeProjectId, id } = this.props;
+    const { activeProjectId, id, fetchLayersFromActiveProjectAction } = this.props;
     const { layerAdded } = this.state;
     if (activeProjectId !== 0) {
       if (!layerAdded) {
@@ -60,6 +60,7 @@ class LayerFromCatalog extends Component {
           .then(this.setState({
             layerAdded: !layerAdded,
           }))
+          .then(fetchLayersFromActiveProjectAction())
           .catch();
       }
     }

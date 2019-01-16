@@ -16,11 +16,20 @@
   .titleProject {
     text-align: center;
     margin-top: 2%;
-  }
+    width: 100%;
 
-  .projectBackButton{
-    margin-left: 41%;
-    margin-top: 1%;
-  }
+    .titleDisplay {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
+      h1 {
+        margin-left: auto;
+      }
+
+      .projectBackButton {
+        margin-left: auto;
+      }
+    }
+  }
 }
