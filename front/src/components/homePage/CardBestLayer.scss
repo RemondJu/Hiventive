@@ -13,7 +13,7 @@
   font-family: $font-general;
   text-align: left;
   line-height: 1.4;
-  border-radius: 3px;
+  border-radius: 8px;
   overflow: hidden;
 
   h3 {
@@ -95,7 +95,8 @@
   /* Hover */
 
   &:hover {
-    background-color: rgba(74, 67, 85, 0.9);
+    background-color: $third-color;
+    opacity: 0.9;
     box-shadow: 12px 12px 2px 2px rgba(0, 0, 0, 0.7);
     -webkit-transform: scale(1.12);
     transform: scale(1.12);
