@@ -20,11 +20,13 @@ const App = () => (
     <NewProjectModal />
     <AddLayer />
     <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/ToolPage" component={LayersDisplay} />
-      <Route path="/layerinfos/:id" component={LayerInfos} />
-      <Route path="/project-page" component={PageProject} />
-      <Route path="/list-projects/" component={ListProjects} />
+      <div className="body_content_switch">
+        <Route exact path="/" component={HomePage} />
+        <Route path="/ToolPage" component={LayersDisplay} />
+        <Route path="/layerinfos/:id" component={LayerInfos} />
+        <Route path="/project-page" component={PageProject} />
+        <Route path="/list-projects/" component={ListProjects} />
+      </div>
     </Switch>
   </div>
 );
