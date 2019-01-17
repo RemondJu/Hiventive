@@ -102,3 +102,18 @@ export const fetchLayersFromActiveProject = id => (dispatch) => {
     .then(() => dispatch(isLoading(false)))
     .catch(() => dispatch(hasErrored(true)));
 };
+
+export const logSendId = idNameReceive => ({
+  type: 'LOG_ID_NAME',
+  idNameReceive,
+});
+
+// fetch log
+export const fetchLogUser = login => (dispatch) => {
+  dispatch(isLoading(true));
+  fetch(`${API_SERVER}/login/?firstname=${login.firstname}&password=${login.password}`)
+    .then(res => res.json())
+    .then(data => dispatch(logSendId(data)))
+    .then(() => dispatch(isLoading(false)))
+    .catch(() => dispatch(hasErrored(true)));
+};
