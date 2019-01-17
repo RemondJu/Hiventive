@@ -32,7 +32,7 @@ class LayerFromCatalog extends Component {
   }
 
   addLayerToProject() {
-    const { activeProjectId, id } = this.props;
+    const { activeProjectId, id, fetchLayersFromActiveProjectAction } = this.props;
     const { layerAdded } = this.state;
     if (activeProjectId !== 0) {
       if (!layerAdded) {
@@ -60,6 +60,7 @@ class LayerFromCatalog extends Component {
           .then(this.setState({
             layerAdded: !layerAdded,
           }))
+          .then(fetchLayersFromActiveProjectAction())
           .catch();
       }
     }
@@ -79,7 +80,7 @@ class LayerFromCatalog extends Component {
             </td>
           </NavLink>
           <td className="tableText">{name}</td>
-          <td className="tableDescription">{description.length > 30 ? `${description.slice(0, 22)} ...` : description }</td>
+          <td className="tableDescription">{description.length > 20 ? `${description.slice(0, 22)} ...` : description }</td>
           <td className="tableText">{url}</td>
           <td className="tableText">{repository}</td>
           <td className="tableText">

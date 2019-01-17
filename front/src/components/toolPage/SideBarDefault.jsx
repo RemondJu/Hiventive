@@ -3,10 +3,13 @@ import './SideBarDefault.scss';
 
 
 const SideBarDefault = (props) => {
-  const { children } = props;
+  const { children, title } = props;
   return (
     <div className="SideBarDefault">
-      {children}
+      <h2>{title}</h2>
+      <div className="body_sidebar">
+        {children}
+      </div>
     </div>
   );
 };

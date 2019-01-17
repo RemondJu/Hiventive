@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import './NavBar.scss';
 import '../components/ModalLogin.scss';
+import Typist from 'react-typist';
 import {
   showToggleAdd,
   showToggleLog,
@@ -67,7 +68,11 @@ class NavBar extends Component {
       <div className="NavBar">
         <NavLink to="/" className="logo">
           <img className="logo" alt="logo_hiventive" src={logoHiventiveWhite} />
-          <h1 className="title">Hiventive</h1>
+          <h1 className="title">
+            <Typist className="Typist Cursor">
+          Hiventive
+            </Typist>
+          </h1>
         </NavLink>
         <div className="searchbar">
           <form onSubmit={this.sendSearch}>
