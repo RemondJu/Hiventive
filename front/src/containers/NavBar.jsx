@@ -21,6 +21,7 @@ import glass from '../images/search.png';
 import burger from '../images/burgerMenu.png';
 import AddLayer from './AddLayer';
 import NewProjectModal from './NewProjectModal';
+import Typist from 'react-typist';
 
 class NavBar extends Component {
   constructor(props) {
@@ -67,7 +68,11 @@ class NavBar extends Component {
       <div className="NavBar">
         <NavLink to="/" className="logo">
           <img className="logo" alt="logo_hiventive" src={logoHiventiveWhite} />
-          <h1 className="title">Hiventive</h1>
+          <h1 className="title">
+          <Typist className="Typist Cursor">
+          Hiventive
+          </Typist>
+          </h1>
         </NavLink>
         <div className="searchbar">
           <form onSubmit={this.sendSearch}>

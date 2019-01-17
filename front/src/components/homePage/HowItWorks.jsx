@@ -1,12 +1,18 @@
 import React from 'react';
 import './HowItWorks.scss';
+import Typist from 'react-typist';
 import search from '../../images/search.png';
 import signin from '../../images/signin.png';
 import build from '../../images/build.png';
 
+
 const HowItWorks = () => (
   <div className="HowItWorks">
-    <h2>How it works ?</h2>
+    <h2>
+      <Typist className="Typist Cursor">
+        How it works ? ...
+      </Typist>
+    </h2>
     <div className="circles">
       <div className="step">
         <div className="circleViolet"><img src={signin} alt="signin" width="100%" /></div>
