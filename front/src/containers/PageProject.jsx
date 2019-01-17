@@ -205,8 +205,12 @@ class PageProject extends Component {
                 url={projectLayer.url}
                 repository={projectLayer.repository}
                 share={projectLayer.share}
-              />)) : <p>No layers yet...</p>
-            }
+              />)) : (
+                <p>
+              No layers yet...
+                  <span aria-label="cryEmoji" role="img"> 😭 </span>
+                </p>
+            ) }
           </table>
         </div>
       </div>
