@@ -177,23 +177,27 @@ class LayerInfos extends Component {
             </Row>
             <Row>
               <Col className="buttons_for_admin mt-2 mr-auto ml-auto mb-5">
-                <button
-                  className="button_display"
-                  type="button"
-                  onClick={() => this.editMode()}
-                  onDoubleClick={doubleClickForExitEdit}
-                >
-                  <span>{textButtonEdit}</span>
-                </button>
-                <button
-                  className="button_display"
-                  type="button"
-                  onMouseOut={this.changeDeleteButtonMouseOut}
-                  onClick={() => this.changeDeleteButton()}
-                  onDoubleClick={doubleClickForDelete}
-                >
-                  <span>{textButtonDelete}</span>
-                </button>
+                <div className="container_button">
+                  <button
+                    className="button_display"
+                    type="button"
+                    onClick={() => this.editMode()}
+                    onDoubleClick={doubleClickForExitEdit}
+                  >
+                    <span>{textButtonEdit}</span>
+                  </button>
+                </div>
+                <div className="container_button">
+                  <button
+                    className="button_display"
+                    type="button"
+                    onMouseOut={this.changeDeleteButtonMouseOut}
+                    onClick={() => this.changeDeleteButton()}
+                    onDoubleClick={doubleClickForDelete}
+                  >
+                    <span>{textButtonDelete}</span>
+                  </button>
+                </div>
               </Col>
             </Row>
             <div className="cardCss">
