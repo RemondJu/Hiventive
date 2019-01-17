@@ -4,7 +4,11 @@ const initialState = {
 
 const userIsLogin = (state = initialState, action) => {
   switch (action.type) {
-    default: return state;
+    case 'LOG_ID_NAME':
+      return action.idNameReceive;
+
+    default:
+      return state;
   }
 };
 

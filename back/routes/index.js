@@ -65,7 +65,7 @@ router.post('/layer/', (req, res) => {
 
 /* GET search layer */
 router.get('/layer/search/', (req, res) => {
-  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.viewsCounter DESC LIMIT 20`, (err, result) => {
+  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.viewsCounter DESC`, (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
@@ -242,5 +242,18 @@ router.get('/mostview/', (req, res) => {
   });
 });
 
+/* get log */
+router.get('/login', (req, res) => {
+  conf.query('SELECT id, firstname FROM User WHERE firstname=? AND password=?', [req.query.firstname, req.query.password], (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    }
+    if (result.length === 0) {
+      res.json(0);
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
 
 export default router;
