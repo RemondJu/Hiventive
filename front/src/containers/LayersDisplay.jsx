@@ -79,13 +79,10 @@ class LayersDisplay extends Component {
     const { displayPublicPrivate, shareFilter } = this.state;
     return (
       <div className="LayersDisplay">
-        <SideBarDefault title={activeProjectId ? (
-          <h2 className="activeProject">{`PROJECT ${activeProjectId}`}</h2>
-        ) : ''}
-        >
+        <SideBarDefault>
           <div className="filters">
             {projectUser[0] ? (
-              <h2 className="activeProject">{`project ${projectUser[pos].name}`}</h2>
+              <h2 className="activeProject">{`Project ${projectUser[pos].name}`}</h2>
             ) : ''}
             <h2>Sort layers by</h2>
             <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
@@ -111,7 +108,7 @@ class LayersDisplay extends Component {
               <th>Repository</th>
             </tr>
             <div>
-              {layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
+              {layers.length !== 0 ? layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
                 <LayerFromCatalog
                   key={layer.id}
                   id={layer.id}
@@ -121,7 +118,14 @@ class LayersDisplay extends Component {
                   repository={layer.hostSite}
                   share={layer.share}
                 />
-              )).slice(0, nbLayersShow)}
+              )).slice(0, nbLayersShow) : (
+                <p>
+              No layers loaded.
+                  <span aria-label="cryEmoji" role="img"> 😭 </span>
+              Refresh the page!
+                  <span aria-label="cryEmoji" role="img"> 🔁 </span>
+                </p>
+              ) }
               <button type="button" onClick={() => this.moreLayers()}>More layers </button>
             </div>
           </div>
