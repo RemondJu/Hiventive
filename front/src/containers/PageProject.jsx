@@ -5,7 +5,7 @@ import './PageProject.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchProjectUser, fetchLayersFromActiveProject } from '../actions/fetch';
-import { selectActiveProject } from '../actions';
+import { selectActiveProject, enableRefresh } from '../actions';
 import BackButton from '../components/toolPage/BackButton';
 import SideBarDefault from '../components/toolPage/SideBarDefault';
 import LayerFromCatalog from './LayerFromCatalog';
@@ -34,14 +34,12 @@ class PageProject extends Component {
     this.setState({
       deleteButtonEnabled: false,
       editionButtonEnabled: false,
-      clickHappened: false,
     });
   }
 
   componentDidUpdate() {
-    const { fetchProjectUserRedux, userIsLogin } = this.props;
-    const { editionButtonEnabled, deleteButtonEnabled, clickHappened } = this.state;
-    if ((!editionButtonEnabled && clickHappened) || (!deleteButtonEnabled && clickHappened)) {
+    const { fetchProjectUserRedux, userIsLogin, refreshFetch } = this.props;
+    if (refreshFetch) {
       fetchProjectUserRedux(userIsLogin.id);
     }
   }
@@ -57,7 +55,6 @@ class PageProject extends Component {
       editionButtonEnabled: true,
       newProjectName: name,
       newProjectDescription: description,
-      clickHappened: true,
     });
   }
 
@@ -69,7 +66,6 @@ class PageProject extends Component {
 
   activateDeletion() {
     this.setState({
-      clickHappened: true,
       deleteButtonEnabled: true,
     });
   }
@@ -81,20 +77,21 @@ class PageProject extends Component {
   }
 
   deleteProject(id) {
+    const { enableRefreshAction } = this.props;
     const conf = {
       method: 'DELETE',
     };
     fetch(`${API_SERVER}/project/${id}`, conf)
       .then(this.setState({
-        clickHappened: false,
         deleteButtonEnabled: false,
-      }));
+      }))
+      .then(enableRefreshAction);
   }
 
   sendProjectUpdate(e) {
     e.preventDefault();
     const {
-      activeProjectId,
+      activeProjectId, enableRefreshAction,
     } = this.props;
     const {
       newProjectDescription,
@@ -113,9 +110,9 @@ class PageProject extends Component {
     };
     fetch(`${API_SERVER}/project/${activeProjectId}`, conf)
       .then(this.setState({
-        clickHappened: true,
         editionButtonEnabled: false,
-      }));
+      }))
+      .then(enableRefreshAction);
   }
 
   selectProject(id) {
@@ -226,12 +223,14 @@ const mstp = state => ({
   projectUser: state.projectUser,
   activeProjectId: state.activeProjectId,
   projectLayers: state.projectLayers,
+  refreshFetch: state.refreshFetch,
 });
 
 const mdtp = dispatch => bindActionCreators({
   fetchProjectUserRedux: fetchProjectUser,
   selectActiveProjectAction: selectActiveProject,
   fetchLayersFromActiveProjectAction: fetchLayersFromActiveProject,
+  enableRefreshAction: enableRefresh,
 }, dispatch);
 
 export default withRouter(connect(mstp, mdtp)(PageProject));
