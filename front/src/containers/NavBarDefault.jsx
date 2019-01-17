@@ -78,10 +78,10 @@ class NavBarDefault extends Component {
             <img className="d-inline-block align-top" alt="burger" src={burgerMenu} width="45vw" />
           </NavbarToggler>
           <Collapse isOpen={!collapsed} navbar>
-            <FormGroup className="positionsearch form-inline my-2 my-lg-0">
+            <FormGroup className="positionsearch form-inline m-auto">
               <form onSubmit={this.sendSearch} className="searchalign">
                 <Input
-                  className="form-control mr-sm-2"
+                  className="form-control mr-sm-2 w-100"
                   value={wordSearch}
                   onChange={this.searchChange}
                   placeholder="Search for layers"
@@ -95,7 +95,7 @@ class NavBarDefault extends Component {
             </FormGroup>
             <Nav className="ml-auto colorhover" navbar>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret className="titlemenu">
+                <DropdownToggle nav className="titlemenu">
                   ADD
                 </DropdownToggle>
                 <DropdownMenu right>
@@ -106,7 +106,7 @@ class NavBarDefault extends Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret className="titlemenu">
+                <DropdownToggle nav className="titlemenu">
                   LOGIN
                 </DropdownToggle>
                 <DropdownMenu right>
