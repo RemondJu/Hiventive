@@ -3,7 +3,8 @@
 .SideBarDefault{
   position: unset;  
   height: 100vh;
-  width: 250px;
+  width: 100%;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

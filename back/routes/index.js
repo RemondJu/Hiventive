@@ -118,6 +118,16 @@ router.delete('/project-layer/:id', (req, res) => {
   });
 });
 
+router.delete('/project/:id', (req, res) => {
+  conf.query('DELETE FROM `Project` WHERE id = ?', req.params.id, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
 /* Get layer by id */
 router.get('/project-layers/:id/:layerId', (req, res) => {
   conf.query('SELECT `layerId` FROM `ProjectLayer` WHERE `projectId` = ? AND `layerId` = ?', [req.params.id, req.params.layerId], (err, result) => {
@@ -192,6 +202,16 @@ router.delete('/layer/:id', (req, res) => {
 /* edit layer by id */
 router.put('/layer/:id', (req, res) => {
   conf.query('UPDATE `Layer` SET ? WHERE `id`= ?', [req.body, req.params.id], (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+router.put('/project/:id', (req, res) => {
+  conf.query('UPDATE `Project` SET ? WHERE `id`= ?', [req.body, req.params.id], (err) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
