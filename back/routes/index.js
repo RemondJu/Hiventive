@@ -222,5 +222,18 @@ router.get('/mostview/', (req, res) => {
   });
 });
 
+/* get log */
+router.get('/login', (req, res) => {
+  conf.query('SELECT id, firstname FROM User WHERE firstname=? AND password=?', [req.query.firstname, req.query.password], (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    }
+    if (result.length === 0) {
+      res.json(0);
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
 
 export default router;
