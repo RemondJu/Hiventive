@@ -31,3 +31,7 @@ export const selectActiveProject = projectId => ({
   type: 'SELECT_ACTIVE_PROJECT',
   projectId,
 });
+
+export const enableRefresh = () => ({
+  type: 'ENABLE_REFRESH',
+});

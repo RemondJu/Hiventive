@@ -13,6 +13,7 @@ import userIsLogin from './userIsLogin';
 import projectUser from './projectUser';
 import activeProjectId from './activeProjectId';
 import projectLayers from './projectLayers';
+import refreshFetch from './refreshFetch';
 
 const allReducers = combineReducers({
   modal,
@@ -31,6 +32,7 @@ const allReducers = combineReducers({
   projectUser,
   activeProjectId,
   projectLayers,
+  refreshFetch,
 });
 
 export default allReducers;
