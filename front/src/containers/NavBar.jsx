@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import './NavBar.scss';
 import '../components/ModalLogin.scss';
+import Typist from 'react-typist';
 import {
   showToggleAdd,
   showToggleLog,
@@ -21,7 +22,6 @@ import glass from '../images/search.png';
 import burger from '../images/burgerMenu.png';
 import AddLayer from './AddLayer';
 import NewProjectModal from './NewProjectModal';
-import Typist from 'react-typist';
 
 class NavBar extends Component {
   constructor(props) {
@@ -69,9 +69,9 @@ class NavBar extends Component {
         <NavLink to="/" className="logo">
           <img className="logo" alt="logo_hiventive" src={logoHiventiveWhite} />
           <h1 className="title">
-          <Typist className="Typist Cursor">
+            <Typist className="Typist Cursor">
           Hiventive
-          </Typist>
+            </Typist>
           </h1>
         </NavLink>
         <div className="searchbar">
