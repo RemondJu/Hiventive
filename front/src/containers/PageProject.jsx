@@ -210,7 +210,7 @@ class PageProject extends Component {
                 repository={projectLayer.repository}
                 share={projectLayer.share}
               />)) : (
-                <p>
+                <p className="EmptyMessage">
               No layers yet...
                   <span aria-label="cryEmoji" role="img"> 😭 </span>
                 </p>
