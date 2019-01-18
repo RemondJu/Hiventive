@@ -65,7 +65,7 @@ router.post('/layer/', (req, res) => {
 
 /* GET search layer */
 router.get('/layer/search/', (req, res) => {
-  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.viewsCounter DESC LIMIT 20`, (err, result) => {
+  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.viewsCounter DESC`, (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
@@ -110,6 +110,16 @@ router.post('/project-layer', (req, res) => {
 /* Delete layer by id from project */
 router.delete('/project-layer/:id', (req, res) => {
   conf.query('DELETE FROM `ProjectLayer` WHERE `layerId`= ?', req.params.id, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+router.delete('/project/:id', (req, res) => {
+  conf.query('DELETE FROM `Project` WHERE id = ?', req.params.id, (err) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
@@ -200,6 +210,16 @@ router.put('/layer/:id', (req, res) => {
   });
 });
 
+router.put('/project/:id', (req, res) => {
+  conf.query('UPDATE `Project` SET ? WHERE `id`= ?', [req.body, req.params.id], (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
 /* Get most downloaded layers */
 router.get('/mostdownload/', (req, res) => {
   conf.query('SELECT Layer.downloadsCounter AS mostDownload, Layer.id, Layer.name, Layer.viewsCounter AS mostView, User.name AS alias FROM Layer LEFT JOIN User ON Layer.userID = User.id ORDER BY mostDownload DESC LIMIT 3', (err, result) => {
@@ -222,5 +242,18 @@ router.get('/mostview/', (req, res) => {
   });
 });
 
+/* get log */
+router.get('/login', (req, res) => {
+  conf.query('SELECT id, firstname FROM User WHERE firstname=? AND password=?', [req.query.firstname, req.query.password], (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    }
+    if (result.length === 0) {
+      res.json(0);
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
 
 export default router;

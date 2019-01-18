@@ -1,0 +1,119 @@
+@import '../index.scss';
+
+/* GENERAL REACTSTRAP */
+
+.NavBarTest {
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  align-items: center;
+}
+
+.navbarcolor {
+  background-color: $third-color;
+}
+
+.nav-link {
+  color: $fourth-color;
+}
+
+.navbar-toggler {
+  background-color: transparent;
+}
+
+/* Logo Hiventive */
+
+.logoalign {
+  display: flex;
+}
+
+.positiontitre {
+  display: inline;
+  padding-left: 5%;
+  color: $fourth-color;
+  font-size: 1.7em;
+  font-weight: bold;
+
+}
+
+/* Search bar */
+
+.positionsearch {
+  margin: auto;
+}
+
+.searchalign {
+  display: flex;
+  align-items: center;
+}
+
+.searchBar{
+  width: 100%;
+}
+
+/* Link Add and Login */
+
+.titlemenu {
+  text-decoration: none;
+  font-size: 1.4em;
+  font-family: $font-general;
+  font-weight: bold;
+}
+
+.displaymenu {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding: 5%;
+  align-items: center;
+
+  .buttonlink {
+    border: none;
+    background-color: white;
+    color: $third-color;
+    font-family: $font-general;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding-bottom: 1vh;
+  }
+}
+
+/* hover */
+
+.buttonlink:hover {
+  color: $secondary-color !important;
+  font-weight: bold;
+}
+
+.positiontitre:hover {
+  color: $secondary-color;
+  font-family: $font-general;
+  font-weight: bold;
+}
+.titlemenu:hover {
+  color: $secondary-color;
+}
+
+/* Media screen */
+
+@media screen and (max-width: 1100px) {
+  .positionsearch {
+    margin-left: 10px;
+    max-width: 80%;
+  }
+
+  @media screen and (max-width: 750px) {
+    .positionsearch {
+      margin-left: 10px;
+      max-width: 80%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .positionsearch {
+      margin-left: 10px;
+      max-width: 80%;
+    }
+  }
+}
