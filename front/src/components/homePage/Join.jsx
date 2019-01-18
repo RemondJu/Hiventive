@@ -14,19 +14,24 @@ class Join extends Component {
       allDownload: 0,
       allView: 0,
       projects: 0,
+      oneTime: true,
     };
   }
 
-  componentDidMount() {
-    fetch(`${API_SERVER}/community/`)
-      .then(res => res.json())
-      .then(data => this.setState({
-        contributors: data.contributors,
-        projects: data.projects,
-        allDownload: data.allDownload,
-        allView: data.allView,
-      }))
-      .catch();
+  onScrollEvent() {
+    const { oneTime } = this.state;
+    if (oneTime) {
+      fetch(`${API_SERVER}/community/`)
+        .then(res => res.json())
+        .then(data => this.setState({
+          contributors: data.contributors,
+          projects: data.projects,
+          allDownload: data.allDownload,
+          allView: data.allView,
+          oneTime: false,
+        }))
+        .catch();
+    }
   }
 
   render() {
@@ -34,7 +39,7 @@ class Join extends Component {
       contributors, projects, allDownload, allView,
     } = this.state;
     return (
-      <div className="Join">
+      <div className="Join" onMouseOver={() => this.onScrollEvent()}>
         <h2>Join our community</h2>
         <p className="JoinText">
           Join our
@@ -42,7 +47,7 @@ class Join extends Component {
           community!
           We are almost
           {' '}
-          <span className="ImportantWords">
+          <span className="ImportantNumber">
             <CountUp
               className="account-balance"
               start={0}
@@ -59,7 +64,7 @@ class Join extends Component {
           <br />
           Currently there are
           {' '}
-          <span className="ImportantWords">
+          <span className="ImportantNumber">
             <CountUp
               className="account-balance"
               start={0}
@@ -74,7 +79,7 @@ class Join extends Component {
           <span className="ImportantWords"> projects </span>
           created,
           {' '}
-          <span className="ImportantWords">
+          <span className="ImportantNumber">
             <CountUp
               className="account-balance"
               start={0}
@@ -89,7 +94,7 @@ class Join extends Component {
           <span className="ImportantWords"> views </span>
           and
           {' '}
-          <span className="ImportantWords">
+          <span className="ImportantNumber">
             <CountUp
               className="account-balance"
               start={0}

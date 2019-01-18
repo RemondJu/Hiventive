@@ -20,9 +20,14 @@
     .ImportantWords {
       font-size: 45px;
       font-weight: bold;
+      color: $third-color;
+      
+    }
+    .ImportantNumber{
+      font-weight: bold;
+      font-size: 45px;
       color: $secondary-color;
     }
-    
     
   }
   h2 {
