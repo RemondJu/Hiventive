@@ -8,6 +8,7 @@ import NavBar from './containers/NavBar';
 import AddLayer from './containers/AddLayer';
 import LoadingContent from './containers/LoadingContent';
 import PageProject from './containers/PageProject';
+import PageBuildProject from './containers/PageBuildProject';
 import ListProjects from './containers/ListProjects';
 
 const App = () => (
@@ -20,6 +21,7 @@ const App = () => (
       <Route path="/layerinfos/:id" component={LayerInfos} />
       <Route path="/newLayer/" component={AddLayer} />
       <Route path="/project-page" component={PageProject} />
+      <Route path="/project-build-page" component={PageBuildProject} />
       <Route path="/list-projects/" component={ListProjects} />
     </Switch>
   </div>

@@ -70,19 +70,20 @@ class LayersDisplay extends Component {
     const { displayPublicPrivate, shareFilter } = this.state;
     return (
       <div className="LayersDisplay">
-        <SideBarDefault title={activeProjectId ? (
-          <h2 className="activeProject">{`PROJECT ${activeProjectId}`}</h2>
+        <SideBarDefault title={projectUser[0] ? (
+          <h2 className="activeProject">
+            {`project ${projectUser[pos].name}`}
+          </h2>
         ) : ''}
         >
           <div className="filters">
-            {projectUser[0] ? (
-              <h2 className="activeProject">{`project ${projectUser[pos].name}`}</h2>
-            ) : '' }
-            <h2>Sort layers by</h2>
-            <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
-            {(categoryLayer.categories !== undefined)
-              ? categoryLayer.categories.map(type => <button type="button" onClick={() => filterTypeRedux(type.type)} className="filter">{type.type}</button>)
-              : '. . .'}
+            <h2>Filters</h2>
+            <ul className="projects-list">
+              <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
+              {(categoryLayer.categories !== undefined)
+                ? categoryLayer.categories.map(type => <li><button type="button" onClick={() => filterTypeRedux(type.type)} className="filter">{type.type}</button></li>)
+                : '. . .'}
+            </ul>
           </div>
           <button className="button_new_project" type="button" onClick={newProjectModalAction}>
             + New project

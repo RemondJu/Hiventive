@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import './PageProject.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { NavLink } from 'react-router-dom';
 import { fetchProjectUser, fetchLayersFromActiveProject } from '../actions/fetch';
 import { selectActiveProject } from '../actions';
 import BackButton from '../components/toolPage/BackButton';
 import SideBarDefault from '../components/toolPage/SideBarDefault';
+
 import LayerFromCatalog from './LayerFromCatalog';
 
 class PageProject extends Component {
@@ -35,9 +37,15 @@ class PageProject extends Component {
         <div className="sideBarProject">
           <div className="projectRow">
             <SideBarDefault>
-              <ul>
-                {projectUser.map(userProject => <li key={userProject.id}><button type="button" onClick={() => this.selectProject(userProject.id)}>{userProject.name}</button></li>)}
+              <h2>OS Projects</h2>
+              <ul className="projects-list">
+                {projectUser.map(userProject => <li key={userProject.id}><button type="button" className="filter" onClick={() => this.selectProject(userProject.id)}>{userProject.name}</button></li>)}
               </ul>
+              <NavLink to="/project-build-page">
+                <button className="button-build" type="button">
+                  Build your OS
+                </button>
+              </NavLink>
             </SideBarDefault>
           </div>
         </div>

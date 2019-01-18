@@ -9,7 +9,69 @@
 
     .projectRow {
       height: 100%;
-      min-width: 250%;
+      min-width: 250px;
+
+      h2{
+        font-weight: bold;
+      }
+
+      .projects-list{
+        list-style-type: none;
+        padding-inline-start: 0;
+
+      }
+
+      button{
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: none;
+        background-color: $button-third;
+        color: white;
+        align-self: center;
+        font-weight: bold;
+        transition: 0.4s;
+        span{
+          font-size: 1em;
+        }
+      }
+      button:hover{
+        background-color: $fourth-color;
+        color: $third-color;
+        transition: 0.4s;
+      }
+
+      .filter{
+        margin-top: 10px;
+        background: none;
+        color: $third-color;
+        width: 90%;
+        text-align: left;
+        font-weight: 200;
+      }
+      .filter:hover{
+        background-color: $fourth-color;
+        transition: all 0.5s ease;
+        width: 100%;
+      }
+
+      .button-build{
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: none;
+        background-color: $button-third;
+        color: white;
+        align-self: center;
+        font-weight: bold;
+        transition: 0.4s;
+        span{
+          font-size: 1em;
+        }
+      }
+      .button-build:hover{
+        background-color: $fourth-color;
+        color: $third-color;
+        transition: 0.4s;
+      }
     }
   }
 
