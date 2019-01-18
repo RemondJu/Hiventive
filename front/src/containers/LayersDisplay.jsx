@@ -108,7 +108,6 @@ class LayersDisplay extends Component {
               <th>Maintainer</th>
               <th>Repository</th>
             </tr>
-            {console.log('layers: ', layers)}
             <div>
               {layers.length !== 0 ? layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
                 <LayerFromCatalog
