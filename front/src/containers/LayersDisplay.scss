@@ -7,6 +7,12 @@
     h2{
       font-weight: bold;
     }
+
+    .projects-list{
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
+
     display: flex;
     margin-bottom: 50px;
     flex-direction: column;
@@ -17,7 +23,7 @@
       margin-top: 10px;
       background: none;
       color: $third-color;
-      width: 70%;
+      width: 90%;
       text-align: left;
       font-weight: 200;
     }

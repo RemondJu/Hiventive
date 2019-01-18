@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './Join.scss';
 import CountUp from 'react-countup';
+
 import community from '../../images/community.png';
 import connection from '../../images/connection.png';
 import help from '../../images/help.png';
 import API_SERVER from '../../constants';
+
 
 class Join extends Component {
   constructor(props) {
@@ -40,7 +42,7 @@ class Join extends Component {
           Join our
           <span className="ImportantWords"> friendly </span>
           community!
-          We are almost
+          We are currently
           {' '}
           <span className="ImportantWords">
             <CountUp

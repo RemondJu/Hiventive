@@ -1,23 +1,31 @@
 @import '../../index.scss';
 .BackButton{
 
-.goBack{
-float: right;
-margin-right: 3%;
-margin-top: -3%;
-display: flex;
-
-}
-.button {
-  @extend %button;
-  padding: 5px 25px;
-  background-color: $secondary-color;
-
-  
-  .arrowBack{
-    font-size: 2.4em;
-    text-align: center;
-    text-shadow: 1px 1px black;
+  .goBack{
+  float: right;
+  margin-right: 3%;
+  margin-top: -3%;
+  display: flex;
   }
-}
+
+  .button {
+    @extend %button;
+    padding: 5px 25px;
+    background-color: $third-color;
+    border: none;
+
+    
+    .arrowBack{
+      font-size: 2.4em;
+      text-align: center;
+    }
+  }
+
+  .button:hover {
+    @extend %button;
+    padding: 5px 25px;
+    background-color: $secondary-color;
+    border: none;
+  }
+
 }

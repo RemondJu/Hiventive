@@ -8,6 +8,7 @@ import NavBarDefault from './containers/NavBarDefault';
 import AddLayer from './containers/AddLayer';
 import LoadingContent from './containers/LoadingContent';
 import PageProject from './containers/PageProject';
+import PageBuildProject from './containers/PageBuildProject';
 import NewProjectModal from './containers/NewProjectModal';
 import ModalLogin from './components/ModalLogin';
 
@@ -24,6 +25,7 @@ const App = () => (
         <Route path="/ToolPage" component={LayersDisplay} />
         <Route path="/layerinfos/:id" component={LayerInfos} />
         <Route path="/project-page" component={PageProject} />
+        <Route path="/project-build-page" component={PageBuildProject} />
       </div>
     </Switch>
   </div>
