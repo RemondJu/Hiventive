@@ -27,13 +27,10 @@ class LayersDisplay extends Component {
   componentDidMount() {
     const {
       fetchData,
-      location,
       filterTypeRedux,
       fetchCategoriesLayerRedux,
     } = this.props;
-    if (location.state !== undefined) {
-      fetchData(`${API_SERVER}/layers`);
-    }
+    fetchData(`${API_SERVER}/layers`);
     filterTypeRedux('All');
     fetchCategoriesLayerRedux();
   }
@@ -111,6 +108,7 @@ class LayersDisplay extends Component {
               <th>Maintainer</th>
               <th>Repository</th>
             </tr>
+            {console.log('layers: ', layers)}
             <div>
               {layers.length !== 0 ? layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
                 <LayerFromCatalog
