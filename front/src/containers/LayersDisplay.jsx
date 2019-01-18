@@ -27,13 +27,10 @@ class LayersDisplay extends Component {
   componentDidMount() {
     const {
       fetchData,
-      location,
       filterTypeRedux,
       fetchCategoriesLayerRedux,
     } = this.props;
-    if (location.state !== undefined) {
-      fetchData(`${API_SERVER}/layers`);
-    }
+    fetchData(`${API_SERVER}/layers`);
     filterTypeRedux('All');
     fetchCategoriesLayerRedux();
   }
