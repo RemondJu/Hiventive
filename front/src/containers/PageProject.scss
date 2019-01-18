@@ -94,4 +94,31 @@
       }
     }
   }
+  .button_display {
+    margin-right: 10%;
+  }
+
+  .LayerFromCatalog {
+    margin-right: 70px;
+    margin-top: 1%;
+  }
+
+  .add-remove-button {
+    width: 65px;
+    height: 65px;
+    background-color: $button-third;
+    transition: 0.5s;
+    left: 0;
+  }
+  .add-remove-button:hover {
+    width: 65px;
+    height: 65px;
+    background-color: white;
+    transition: 0.5s;
+    left: 0;
+  }
+  .EmptyMessage {
+    font-size: 30px;
+  }
+
 }
