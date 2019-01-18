@@ -13,64 +13,122 @@ import SideBarDefault from '../components/toolPage/SideBarDefault';
 class LayersDisplay extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      shareFilter: 1,
+      displayPublicPrivate: true,
+      nbLayersShow: 5,
+    };
+    this.showPrivateLayers = this.showPrivateLayers.bind(this);
+    this.showPublicLayers = this.showPublicLayers.bind(this);
+    this.showAllLayers = this.showAllLayers.bind(this);
+    this.moreLayers = this.moreLayers.bind(this);
   }
 
   componentDidMount() {
     const {
       fetchData,
-      location,
       filterTypeRedux,
       fetchCategoriesLayerRedux,
     } = this.props;
-    if (location.state !== undefined) {
-      fetchData(`${API_SERVER}/layers`);
-    }
+    fetchData(`${API_SERVER}/layers`);
     filterTypeRedux('All');
     fetchCategoriesLayerRedux();
   }
 
+  showPrivateLayers() {
+    this.setState({
+      shareFilter: 0,
+      displayPublicPrivate: false,
+    });
+  }
+
+  showPublicLayers() {
+    this.setState({
+      shareFilter: 1,
+      displayPublicPrivate: false,
+    });
+  }
+
+  showAllLayers() {
+    this.setState({
+      displayPublicPrivate: true,
+    });
+  }
+
+  moreLayers() {
+    this.setState(prevState => ({
+      nbLayersShow: prevState.nbLayersShow + 5,
+    }));
+  }
+
   render() {
+    const { nbLayersShow } = this.state;
     const {
       layers,
       typeFilter,
       newProjectModalAction,
       filterTypeRedux,
       categoryLayer,
+      projectUser,
+      activeProjectId,
     } = this.props;
+    const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
+    const { displayPublicPrivate, shareFilter } = this.state;
     return (
       <div className="LayersDisplay">
-        <SideBarDefault>
+        <SideBarDefault title={projectUser[0] ? (
+          <h2 className="activeProject">
+            {`project ${projectUser[pos].name}`}
+          </h2>
+        ) : ''}
+        >
           <div className="filters">
-            <h2>Sort layers by</h2>
-            <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
-            {(categoryLayer.categories !== undefined)
-              ? categoryLayer.categories.map(type => <button type="button" onClick={() => filterTypeRedux(type.type)} className="filter">{type.type}</button>)
-              : '. . .'}
+            <h2>Filters</h2>
+            <ul className="projects-list">
+              <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
+              {(categoryLayer.categories !== undefined)
+                ? categoryLayer.categories.map(type => <li><button type="button" onClick={() => filterTypeRedux(type.type)} className="filter">{type.type}</button></li>)
+                : '. . .'}
+            </ul>
           </div>
           <button className="button_new_project" type="button" onClick={newProjectModalAction}>
             + New project
           </button>
         </SideBarDefault>
-        <table className="layersTitles">
-          <tr>
-            <th />
-            <th>Layer name</th>
-            <th>Description</th>
-            <th>Maintainer</th>
-            <th>Repository</th>
-          </tr>
+        <table className="layersTitles ">
           <div className="layersScrolling">
-            {layers.filter(element => element.type === typeFilter || typeFilter === 'All').map(layer => (
-              <LayerFromCatalog
-                id={layer.id}
-                name={layer.name}
-                description={layer.description}
-                url={layer.url}
-                repository={layer.hostSite}
-                share={layer.share}
-              />
-            ))}
+            <h1 className="title-page">Layers</h1>
+            <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
+            <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
+            <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
+            <tr>
+              <th />
+              <th>Layer name</th>
+              <th>Description</th>
+              <th>Maintainer</th>
+              <th>Repository</th>
+            </tr>
+            <div>
+              {layers.length !== 0 ? layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
+                <LayerFromCatalog
+                  key={layer.id}
+                  id={layer.id}
+                  name={layer.name}
+                  description={layer.description}
+                  url={layer.url}
+                  repository={layer.hostSite}
+                  share={layer.share}
+                />
+              )).slice(0, nbLayersShow) : (
+                <p>
+              No layers loaded.
+                  <span aria-label="cryEmoji" role="img"> 😭 </span>
+              Refresh the page!
+                  <span aria-label="cryEmoji" role="img"> 🔁 </span>
+                </p>
+              ) }
+              <button type="button" onClick={() => this.moreLayers()}>More layers </button>
+            </div>
           </div>
         </table>
       </div>
@@ -110,6 +168,8 @@ const mstp = state => ({
   layers: state.layersFetchDataSuccess,
   typeFilter: state.typeFilter,
   categoryLayer: state.categoryLayer,
+  projectUser: state.projectUser,
+  activeProjectId: state.activeProjectId,
 });
 
 const mdtp = dispatch => bindActionCreators({

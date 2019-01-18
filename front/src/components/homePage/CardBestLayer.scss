@@ -1,43 +1,121 @@
 @import '../../index.scss';
-.CardBestLayer{
+
+/* GENERAL */
+
+.CardBestLayer {
   width: 350px;
-  min-height: 200px;
-  background-color: rgba(124, 83, 124, 0.495);
+  min-height: 225px;
+  background-color: $third-color;
+  opacity: 0.90;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.7);
   padding: 20px;
   margin: auto;
-  font-family:$font-general;
-  border-radius: 20px;
+  font-family: $font-general;
   text-align: left;
+  line-height: 1.4;
+  border-radius: 8px;
+  overflow: hidden;
 
-
-  h3{
+  h3 {
     font-weight: bold;
     color: $fourth-color;
   }
 
-  .bestcardcontent{
-    font-weight: bold;
-    font-size: 1em;
-    color: $third-color;
-    
-    
+  h4 {
+    top: auto;
+    font-size: 27px;
+  }
+  h5 {
+    text-align: center;
+    font-size: 21px;
+    color: $fourth-color;
   }
 
-  span{
-    margin: 0px 10px ;
+  span {
+    margin: 0px 10px;
     padding-top: 10px;
     font-weight: bold;
     color: $secondary-color;
   }
-  .bestcardvalues{
-    color: $secondary-color;
-    font-size: 1.5em;   
+
+  .frontlayer {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
   }
- 
+
+  .layerwatch {
+    float: right;
+    background-color: rgba(81, 224, 226, 0.7);
+    text-align: center;
+    transition: .23s ease;
+    color: $fourth-color;
+    text-shadow: 2px 2px 7px black;
+    margin-top: 20px;
+    padding: 10px;
+  }
+
+  .layerang {
+    float: left;
+    padding: 10px;
+    margin-top: 20px;
+    color: $primary-color;
+    
+  }
+
+  .bestcardcontentname {
+    font-weight: bold;
+    font-size: 1em;
+    color: $secondary-color;
+    text-transform: uppercase;
+  }
+
+  .bestcardvaluesdowload {
+    color: $primary-color;
+    font-size: 1.5em;
+  }
+
+  .bestcardvaluesview {
+    color: $primary-color;
+    font-size: 1.5em;
+  }
+
+  .bestcardvaluesname {
+    color: $secondary-color;
+    font-size: 1.1em;
+  }
+
+  .bestcardvaluesrank {
+    color: $primary-color;
+    font-size: 1.1em;
+  }
+
+  /* Hover */
+
+  &:hover {
+    background-color: $third-color;
+    opacity: 0.9;
+    box-shadow: 12px 12px 2px 2px rgba(0, 0, 0, 0.7);
+    -webkit-transform: scale(1.12);
+    transform: scale(1.12);
+
+    .layerwatch {
+      top: 10px;
+      background-color: rgba(255, 255, 255, 1);
+      box-shadow: 0 2px 1px 0 rgba(255, 255, 255, 1);
+      color: $third-color;
+      text-shadow: 1px 1px 1px $fourth-color;
+      font-weight: bold;
+    }
+    
+  }
+
 }
 
+/* Media screen */
 @media screen and (max-width: 1075px) {
-  .CardBestLayer{
+  .CardBestLayer {
     width: 100%;
     height: 270px;
   }

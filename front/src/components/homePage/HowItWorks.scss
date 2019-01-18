@@ -13,6 +13,19 @@
     font-size: 50px;
     text-align: center;
   }
+  .Typist .Cursor {
+    display: inline-block;
+  
+    &--blinking {
+      opacity: 1;
+      animation: blink 1s linear infinite;
+      @keyframes blink {
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+      }
+    }
+  }
 
   .circles{
     @extend %circles;
@@ -50,6 +63,11 @@
     .HIWTitles {
       margin: 15px 0px;
     }
+      img {
+        margin-top: 20px;
+        height: 150px;
+        width: 150px;
+      }
 
     p {
       font-size: 1.3em;

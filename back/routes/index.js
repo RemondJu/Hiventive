@@ -18,7 +18,6 @@ router.get('/users', (req, res) => {
   });
 });
 
-
 /* GET select all projects */
 router.get('/projects', (req, res) => {
   conf.query('SELECT * FROM Project', (err, result) => {
@@ -33,7 +32,7 @@ router.get('/projects', (req, res) => {
 
 /* GET select all layers */
 router.get('/layers', (req, res) => {
-  conf.query('SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, Layer.share, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id', (err, result) => {
+  conf.query('SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, Layer.share, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id ORDER BY Layer.name', (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
@@ -66,7 +65,7 @@ router.post('/layer/', (req, res) => {
 
 /* GET search layer */
 router.get('/layer/search/', (req, res) => {
-  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.viewsCounter DESC LIMIT 20`, (err, result) => {
+  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type, Layer.share FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.name`, (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
@@ -108,9 +107,19 @@ router.post('/project-layer', (req, res) => {
 });
 
 
-/* Delete layer by id */
+/* Delete layer by id from project */
 router.delete('/project-layer/:id', (req, res) => {
   conf.query('DELETE FROM `ProjectLayer` WHERE `layerId`= ?', req.params.id, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+router.delete('/project/:id', (req, res) => {
+  conf.query('DELETE FROM `Project` WHERE id = ?', req.params.id, (err) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
@@ -133,7 +142,7 @@ router.get('/project-layers/:id/:layerId', (req, res) => {
 /* GET layer details by ID */
 router.get('/layerdetail/:id', (req, res) => {
   const idLayer = req.params.id;
-  const request = 'SELECT Layer.description, Layer.name AS layerName, Layer.downloadsCounter, Layer.hostSite, Layer.id, Layer.imported, Layer.url, Layer.version, Layer.viewsCounter, Layer.share, LayerType.type, User.name AS userName FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id LEFT JOIN User ON Layer.userID = User.id WHERE Layer.id = ?';
+  const request = 'SELECT Layer.description, Layer.name AS layerName, Layer.downloadsCounter, Layer.hostSite, Layer.id, Layer.imported, Layer.url, Layer.version, Layer.viewsCounter, Layer.share, LayerType.type, User.name AS userName, LayerType.id AS typeID FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id LEFT JOIN User ON Layer.userID = User.id WHERE Layer.id = ?';
   conf.query(request, idLayer, (err, result) => {
     if (err) {
       logger.errorLog.error(err);
@@ -143,11 +152,104 @@ router.get('/layerdetail/:id', (req, res) => {
   });
 });
 
-/* Get layer all-view, all-download and all-contributors */
-router.get('/community/', (req, res) => {
-  conf.query('SELECT SUM(Layer.downloadsCounter) AS allDownload, SUM(Layer.viewsCounter) AS allView, COUNT(DISTINCT email) AS contributors FROM Layer, User', (err, result) => {
+router.get('/layers-from-project/:id', (req, res) => {
+  const projectId = req.params.id;
+  conf.query('SELECT `Layer`.`id`, `Layer`.`name`,`Layer`.`url`,`Layer`.`description`,`Layer`.`hostSite`, `Layer`.`share` FROM `Layer` LEFT JOIN `ProjectLayer` ON `Layer`.id = `ProjectLayer`.`layerId` WHERE `ProjectLayer`.`projectId` = ?', projectId, (err, result) => {
     if (err) {
       logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+/* Get layer all-projects, all-view, all-download and all-contributors */
+router.get('/community/', (req, res) => {
+  conf.query('SELECT SUM(DISTINCT Layer.downloadsCounter) AS allDownload, SUM(DISTINCT Layer.viewsCounter) AS allView, COUNT(DISTINCT User.email) AS contributors, COUNT(DISTINCT Project.name) AS projects FROM Layer, User, Project', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
+
+
+/* PUT a layer view by ID */
+router.put('/layer-view-counter/:id', (req, res) => {
+  const idLayer = req.params.id;
+  conf.query('UPDATE Layer SET viewsCounter = viewsCounter + 1 WHERE id=?', idLayer, (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
+
+
+/* Delete layer by id */
+router.delete('/layer/:id', (req, res) => {
+  conf.query('DELETE FROM `Layer` WHERE `id`= ?', req.params.id, (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+/* edit layer by id */
+router.put('/layer/:id', (req, res) => {
+  conf.query('UPDATE `Layer` SET ? WHERE `id`= ?', [req.body, req.params.id], (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+router.put('/project/:id', (req, res) => {
+  conf.query('UPDATE `Project` SET ? WHERE `id`= ?', [req.body, req.params.id], (err) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+/* Get most downloaded layers */
+router.get('/mostdownload/', (req, res) => {
+  conf.query('SELECT Layer.downloadsCounter AS mostDownload, Layer.id, Layer.name, Layer.viewsCounter AS mostView, User.name AS alias FROM Layer LEFT JOIN User ON Layer.userID = User.id ORDER BY mostDownload DESC LIMIT 3', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+/* Get most views layers */
+router.get('/mostview/', (req, res) => {
+  conf.query('SELECT Layer.viewsCounter AS mostView, Layer.id, Layer.name, Layer.downloadsCounter AS mostDownload, User.name AS alias FROM Layer LEFT JOIN User ON Layer.userID = User.id ORDER BY mostView DESC LIMIT 3', (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+/* get log */
+router.get('/login', (req, res) => {
+  conf.query('SELECT id, firstname FROM User WHERE firstname=? AND password=?', [req.query.firstname, req.query.password], (err, result) => {
+    if (err) {
+      logger.errorLog.error(err);
+    }
+    if (result.length === 0) {
+      res.json(0);
     } else {
       res.json(result[0]);
     }

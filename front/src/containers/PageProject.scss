@@ -9,18 +9,116 @@
 
     .projectRow {
       height: 100%;
-      min-width: 250%;
+      min-width: 250px;
+
+      h2{
+        font-weight: bold;
+      }
+
+      .projects-list{
+        list-style-type: none;
+        padding-inline-start: 0;
+
+      }
+
+      button{
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: none;
+        background-color: $button-third;
+        color: white;
+        align-self: center;
+        font-weight: bold;
+        transition: 0.4s;
+        span{
+          font-size: 1em;
+        }
+      }
+      button:hover{
+        background-color: $fourth-color;
+        color: $third-color;
+        transition: 0.4s;
+      }
+
+      .filter{
+        margin-top: 10px;
+        background: none;
+        color: $third-color;
+        width: 90%;
+        text-align: left;
+        font-weight: 200;
+      }
+      .filter:hover{
+        background-color: $fourth-color;
+        transition: all 0.5s ease;
+        width: 100%;
+      }
+
+      .button-build{
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: none;
+        background-color: $button-third;
+        color: white;
+        align-self: center;
+        font-weight: bold;
+        transition: 0.4s;
+        span{
+          font-size: 1em;
+        }
+      }
+      .button-build:hover{
+        background-color: $fourth-color;
+        color: $third-color;
+        transition: 0.4s;
+      }
     }
   }
 
   .titleProject {
     text-align: center;
     margin-top: 2%;
+    width: 100%;
+
+    .titleDisplay {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .titleDesc {
+        margin-left: auto;
+      }
+
+      .projectBackButton {
+        margin-left: auto;
+      }
+    }
+  }
+  .button_display {
+    margin-right: 10%;
   }
 
-  .projectBackButton{
-    margin-left: 41%;
+  .LayerFromCatalog {
+    margin-right: 70px;
     margin-top: 1%;
+  }
+
+  .add-remove-button {
+    width: 65px;
+    height: 65px;
+    background-color: $button-third;
+    transition: 0.5s;
+    left: 0;
+  }
+  .add-remove-button:hover {
+    width: 65px;
+    height: 65px;
+    background-color: white;
+    transition: 0.5s;
+    left: 0;
+  }
+  .EmptyMessage {
+    font-size: 30px;
   }
 
 }

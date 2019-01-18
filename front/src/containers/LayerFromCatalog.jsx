@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import './LayerFromCatalog.scss';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { fetchLayersFromActiveProject } from '../actions/fetch';
 import info from '../images/info.png';
-import publiclayer from '../images/publiclayer.png';
 import privatelayer from '../images/privatelayer.png';
 import API_SERVER from '../constants';
 
@@ -17,21 +19,25 @@ class LayerFromCatalog extends Component {
   }
 
   componentDidMount() {
-    const { activeProject, id } = this.props;
-
-    fetch(`${API_SERVER}/project-layers/${activeProject.id}/${id}`)
+    const { activeProjectId, id } = this.props;
+    fetch(`${API_SERVER}/project-layers/${activeProjectId}/${id}`)
       .then(res => res.json())
       .then(data => (data === 'false' ? this.setState({ layerAdded: true }) : ''))
       .catch();
   }
 
+  componentDidUpdate() {
+    const { fetchLayersFromActiveProjectAction, activeProjectId } = this.props;
+    fetchLayersFromActiveProjectAction(activeProjectId);
+  }
+
   addLayerToProject() {
-    const { activeProject, id } = this.props;
+    const { activeProjectId, id, fetchLayersFromActiveProjectAction } = this.props;
     const { layerAdded } = this.state;
-    if (activeProject.id !== undefined) {
+    if (activeProjectId !== 0) {
       if (!layerAdded) {
         const data = {
-          projectId: activeProject.id,
+          projectId: activeProjectId,
           layerId: id,
         };
         const config = {
@@ -54,6 +60,7 @@ class LayerFromCatalog extends Component {
           .then(this.setState({
             layerAdded: !layerAdded,
           }))
+          .then(fetchLayersFromActiveProjectAction())
           .catch();
       }
     }
@@ -67,31 +74,55 @@ class LayerFromCatalog extends Component {
     return (
       <div className="LayerFromCatalog">
         <tr className="Layer">
-          <NavLink to={`/layerinfos/${id}`}>
+          <NavLink className="test" to={`/layerinfos/${id}`}>
             <td className="imageRow">
               <img className="info" alt="logo_info" src={info} />
             </td>
           </NavLink>
-          <td>{name}</td>
-          <td>{description}</td>
-          <td>{url}</td>
-          <td>{repository}</td>
-          <td>
-            <img
-              className="isShare"
-              src={share ? publiclayer : privatelayer}
-              alt="pp"
-            />
+          <td className="tableText">{name}</td>
+          <td className="tableDescription">{description.length > 20 ? `${description.slice(0, 22)} ...` : description }</td>
+          <td className="tableText">{url}</td>
+          <td className="tableText">{repository}</td>
+          <td className="tableText">
+            {share
+              ? ''
+              : <img className="isShare" src={privatelayer} alt="private" />
+            }
           </td>
-          <td><button type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
+          <td><button className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
         </tr>
       </div>
     );
   }
 }
 
+LayerFromCatalog.propTypes = {
+  activeProjectId: PropTypes.number,
+  fetchLayersFromActiveProjectAction: PropTypes.func.isRequired,
+  id: PropTypes.number,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  url: PropTypes.string,
+  repository: PropTypes.string,
+  share: PropTypes.number,
+};
+
+LayerFromCatalog.defaultProps = {
+  activeProjectId: 0,
+  id: 1,
+  name: 'layer name',
+  description: 'layer description',
+  url: 'layer url',
+  repository: 'layer repository',
+  share: 1,
+};
+
 const mstp = state => ({
-  activeProject: state.activeProject,
+  activeProjectId: state.activeProjectId,
 });
 
-export default connect(mstp)(LayerFromCatalog);
+const mdtp = dispatch => bindActionCreators({
+  fetchLayersFromActiveProjectAction: fetchLayersFromActiveProject,
+}, dispatch);
+
+export default connect(mstp, mdtp)(LayerFromCatalog);

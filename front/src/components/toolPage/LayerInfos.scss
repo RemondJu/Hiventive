@@ -3,61 +3,133 @@
 .LayerInfos {
   width: 100%;
 
- .contentBackButton{
-   padding-top: 5%;
- }
-}
-.cardCss {
-  width: auto;
-  border: 4px solid $third-color;
-  background-color: $third-color;
-  opacity: 0.92;
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px 8px rgba(0, 0, 0, 0.687);
+  .contentBackButton{
+    padding-top: 5%;
+  }
 
-}
-.pageHeader {
-
-  .titleLayerInfo {
-    color: $fourth-color;
-    text-shadow: 1px 1px black;
-    font-family: $font-general;
+  .cardCss {
+    width: auto;
+    border: 4px solid $third-color;
     background-color: $third-color;
-    opacity: 0.9;
-    box-shadow: 2px 2px 2px 4px rgba(0, 0, 0, 0.687);
+    opacity: 0.92;
     border-radius: 10px;
-    padding: 10px;
+    box-shadow: 2px 2px 2px 8px rgba(0, 0, 0, 0.687);
 
   }
+  .pageHeader {
+    .titleLayerInfo {
+      color: $fourth-color;
+      text-shadow: 1px 1px black;
+      font-family: $font-general;
+      background-color: $third-color;
+      opacity: 0.9;
+      box-shadow: 2px 2px 2px 4px rgba(0, 0, 0, 0.687);
+      border-radius: 10px;
+      padding: 10px;
+      height: 75px;
+    }
 
-  .nameLayerInfo {
+    .nameLayerInfo {
+      color: $secondary-color;
+      font-family: $font-general;
+      text-shadow: 1px 1px black;
+    }
+
+    .titleSecLayerInfo {
+      color: $fourth-color;
+      font-family: $font-general;
+      font-size: 1.3em;
+    }
+
+    .elementLayerInfo {
+      color: $secondary-color;
+      font-family: $font-general;
+      font-size: 1em;
+      padding-left: 5px;
+      text-shadow: 1px 1px black;
+    }
+
+    .urlLayerInfo {
+      color: $secondary-color;
+      font-family: $font-general;
+      font-size: 1em;
+      text-decoration: underline;
+      padding-left: 5px;
+      text-shadow: 1px 1px black;
+    }
+  }
+  .card_layer{
+    margin: 0px auto 75px auto;
+  }
+  .buttons_for_admin{
+    display: flex;
+  }
+  .container_button{
+    margin: auto;
+    height: 100px;
+  }
+  .button_display{
+position: absolute;
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: none;
+    background-color: $button-third;
+    color: white;
+    align-self: center;
+    font-weight: bold;
+    transition: 0.4s;
+    span{
+      font-size: 1em;
+    }
+  }
+  .button_display:hover{
+    background-color: $secondary-color;
+    color: $third-color;
+  }
+  .button_display_submit{
+    background-color: white;
+    color: $button-third;
+    font-weight: bold;
+    transition: 0.4s;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 0px 0px 25px 0px;
+  }
+  .button_display_submit:hover{
+    background-color: $secondary-color;
+    color: $third-color;
+  }
+  .login_input_title{
+    width: 75%;
+    font-size: 0.7em;
     color: $secondary-color;
-    font-family: $font-general;
-    text-shadow: 1px 1px black;
+    background-color: #fcfcfc18;
+    border-radius: 8px;
   }
-
-  .titleSecLayerInfo {
-    color: $fourth-color;
-    font-family: $font-general;
-    font-size: 1.3em;
-  }
-
-  .elementLayerInfo {
+  .text_area_input{
+    width: 50vw;
+    border-radius: 8px;
+    background-color: #fcfcfc18;
     color: $secondary-color;
-    font-family: $font-general;
-    font-size: 1em;
-    padding-left: 5px;
-    text-shadow: 1px 1px black;
   }
-
-  .urlLayerInfo {
+  .button_checbox{
+    background-color: #fcfcfc18;
+    border-radius: 8px;
     color: $secondary-color;
-    font-family: $font-general;
-    font-size: 1em;
-    text-decoration: underline;
-    padding-left: 5px;
-    text-shadow: 1px 1px black;
   }
+  .button_checbox:hover{
+    background-color: #fcfcfc85;
+    color: black;
+  }
+  .login_input{
+    border-radius: 8px;
+    color: $secondary-color;
+    background-color: #fcfcfc18;
+  }
+  .select_input{
+    border-radius: 8px;
+    color: $secondary-color;
+    background-color: #fcfcfc18;
+  }
+  
 }
-
-

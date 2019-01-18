@@ -11,7 +11,9 @@ import isError from './isError';
 import layer from './layer';
 import userIsLogin from './userIsLogin';
 import projectUser from './projectUser';
-import activeProject from './activeProject';
+import activeProjectId from './activeProjectId';
+import projectLayers from './projectLayers';
+import refreshFetch from './refreshFetch';
 
 const allReducers = combineReducers({
   modal,
@@ -28,7 +30,9 @@ const allReducers = combineReducers({
   layer,
   userIsLogin,
   projectUser,
-  activeProject,
+  activeProjectId,
+  projectLayers,
+  refreshFetch,
 });
 
 export default allReducers;

@@ -1,0 +1,82 @@
+@import '../index.scss';
+
+
+button{
+  padding: 10px 15px;
+  border: none;
+  background-color: $button-third;
+  color: white;
+  align-self: center;
+  font-weight: bold;
+  transition: 0.4s;
+  span{
+    font-size: 1em;
+  }
+}
+button:hover{
+  border-radius: 8px;
+  background-color: $fourth-color;
+  color: $third-color;
+  transition: 0.4s;
+}
+
+h1 {
+  margin-left: auto;
+}
+
+
+
+.page_build-project{
+  width : 100%;
+  display:flex;
+
+  .projects-list{
+    list-style-type: none;
+    padding-inline-start: 0;
+
+    .filter{
+      margin-top: 10px;
+      background: none;
+      color: $third-color;
+      width: 90%;
+      text-align: left;
+      font-weight: 200;
+    }
+    .filter:hover{
+      background-color: $fourth-color;
+      transition: all 0.5s ease;
+      width: 100%;
+    }
+  }
+
+  .titleProject {
+    text-align: center;
+    margin-top: 2%;
+    width: 100%;
+  
+    .titleDisplay {
+      display: flex;
+      justify-content: space-between;
+
+      .button-build{
+        margin : 10px auto;
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: none;
+        background-color: $button-third;
+        color: white;
+        font-weight: bold;
+        transition: 0.4s;
+        span{
+          font-size: 1em;
+        }
+      }
+      .button-build:hover{
+        background-color: $fourth-color;
+        color: $third-color;
+        transition: 0.4s;
+      }
+      
+    }
+  }
+}

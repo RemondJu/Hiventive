@@ -1,43 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 import CardBestLayer from './CardBestLayer';
+import API_SERVER from '../../constants';
 import './BestLayers.scss';
 
-const BestLayers = () => (
-  <div className="BestLayers">
-    <Container fluid className="mt-lg-5 mb-lg-5 ">
-      <h2 className="titlebest">Most downloaded layers</h2>
-      <Row>
-        <Col md={{ size: 4 }} className="mb-4 mt-4 layerCard">
-          <CardBestLayer
-            nameLayer="meta-ti"
-            download=" 540"
-            view=" 777"
-            date="2018-11-22"
-            user=" Denys Dmytriyenkokola"
-          />
-        </Col>
-        <Col md={{ size: 4 }} className="mb-4 mt-4 layerCard">
-          <CardBestLayer
-            nameLayer="meta-intel "
-            download=" 430"
-            view=" 540"
-            date="2018-11-22"
-            user=" Nitin A Kamble"
-          />
-        </Col>
-        <Col md={{ size: 4 }} className="mb-4 mt-4 layerCard">
-          <CardBestLayer
-            nameLayer="meta-arago-distro"
-            download=" 399"
-            view=" 521"
-            date="2018-11-22"
-            user=" Denys Dmytriyenko"
-          />
-        </Col>
-      </Row>
-    </Container>
-  </div>
-);
+class BestLayers extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mostdownloaded: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch(`${API_SERVER}/mostdownload/`)
+      .then(res => res.json())
+      .then(data => this.setState({
+        mostdownloaded: data,
+      }))
+      .catch();
+  }
+
+  render() {
+    const { mostdownloaded } = this.state;
+    return (
+      <div className="BestLayers">
+        <Container fluid className="mt-lg-5 mb-lg-1 containerbestlayer ">
+          <h2 className="titlebest">Most Downloaded layers</h2>
+          <Row>
+            {
+              mostdownloaded.map((element, index) => (
+                <Col md={{ size: 4 }} className="mb-1 mt-4 layerCard">
+                  <NavLink className="test" to={`/layerinfos/${element.id}`}>
+                    <CardBestLayer
+                      key={element.id}
+                      rank={index + 1}
+                      nameLayer={element.name}
+                      download={element.mostDownload}
+                      view={element.mostView}
+                      user={element.alias}
+                    />
+                  </NavLink>
+                </Col>))
+            }
+          </Row>
+        </Container>
+      </div>
+    );
+  }
+}
 
 export default BestLayers;

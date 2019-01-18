@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import {
+  Col, Row, Button, Form, FormGroup, Label, Input,
+} from 'reactstrap';
+
 import { fetchCategoriesLayer } from '../actions/fetch';
 import { showToggleAdd, newLayerModal } from '../actions';
 import API_SERVER from '../constants';
@@ -20,7 +24,7 @@ class AddLayer extends Component {
       hostSite: '',
       description: '',
       layerTypeID: '',
-      share: false,
+      share: true,
     };
     this.inputChange = this.inputChange.bind(this);
     this.inputChangeCheckbox = this.inputChangeCheckbox.bind(this);
@@ -40,9 +44,10 @@ class AddLayer extends Component {
   }
 
   inputChangeCheckbox() {
-    this.setState(prevState => ({
-      share: !prevState.share,
-    }));
+    const { share } = this.state;
+    this.setState({
+      share: !share,
+    });
   }
 
   sendForm(event) {
@@ -112,58 +117,69 @@ class AddLayer extends Component {
         <div className="content_modal_add_layer">
           <button className="close" type="button" onClick={newLayerModalRedux}>&times;</button>
           <h2 className="modal_title">ADD A NEW LAYER</h2>
-          <form onSubmit={this.sendForm}>
-            <ul className="modal_form">
-              <li>
-                <label className="label_input" htmlFor="name">
-                  Name
-                  <input className="login_input" required name="name" id="name" onChange={this.inputChange} value={name} type="text" />
-                </label>
-                <label className="label_input" htmlFor="url">
-                  Url
-                  <input className="login_input" required name="url" id="url" onChange={this.inputChange} value={url} type="text" />
-                </label>
-              </li>
+          <Form className="modal_form" onSubmit={this.sendForm}>
+            <Row form>
+              <Col className="form-style" md={6}>
+                <FormGroup>
+                  <Label htmlFor="name">Layer title</Label>
+                  <Input className="input-style" required name="name" id="name" onChange={this.inputChange} value={name} type="text" />
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup className="form-style">
+                  <Label htmlFor="url">Layer URL</Label>
+                  <Input required name="url" id="url" onChange={this.inputChange} value={url} type="text" />
+                </FormGroup>
+              </Col>
+            </Row>
 
-              <li>
-                <label className="label_input" htmlFor="version">
-                  Version
-                  <input className="login_input" required name="version" id="version" onChange={this.inputChange} value={version} type="text" />
-                </label>
-                <label className="label_input" htmlFor="hostSite">
-                  Host site
-                  <input className="login_input" required name="hostSite" id="hostSite" onChange={this.inputChange} value={hostSite} type="text" />
-                </label>
-              </li>
-
-              <li>
-              Category
-                <div>
-                  <select name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
-                    <option value={0}>Select type</option>
+            <Row form>
+              <Col md={5}>
+                <FormGroup>
+                  <Label htmlFor="hostSite">Host site</Label>
+                  <Input required name="hostSite" id="hostSite" onChange={this.inputChange} value={hostSite} type="text" />
+                </FormGroup>
+              </Col>
+              <Col md={4}>
+                <FormGroup>
+                  <Label htmlFor="version">Version</Label>
+                  <Input required name="version" id="version" onChange={this.inputChange} value={version} type="text" />
+                </FormGroup>
+              </Col>
+              <Col md={3}>
+                <FormGroup>
+                  <Label htmlFor="layerTypeID">Select type</Label>
+                  <Input className="option-style" type="select" name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
+                    <option value={0}>None</option>
                     {categoryLayer.length === 0 ? '...' : categoryLayer.categories.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
-                  </select>
-                </div>
-              </li>
-
-              <li>
-                <label className="label_input" htmlFor="description">
-                  <p>Description</p>
-                  <textarea className="text_area_input" name="description" id="description" onChange={this.inputChange} value={description} />
-                </label>
-              </li>
-
-              <li>
-                <button className="button_submit" type="submit">
-                  Submit
-                </button>
-                <label className="label_input" htmlFor="share">
-                  <input className="login_input" name="share" id="share" onChange={this.inputChangeCheckbox} value={share} type="checkbox" />
-                  Share your layer
-                </label>
-              </li>
-            </ul>
-          </form>
+                  </Input>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <FormGroup>
+                  <Label htmlFor="description">Description</Label>
+                  <Input name="description" id="description" onChange={this.inputChange} value={description} style={{ height: 70 }} />
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <FormGroup check>
+                  <Label name="share" id="share" value={share}>
+                    <Input type="checkbox" onChange={this.inputChangeCheckbox} checked={share} />
+                    Make my layer public
+                  </Label>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button>Add Layer</Button>
+              </Col>
+            </Row>
+          </Form>
         </div>
       </div>
     );
