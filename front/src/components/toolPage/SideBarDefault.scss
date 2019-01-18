@@ -1,9 +1,9 @@
 @import '../../index.scss';
 
 .SideBarDefault{
-  position: relative;
-  height: 100%;
+  
   width: 250px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -16,10 +16,12 @@ class LayersDisplay extends Component {
     this.state = {
       shareFilter: 1,
       displayPublicPrivate: true,
+      nbLayersShow: 5,
     };
     this.showPrivateLayers = this.showPrivateLayers.bind(this);
     this.showPublicLayers = this.showPublicLayers.bind(this);
     this.showAllLayers = this.showAllLayers.bind(this);
+    this.moreLayers = this.moreLayers.bind(this);
   }
 
   componentDidMount() {
@@ -56,7 +58,14 @@ class LayersDisplay extends Component {
     });
   }
 
+  moreLayers() {
+    this.setState(prevState => ({
+      nbLayersShow: prevState.nbLayersShow + 5,
+    }));
+  }
+
   render() {
+    const { nbLayersShow } = this.state;
     const {
       layers,
       typeFilter,
@@ -103,7 +112,7 @@ class LayersDisplay extends Component {
               <th>Repository</th>
             </tr>
             <div>
-              {layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
+              {layers.length !== 0 ? layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
                 <LayerFromCatalog
                   key={layer.id}
                   id={layer.id}
@@ -113,7 +122,15 @@ class LayersDisplay extends Component {
                   repository={layer.hostSite}
                   share={layer.share}
                 />
-              ))}
+              )).slice(0, nbLayersShow) : (
+                <p>
+              No layers loaded.
+                  <span aria-label="cryEmoji" role="img"> 😭 </span>
+              Refresh the page!
+                  <span aria-label="cryEmoji" role="img"> 🔁 </span>
+                </p>
+              ) }
+              <button type="button" onClick={() => this.moreLayers()}>More layers </button>
             </div>
           </div>
         </table>
