@@ -49,6 +49,30 @@ h1 {
     }
   }
 
+  .all-buttons-build{
+    display: flex;
+    justify-content: space-around;
+
+    .button-build{
+      margin : 10px auto;
+      border-radius: 8px;
+      padding: 10px 15px;
+      border: none;
+      background-color: $button-third;
+      color: white;
+      font-weight: bold;
+      transition: 0.4s;
+      span{
+        font-size: 1em;
+      }
+    }
+    .button-build:hover{
+      background-color: $fourth-color;
+      color: $third-color;
+      transition: 0.4s;
+    }
+  }
+
   .titleProject {
     text-align: center;
     margin-top: 2%;
@@ -56,27 +80,7 @@ h1 {
   
     .titleDisplay {
       display: flex;
-      justify-content: space-between;
-
-      .button-build{
-        margin : 10px auto;
-        border-radius: 8px;
-        padding: 10px 15px;
-        border: none;
-        background-color: $button-third;
-        color: white;
-        font-weight: bold;
-        transition: 0.4s;
-        span{
-          font-size: 1em;
-        }
-      }
-      .button-build:hover{
-        background-color: $fourth-color;
-        color: $third-color;
-        transition: 0.4s;
-      }
-      
+      justify-content: space-between;      
     }
   }
 }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import './PageProject.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { NavLink } from 'react-router-dom';
 import { fetchProjectUser, fetchLayersFromActiveProject } from '../actions/fetch';
 import { selectActiveProject, enableRefresh } from '../actions';
 import BackButton from '../components/toolPage/BackButton';
@@ -212,7 +211,7 @@ class PageProject extends Component {
                 share={projectLayer.share}
               />)) : (
                 <p>
-              No layers yet...
+                  No layers yet...
                   <span aria-label="cryEmoji" role="img"> 😭 </span>
                 </p>
             ) }

@@ -35,3 +35,9 @@ export const selectActiveProject = projectId => ({
 export const enableRefresh = () => ({
   type: 'ENABLE_REFRESH',
 });
+
+
+export const getActiveProjectName = name => ({
+  type: 'GET_PROJECT_NAME',
+  name,
+});
