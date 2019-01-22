@@ -14,9 +14,7 @@ Collaborative web app about building interactive OS for electronic devices by as
 
 ### SQL initialization
 
-- 1 . Go to the back/sql folder .
-
-- 2 . Import *DATABASE_hiventive* in your Database Management System (DBMS).
+- 1 . Make your Sql base data.
 
 ### Rest api initialization
 
