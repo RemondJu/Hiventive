@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import BackButton from './BackButton';
-import { fetchLayerInfos } from '../../actions/fetch';
-import API_SERVER from '../../constants';
+import BackButton from '../components/BackButton';
+import { fetchLayerInfos } from '../actions/fetch';
+import API_SERVER from '../constants';
 
 import './LayerInfos.scss';
 

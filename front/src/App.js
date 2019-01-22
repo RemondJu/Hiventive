@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.scss';
 import { Switch, Route } from 'react-router-dom';
-import HomePage from './components/homePage/Homepage';
+import HomePage from './components/Homepage';
 import LayersDisplay from './containers/LayersDisplay';
-import LayerInfos from './components/toolPage/LayerInfos';
+import LayerInfos from './containers/LayerInfos';
 import NavBarDefault from './containers/NavBarDefault';
 import AddLayer from './containers/AddLayer';
 import LoadingContent from './containers/LoadingContent';
 import PageProject from './containers/PageProject';
 import PageBuildProject from './containers/PageBuildProject';
 import NewProjectModal from './containers/NewProjectModal';
-import ModalLogin from './components/ModalLogin';
+import ModalLogin from './containers/ModalLogin';
 
 const App = () => (
   <div className="App">
