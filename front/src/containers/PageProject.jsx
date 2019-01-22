@@ -4,8 +4,15 @@ import { withRouter, NavLink } from 'react-router-dom';
 import './PageProject.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchProjectUser, fetchLayersFromActiveProject } from '../actions/fetch';
-import { selectActiveProject, enableRefresh } from '../actions';
+import {
+  fetchProjectUser,
+  fetchLayersFromActiveProject,
+} from '../actions/fetch';
+import {
+  selectActiveProject,
+  enableRefresh,
+  resetActiveProject,
+} from '../actions';
 import BackButton from '../components/BackButton';
 import SideBarDefault from '../components/SideBarDefault';
 
@@ -30,8 +37,9 @@ class PageProject extends Component {
   }
 
   componentDidMount() {
-    const { fetchProjectUserRedux, userIsLogin } = this.props;
+    const { fetchProjectUserRedux, userIsLogin, getActiveProjectLayers } = this.props;
     fetchProjectUserRedux(userIsLogin.id);
+    getActiveProjectLayers(userIsLogin.id);
     this.setState({
       deleteButtonEnabled: false,
       editionButtonEnabled: false,
@@ -39,8 +47,14 @@ class PageProject extends Component {
   }
 
   componentDidUpdate() {
-    const { fetchProjectUserRedux, userIsLogin, refreshFetch } = this.props;
+    const {
+      fetchProjectUserRedux,
+      userIsLogin,
+      refreshFetch,
+      getActiveProjectLayers,
+    } = this.props;
     if (refreshFetch) {
+      getActiveProjectLayers(userIsLogin.id);
       fetchProjectUserRedux(userIsLogin.id);
     }
   }
@@ -78,7 +92,7 @@ class PageProject extends Component {
   }
 
   deleteProject(id) {
-    const { enableRefreshAction } = this.props;
+    const { enableRefreshAction, resetActiveProjectAction } = this.props;
     const conf = {
       method: 'DELETE',
     };
@@ -86,7 +100,8 @@ class PageProject extends Component {
       .then(this.setState({
         deleteButtonEnabled: false,
       }))
-      .then(enableRefreshAction);
+      .then(resetActiveProjectAction())
+      .then(enableRefreshAction());
   }
 
   sendProjectUpdate(e) {
@@ -117,9 +132,9 @@ class PageProject extends Component {
   }
 
   selectProject(id) {
-    const { selectActiveProjectAction, fetchLayersFromActiveProjectAction } = this.props;
+    const { selectActiveProjectAction, getActiveProjectLayers } = this.props;
     selectActiveProjectAction(id);
-    fetchLayersFromActiveProjectAction(id);
+    getActiveProjectLayers(id);
   }
 
   render() {
@@ -131,13 +146,6 @@ class PageProject extends Component {
       newProjectDescription,
     } = this.state;
     const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
-    const projectName = activeProjectId !== 0 ? projectUser[pos].name : '';
-    const projectDesc = activeProjectId !== 0 ? projectUser[pos].description : '';
-    const textButtonDelete = deleteButtonEnabled ? 'Double click to confirm' : 'Delete this project';
-    const deletionConfirm = deleteButtonEnabled
-      ? () => this.deleteProject(activeProjectId) : () => { };
-    const textButtonEdit = editionButtonEnabled ? 'Double click to exit edition' : 'Edit your project';
-    const exitEdition = editionButtonEnabled ? () => this.closeEdition() : () => { };
     return (
       <div className="PageProject">
         <div className="sideBarProject">
@@ -163,13 +171,13 @@ class PageProject extends Component {
                 Name :
                   <input className="login_input_title" required name="newProjectName" id="newProjectName" onChange={this.handleChange} value={newProjectName} type="text" />
                 </label>
-              ) : <h1>{activeProjectId !== 0 ? projectName : 'Select one of your projects'}</h1>}
+              ) : <h1>{activeProjectId !== 0 ? projectUser[pos].name : 'Select one of your projects'}</h1>}
               {editionButtonEnabled ? (
                 <label className="label_input" htmlFor="newProjectDescription">
                 Description :
                   <input className="login_input_title" required name="newProjectDescription" id="newProjectDescription" onChange={this.handleChange} value={newProjectDescription} type="text" />
                 </label>
-              ) : <p>{activeProjectId !== 0 ? projectDesc : ''}</p>}
+              ) : <p>{activeProjectId !== 0 ? projectUser[pos].description : ''}</p>}
               {editionButtonEnabled ? (
                 <button className="button_display_submit" type="submit">Submit</button>
               ) : ''}
@@ -184,19 +192,22 @@ class PageProject extends Component {
                 <button
                   className="button_display"
                   type="button"
-                  onClick={() => this.editionMode(projectName, projectDesc)}
-                  onDoubleClick={exitEdition}
+                  onClick={
+                    () => this.editionMode(projectUser[pos].name, projectUser[pos].description)}
+                  onDoubleClick={editionButtonEnabled
+                    ? () => this.closeEdition() : () => { }}
                 >
-                  <span>{textButtonEdit}</span>
+                  <span>{editionButtonEnabled ? 'Double click to exit edition' : 'Edit your project'}</span>
                 </button>
                 <button
                   className="button_display"
                   type="button"
                   onMouseOut={deleteButtonEnabled ? this.deactivateDeletion : () => { }}
-                  onClick={() => this.activateDeletion()}
-                  onDoubleClick={deletionConfirm}
+                  onClick={this.activateDeletion}
+                  onDoubleClick={deleteButtonEnabled
+                    ? () => this.deleteProject(activeProjectId) : () => { }}
                 >
-                  <span>{textButtonDelete}</span>
+                  <span>{deleteButtonEnabled ? 'Double click to confirm' : 'Delete this project'}</span>
                 </button>
               </div>) : ''}
           <table className="layersTitles">
@@ -225,8 +236,17 @@ class PageProject extends Component {
 PageProject.propTypes = {
   fetchProjectUserRedux: PropTypes.func.isRequired,
   selectActiveProjectAction: PropTypes.func.isRequired,
-  fetchLayersFromActiveProjectAction: PropTypes.func.isRequired,
+  getActiveProjectLayers: PropTypes.func.isRequired,
+  enableRefreshAction: PropTypes.func.isRequired,
   projectLayers: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  userIsLogin: PropTypes.shape.isRequired,
+  projectUser: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  activeProjectId: PropTypes.number,
+  refreshFetch: PropTypes.bool.isRequired,
+};
+
+PageProject.defaultProps = {
+  activeProjectId: 0,
 };
 
 const mstp = state => ({
@@ -240,8 +260,9 @@ const mstp = state => ({
 const mdtp = dispatch => bindActionCreators({
   fetchProjectUserRedux: fetchProjectUser,
   selectActiveProjectAction: selectActiveProject,
-  fetchLayersFromActiveProjectAction: fetchLayersFromActiveProject,
+  getActiveProjectLayers: fetchLayersFromActiveProject,
   enableRefreshAction: enableRefresh,
+  resetActiveProjectAction: resetActiveProject,
 }, dispatch);
 
 export default withRouter(connect(mstp, mdtp)(PageProject));
