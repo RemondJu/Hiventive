@@ -65,11 +65,6 @@ Example:
 
 - 5 . And to finish, in your navigator,  go to *http://localhost:3000/*  to see the web project.
 
-## Technologie used: 
-- Front => ReactJs
-- Api => NodeJs
-- Sql => Data base
-
 ## Team Hiventive
 
 - Delbergue Guillaume
