@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './Join.scss';
 import CountUp from 'react-countup';
 
-import community from '../../images/community.png';
-import connection from '../../images/connection.png';
-import help from '../../images/help.png';
-import API_SERVER from '../../constants';
+import community from '../images/community.png';
+import connection from '../images/connection.png';
+import help from '../images/help.png';
+import API_SERVER from '../constants';
 
 
 class Join extends Component {

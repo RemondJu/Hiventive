@@ -8,7 +8,7 @@ import { layersFetchData, fetchCategoriesLayer } from '../actions/fetch';
 import LayerFromCatalog from './LayerFromCatalog';
 import { filterType, newProjectModal } from '../actions';
 import API_SERVER from '../constants';
-import SideBarDefault from '../components/toolPage/SideBarDefault';
+import SideBarDefault from '../components/SideBarDefault';
 
 class LayersDisplay extends Component {
   constructor(props) {
