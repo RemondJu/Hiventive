@@ -1,9 +1,9 @@
 import React from 'react';
 import './HowItWorks.scss';
 import Typist from 'react-typist';
-import search from '../../images/search.png';
-import signin from '../../images/signin.png';
-import build from '../../images/build.png';
+import search from '../images/search.png';
+import signin from '../images/signin.png';
+import build from '../images/build.png';
 
 
 const HowItWorks = () => (

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import { enableRefresh } from '../actions';
 import { fetchLayersFromActiveProject } from '../actions/fetch';
 import info from '../images/info.png';
 import privatelayer from '../images/privatelayer.png';
@@ -32,7 +33,7 @@ class LayerFromCatalog extends Component {
   }
 
   addLayerToProject() {
-    const { activeProjectId, id, fetchLayersFromActiveProjectAction } = this.props;
+    const { activeProjectId, id, enableRefreshAction } = this.props;
     const { layerAdded } = this.state;
     if (activeProjectId !== 0) {
       if (!layerAdded) {
@@ -48,6 +49,7 @@ class LayerFromCatalog extends Component {
           body: JSON.stringify(data),
         };
         fetch(`${API_SERVER}/project-layer`, config)
+          .then(enableRefreshAction)
           .then(this.setState({
             layerAdded: !layerAdded,
           }))
@@ -57,10 +59,10 @@ class LayerFromCatalog extends Component {
           method: 'DELETE',
         };
         fetch(`${API_SERVER}/project-layer/${id}`, config)
+          .then(enableRefreshAction)
           .then(this.setState({
             layerAdded: !layerAdded,
           }))
-          .then(fetchLayersFromActiveProjectAction())
           .catch();
       }
     }
@@ -81,7 +83,7 @@ class LayerFromCatalog extends Component {
           </NavLink>
           <td className="tableText">{name}</td>
           <td className="tableDescription">{description.length > 20 ? `${description.slice(0, 22)} ...` : description }</td>
-          <td className="tableText">{url}</td>
+          <td className="tableText">{url.length > 20 ? `${url.slice(8, 30)} ...` : url }</td>
           <td className="tableText">{repository}</td>
           <td className="tableText">
             {share
@@ -118,10 +120,12 @@ LayerFromCatalog.defaultProps = {
 };
 
 const mstp = state => ({
+  refreshFetch: state.refreshFetch,
   activeProjectId: state.activeProjectId,
 });
 
 const mdtp = dispatch => bindActionCreators({
+  enableRefreshAction: enableRefresh,
   fetchLayersFromActiveProjectAction: fetchLayersFromActiveProject,
 }, dispatch);
 

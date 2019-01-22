@@ -5,8 +5,10 @@ import { bindActionCreators } from 'redux';
 import { fetchLayersFromActiveProject } from '../actions/fetch';
 import { selectActiveProject, getActiveProjectName } from '../actions';
 import './PageBuildProject.scss';
-import SideBarDefault from '../components/toolPage/SideBarDefault';
+
 import LayerFromCatalog from './LayerFromCatalog';
+import SideBarDefault from '../components/SideBarDefault';
+
 
 class PageBuildProject extends Component {
   constructor(props) {

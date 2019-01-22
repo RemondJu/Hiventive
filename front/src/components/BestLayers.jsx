@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import CardBestLayer from './CardBestLayer';
-import API_SERVER from '../../constants';
+import API_SERVER from '../constants';
 import './BestLayers.scss';
 
 class BestLayers extends Component {

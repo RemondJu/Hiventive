@@ -8,7 +8,7 @@ import { layersFetchData, fetchCategoriesLayer } from '../actions/fetch';
 import LayerFromCatalog from './LayerFromCatalog';
 import { filterType, newProjectModal } from '../actions';
 import API_SERVER from '../constants';
-import SideBarDefault from '../components/toolPage/SideBarDefault';
+import SideBarDefault from '../components/SideBarDefault';
 
 class LayersDisplay extends Component {
   constructor(props) {
@@ -27,13 +27,10 @@ class LayersDisplay extends Component {
   componentDidMount() {
     const {
       fetchData,
-      location,
       filterTypeRedux,
       fetchCategoriesLayerRedux,
     } = this.props;
-    if (location.state !== undefined) {
-      fetchData(`${API_SERVER}/layers`);
-    }
+    fetchData(`${API_SERVER}/layers`);
     filterTypeRedux('All');
     fetchCategoriesLayerRedux();
   }
