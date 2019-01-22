@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import eye from '../../images/eye.png';
-import dll from '../../images/dll.png';
-import username from '../../images/user.png';
+import eye from '../images/eye.png';
+import dll from '../images/dll.png';
+import username from '../images/user.png';
 import './CardBestLayer.scss';
 
 class CardBestLayer extends Component {

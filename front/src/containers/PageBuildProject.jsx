@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './PageBuildProject.scss';
-import SideBarDefault from '../components/toolPage/SideBarDefault';
+import SideBarDefault from '../components/SideBarDefault';
 
 class PageBuildProject extends Component {
   constructor(props) {

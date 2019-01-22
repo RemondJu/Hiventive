@@ -121,4 +121,15 @@
     font-size: 30px;
   }
 
+  tr{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1%;
+    padding-right: 1%;
+    font-size: 1.1em;
+    margin-top: 15px;
+    height: 65px;
+    align-items: center;
+  }
+  
 }

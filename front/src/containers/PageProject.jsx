@@ -13,8 +13,8 @@ import {
   enableRefresh,
   resetActiveProject,
 } from '../actions';
-import BackButton from '../components/toolPage/BackButton';
-import SideBarDefault from '../components/toolPage/SideBarDefault';
+import BackButton from '../components/BackButton';
+import SideBarDefault from '../components/SideBarDefault';
 
 import LayerFromCatalog from './LayerFromCatalog';
 import API_SERVER from '../constants';
