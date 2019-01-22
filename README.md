@@ -14,7 +14,7 @@ Collaborative web app about building interactive OS for electronic devices by as
 
 ### SQL initialization
 
-- 1 . Make your Sql base data.
+- 1 . Make your Sql database.
 
 ### Rest api initialization
 
