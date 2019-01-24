@@ -75,6 +75,7 @@ class LayersDisplay extends Component {
     const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
     const { displayPublicPrivate, shareFilter } = this.state;
     return (
+
       <div className="LayersDisplay">
         <SideBarDefault title={projectUser[0] ? (
           <h2 className="activeProject">
@@ -95,20 +96,20 @@ class LayersDisplay extends Component {
             + New project
           </button>
         </SideBarDefault>
-        <table className="layersTitles ">
+        <table className="layersTitles">
+          <h1 className="title-page">Layers</h1>
+          <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
+          <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
+          <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
+          <tr>
+            <th />
+            <th>Layer name</th>
+            <th>Description</th>
+            <th>Maintainer</th>
+            <th>Repository</th>
+          </tr>
           <div className="layersScrolling">
-            <h1 className="title-page">Layers</h1>
-            <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
-            <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
-            <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
-            <tr>
-              <th />
-              <th>Layer name</th>
-              <th>Description</th>
-              <th>Maintainer</th>
-              <th>Repository</th>
-            </tr>
-            <div>
+            <div className="layers-cage">
               {layers.length !== 0 ? layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
                 <LayerFromCatalog
                   key={layer.id}
