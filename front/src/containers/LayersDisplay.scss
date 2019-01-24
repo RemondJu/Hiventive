@@ -61,8 +61,10 @@
   .layersTitles{
   color: $third-color;
   text-align: center;
+  margin-top: 2%;
   th{
     font-size: 1.4em;
+    margin-right: 13%;
   }
   tr{
     display: flex;
@@ -77,6 +79,9 @@
   .priv-pub-button {
     margin: 1%;
   }
+  }
+  .layers-cage {
+    margin-left: 1%;
   }
 }
 
