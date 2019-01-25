@@ -1,8 +1,7 @@
 @import '../index.scss';
 
 .SideBarDefault{
-  
-  width: 250px;
+  min-width: 250px;  
   height: 93vh;
   display: flex;
   flex-direction: column;
@@ -11,6 +10,70 @@
   color: $third-color;
   font-size: 1.2em;
   padding: 40px 50px 40px 50px;
+
+  h2 {
+    font-weight: bold;
+  }
+
+  .projects-list {
+    list-style-type: none;
+    padding-inline-start: 0;
+  }
+
+  button {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: none;
+    background-color: $button-third;
+    color: white;
+    align-self: center;
+    font-weight: bold;
+    transition: 0.4s;
+    span{
+      font-size: 1em;
+    }
+  }
+
+  button:hover {
+    background-color: $fourth-color;
+    color: $third-color;
+    transition: 0.4s;
+  }
+
+  .filter {
+    margin-top: 10px;
+    background: none;
+    color: $third-color;
+    width: 90%;
+    text-align: left;
+    font-weight: 200;
+  }
+  
+  .filter:hover {
+    background-color: $fourth-color;
+    transition: all 0.5s ease;
+    width: 100%;
+  }
+
+  .button-build {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: none;
+    background-color: $button-third;
+    color: white;
+    align-self: center;
+    font-weight: bold;
+    transition: 0.4s;
+
+    span{
+      font-size: 1em;
+    }
+  }
+  .button-build:hover {
+    background-color: $fourth-color;
+    color: $third-color;
+    transition: 0.4s;
+  }
 }
 @media screen and (max-width: 1100px) {
   .SideBarDefault{

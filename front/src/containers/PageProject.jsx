@@ -159,21 +159,17 @@ class PageProject extends Component {
     const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
     return (
       <div className="PageProject">
-        <div className="sideBarProject">
-          <div className="projectRow">
-            <SideBarDefault>
-              <h2>OS Projects</h2>
-              <ul className="projects-list">
-                {projectUser.map(userProject => <li key={userProject.id}><button type="button" className="filter" onClick={() => this.selectProject(userProject.id, userProject.name)}>{userProject.name}</button></li>)}
-              </ul>
-              <NavLink to="/project-build-page">
-                <button className="button-build" type="button">
-                  Build your OS
-                </button>
-              </NavLink>
-            </SideBarDefault>
-          </div>
-        </div>
+        <SideBarDefault>
+          <h2>OS Projects</h2>
+          <ul className="projects-list">
+            {projectUser.map(userProject => <li key={userProject.id}><button type="button" className="filter" onClick={() => this.selectProject(userProject.id, userProject.name)}>{userProject.name}</button></li>)}
+          </ul>
+          <NavLink to="/project-build-page">
+            <button className="button-build" type="button">
+              Build your OS
+            </button>
+          </NavLink>
+        </SideBarDefault>
         <div className="titleProject">
           <div className="titleDisplay">
             <div className="flexAdjust">
@@ -183,13 +179,13 @@ class PageProject extends Component {
               {editionButtonEnabled ? (
                 <label className="label_input" htmlFor="newProjectName">
                 Name :
-                  <input className="login_input_title" required name="newProjectName" id="newProjectName" onChange={this.handleChange} value={newProjectName} type="text" />
+                  <input className="editionInput" required name="newProjectName" id="newProjectName" onChange={this.handleChange} value={newProjectName} type="text" />
                 </label>
               ) : <h1>{activeProjectName}</h1>}
               {editionButtonEnabled ? (
                 <label className="label_input" htmlFor="newProjectDescription">
                 Description :
-                  <input className="login_input_title" required name="newProjectDescription" id="newProjectDescription" onChange={this.handleChange} value={newProjectDescription} type="text" />
+                  <input className="editionInput" required name="newProjectDescription" id="newProjectDescription" onChange={this.handleChange} value={newProjectDescription} type="text" />
                 </label>
               ) : <p>{activeProjectId !== 0 ? projectUser[pos].description : ''}</p>}
               {editionButtonEnabled ? (
