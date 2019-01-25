@@ -122,13 +122,13 @@ class LayersDisplay extends Component {
                 />
               )).slice(0, nbLayersShow) : (
                 <p>
-              No layers loaded.
+                    No layers loaded.
                   <span aria-label="cryEmoji" role="img"> 😭 </span>
-              Refresh the page!
+                    Refresh the page!
                   <span aria-label="cryEmoji" role="img"> 🔁 </span>
                 </p>
-              ) }
-              <button type="button" onClick={() => this.moreLayers()}>More layers </button>
+              )}
+              {(layers.length === 0 || layers.length < nbLayersShow) ? '' : <button type="button" onClick={() => this.moreLayers()}>More layers </button>}
             </div>
           </div>
         </table>
