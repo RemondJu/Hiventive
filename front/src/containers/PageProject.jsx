@@ -12,6 +12,7 @@ import {
   selectActiveProject,
   enableRefresh,
   resetActiveProject,
+  getActiveProjectName,
 } from '../actions';
 import BackButton from '../components/BackButton';
 import SideBarDefault from '../components/SideBarDefault';
@@ -131,14 +132,24 @@ class PageProject extends Component {
       .then(enableRefreshAction);
   }
 
-  selectProject(id) {
-    const { selectActiveProjectAction, getActiveProjectLayers } = this.props;
+  selectProject(id, name) {
+    const {
+      selectActiveProjectAction,
+      getActiveProjectLayers,
+      getActiveProjectNameAction,
+    } = this.props;
     selectActiveProjectAction(id);
     getActiveProjectLayers(id);
+    getActiveProjectNameAction(name);
   }
 
   render() {
-    const { projectUser, projectLayers, activeProjectId } = this.props;
+    const {
+      projectUser,
+      projectLayers,
+      activeProjectId,
+      activeProjectName,
+    } = this.props;
     const {
       deleteButtonEnabled,
       editionButtonEnabled,
@@ -153,7 +164,7 @@ class PageProject extends Component {
             <SideBarDefault>
               <h2>OS Projects</h2>
               <ul className="projects-list">
-                {projectUser.map(userProject => <li key={userProject.id}><button type="button" className="filter" onClick={() => this.selectProject(userProject.id)}>{userProject.name}</button></li>)}
+                {projectUser.map(userProject => <li key={userProject.id}><button type="button" className="filter" onClick={() => this.selectProject(userProject.id, userProject.name)}>{userProject.name}</button></li>)}
               </ul>
               <NavLink to="/project-build-page">
                 <button className="button-build" type="button">
@@ -174,7 +185,7 @@ class PageProject extends Component {
                 Name :
                   <input className="login_input_title" required name="newProjectName" id="newProjectName" onChange={this.handleChange} value={newProjectName} type="text" />
                 </label>
-              ) : <h1>{activeProjectId !== 0 ? projectUser[pos].name : 'Select one of your projects'}</h1>}
+              ) : <h1>{activeProjectName}</h1>}
               {editionButtonEnabled ? (
                 <label className="label_input" htmlFor="newProjectDescription">
                 Description :
@@ -237,19 +248,26 @@ class PageProject extends Component {
 }
 
 PageProject.propTypes = {
+  // Functions
   fetchProjectUserRedux: PropTypes.func.isRequired,
   selectActiveProjectAction: PropTypes.func.isRequired,
   getActiveProjectLayers: PropTypes.func.isRequired,
   enableRefreshAction: PropTypes.func.isRequired,
+  resetActiveProjectAction: PropTypes.func.isRequired,
+  getActiveProjectNameAction: PropTypes.func.isRequired,
+  // Arrays
   projectLayers: PropTypes.arrayOf(PropTypes.shape).isRequired,
-  userIsLogin: PropTypes.shape.isRequired,
   projectUser: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  // Others
+  userIsLogin: PropTypes.shape.isRequired,
   activeProjectId: PropTypes.number,
+  activeProjectName: PropTypes.string,
   refreshFetch: PropTypes.bool.isRequired,
 };
 
 PageProject.defaultProps = {
   activeProjectId: 0,
+  activeProjectName: '',
 };
 
 const mstp = state => ({
@@ -258,6 +276,7 @@ const mstp = state => ({
   activeProjectId: state.activeProjectId,
   projectLayers: state.projectLayers,
   refreshFetch: state.refreshFetch,
+  activeProjectName: state.activeProjectName,
 });
 
 const mdtp = dispatch => bindActionCreators({
@@ -266,6 +285,7 @@ const mdtp = dispatch => bindActionCreators({
   getActiveProjectLayers: fetchLayersFromActiveProject,
   enableRefreshAction: enableRefresh,
   resetActiveProjectAction: resetActiveProject,
+  getActiveProjectNameAction: getActiveProjectName,
 }, dispatch);
 
 export default withRouter(connect(mstp, mdtp)(PageProject));
