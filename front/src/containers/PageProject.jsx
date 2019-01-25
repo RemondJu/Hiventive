@@ -176,6 +176,9 @@ class PageProject extends Component {
         </div>
         <div className="titleProject">
           <div className="titleDisplay">
+            <div className="flexAdjust">
+              {''}
+            </div>
             <form className="titleDesc" onSubmit={this.sendProjectUpdate}>
               {editionButtonEnabled ? (
                 <label className="label_input" htmlFor="newProjectName">

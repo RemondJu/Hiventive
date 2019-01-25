@@ -3,6 +3,7 @@
 .LayersDisplay{
   width:100%;  
   display: flex;
+
   .filters{
     h2{
       font-weight: bold;
@@ -32,14 +33,15 @@
       transition: all 0.5s ease;
       width: 100%;
     }
-    .activeProject {
-      color: white;
-      font-size: 40px;
-      text-align: center;
-      margin-bottom: 30%;
-      font-family: 'ZCOOL QingKe HuangYou', cursive;
-    }
   }
+  .activeProject {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 30%;
+    font-family: 'Staatliches', cursive;
+  }
+
   button{
     border-radius: 8px;
     padding: 10px 15px;
@@ -61,9 +63,11 @@
   .layersTitles{
   color: $third-color;
   text-align: center;
-  margin-top: 2%;
+  margin-top: 1%;
+  width: 100%;
+    
   th{
-    font-size: 1.4em;
+    font-size: 1.1em;
     margin-right: 13%;
   }
   tr{
@@ -72,7 +76,6 @@
     padding-left: 1%;
     padding-right: 1%;
     font-size: 1.1em;
-    margin-top: 15px;
     height: 65px;
     align-items: center;
   }
@@ -92,7 +95,6 @@
 .layersScrolling{
   overflow-y: scroll; 
   max-height: 550px;;
-  margin-top: 20px;
 }
 
 .layersScrolling::-webkit-scrollbar {

@@ -78,7 +78,7 @@ class LayersDisplay extends Component {
       <div className="LayersDisplay">
         <SideBarDefault title={projectUser[0] ? (
           <h2 className="activeProject">
-            {activeProjectName}
+            {`Project ${activeProjectName}`}
           </h2>
         ) : ''}
         >
@@ -102,10 +102,11 @@ class LayersDisplay extends Component {
           <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
           <tr>
             <th />
-            <th>Layer name</th>
+            <th>Name</th>
             <th>Description</th>
-            <th>Maintainer</th>
+            <th>Url</th>
             <th>Repository</th>
+            <th>Shared</th>
           </tr>
           <div className="layersScrolling">
             <div className="layers-cage">
@@ -121,13 +122,13 @@ class LayersDisplay extends Component {
                 />
               )).slice(0, nbLayersShow) : (
                 <p>
-              No layers loaded.
+                    No layers loaded.
                   <span aria-label="cryEmoji" role="img"> 😭 </span>
-              Refresh the page!
+                    Refresh the page!
                   <span aria-label="cryEmoji" role="img"> 🔁 </span>
                 </p>
-              ) }
-              <button type="button" onClick={() => this.moreLayers()}>More layers </button>
+              )}
+              {(layers.length === 0 || layers.length < nbLayersShow) ? '' : <button type="button" onClick={() => this.moreLayers()}>More layers </button>}
             </div>
           </div>
         </table>
