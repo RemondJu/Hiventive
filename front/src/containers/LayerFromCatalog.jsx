@@ -76,7 +76,7 @@ class LayerFromCatalog extends Component {
     return (
       <div className="LayerFromCatalog">
         <tr className="Layer">
-          <NavLink className="test" to={`/layerinfos/${id}`}>
+          <NavLink className="info-button" to={`/layerinfos/${id}`}>
             <td className="imageRow">
               <img className="info" alt="logo_info" src={info} />
             </td>

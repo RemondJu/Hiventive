@@ -1,6 +1,5 @@
 @import '../index.scss';
 
-
 button{
   padding: 10px 15px;
   border: none;
@@ -23,8 +22,6 @@ button:hover{
 h1 {
   margin-left: auto;
 }
-
-
 
 .page_build-project{
   width : 100%;
@@ -83,4 +80,27 @@ h1 {
       justify-content: space-between;      
     }
   }
+  .layersTitles{
+    color: $third-color;
+    text-align: center;
+    margin-top: 1%;
+    width: 100%;
+      
+    th{
+      font-size: 1.1em;
+      margin-right: 13%;
+    }
+    tr{
+      display: flex;
+      justify-content: space-between;
+      padding-left: 1%;
+      padding-right: 1%;
+      font-size: 1.1em;
+      height: 65px;
+      align-items: center;
+    }
+    .priv-pub-button {
+      margin: 1%;
+    }
+    }
 }
