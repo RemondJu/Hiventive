@@ -34,12 +34,12 @@
       width: 100%;
     }
   }
-  .activeProject {
+  .active_project {
     color: white;
-    font-size: 40px;
+    font-size: 1.3em;
     text-align: center;
-    margin-bottom: 30%;
-    font-family: 'Staatliches', cursive;
+    margin: 30% 0px;
+    font-family: $font-general;
   }
 
   button{
