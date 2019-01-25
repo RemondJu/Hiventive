@@ -78,12 +78,12 @@ class LayersDisplay extends Component {
       <div className="LayersDisplay">
         <SideBarDefault title={projectUser[0] ? (
           <h2>
-            <Link className="activeProject" to="/project-page">
+            <Link className="active_project" to="/project-page">
               {`Project ${activeProjectName}`}
               <span aria-label="cryEmoji" role="img">&#32;↩️</span>
             </Link>
           </h2>
-        ) : <Link className="activeProject" to="/project-page">Select project</Link>}
+        ) : <Link className="active_project" to="/project-page">Select project</Link>}
         >
           <div className="filters">
             <h2>Filters</h2>
