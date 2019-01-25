@@ -44,12 +44,12 @@ class PageBuildProject extends Component {
         <div className="titleProject">
           <h1>{activeProjectName}</h1>
           <div className="all-buttons-build">
-            <button className="button-build" type="button">
+            <a href="./fileSend.md" download="fileSend.md" className="button-build">
               OS code
-            </button>
-            <button className="button-build" type="button">
+            </a>
+            <a href="./fileSend.md" download="fileSend.md" className="button-build">
               OS image
-            </button>
+            </a>
           </div>
           <div className="titleDisplay">
             <table className="layersTitles">

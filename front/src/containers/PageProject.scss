@@ -5,23 +5,21 @@
   display: flex;
 
   .sideBarProject {
-    width: 40%;
 
     .projectRow {
       height: 100%;
       min-width: 250px;
 
-      h2{
+      h2 {
         font-weight: bold;
       }
 
-      .projects-list{
+      .projects-list {
         list-style-type: none;
         padding-inline-start: 0;
-
       }
 
-      button{
+      button {
         border-radius: 8px;
         padding: 10px 15px;
         border: none;
@@ -34,13 +32,14 @@
           font-size: 1em;
         }
       }
-      button:hover{
+
+      button:hover {
         background-color: $fourth-color;
         color: $third-color;
         transition: 0.4s;
       }
 
-      .filter{
+      .filter {
         margin-top: 10px;
         background: none;
         color: $third-color;
@@ -48,13 +47,13 @@
         text-align: left;
         font-weight: 200;
       }
-      .filter:hover{
+      .filter:hover {
         background-color: $fourth-color;
         transition: all 0.5s ease;
         width: 100%;
       }
 
-      .button-build{
+      .button-build {
         border-radius: 8px;
         padding: 10px 15px;
         border: none;
@@ -67,7 +66,7 @@
           font-size: 1em;
         }
       }
-      .button-build:hover{
+      .button-build:hover {
         background-color: $fourth-color;
         color: $third-color;
         transition: 0.4s;
@@ -84,9 +83,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      margin: 10px;
+
+      .flexAdjust {
+        width: 83px;
+      }    
 
       .titleDesc {
         margin-left: auto;
+        color: $button-third;
       }
 
       .projectBackButton {
@@ -95,14 +100,14 @@
     }
   }
   .button_display {
-    margin-right: 10%;
+    border-radius: 8px;
+    margin: 0px 10px;
   }
 
-  .LayerFromCatalog {
-    margin-right: 70px;
-    margin-top: 1%;
+  .layersTitles {
+    width: 100%;
   }
-
+  
   .add-remove-button {
     width: 65px;
     height: 65px;
@@ -110,6 +115,7 @@
     transition: 0.5s;
     left: 0;
   }
+
   .add-remove-button:hover {
     width: 65px;
     height: 65px;
@@ -117,11 +123,12 @@
     transition: 0.5s;
     left: 0;
   }
+
   .EmptyMessage {
     font-size: 30px;
   }
 
-  tr{
+  tr {
     display: flex;
     justify-content: space-between;
     padding-left: 1%;
@@ -131,5 +138,4 @@
     height: 65px;
     align-items: center;
   }
-  
 }

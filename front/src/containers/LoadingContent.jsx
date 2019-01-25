@@ -28,10 +28,9 @@ class LoadingContent extends Component {
   }
 
   sendError() {
-    const { isLoadingValue, isLoadingRedux, history } = this.props;
+    const { isLoadingValue, isLoadingRedux } = this.props;
     if (isLoadingValue) {
       isLoadingRedux(false);
-      history.push('/');
     }
   }
 
@@ -56,7 +55,6 @@ class LoadingContent extends Component {
 LoadingContent.propTypes = {
   isLoadingValue: PropTypes.bool.isRequired,
   isLoadingRedux: PropTypes.func.isRequired,
-  history: PropTypes.shape.isRequired,
 };
 
 const mstp = state => ({
