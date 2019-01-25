@@ -1,6 +1,5 @@
 import API_SERVER from '../constants';
 
-// fetch categories to layer
 export const hasErrored = bool => ({
   type: 'HAS_ERRORED',
   hasErrored: bool,
@@ -39,11 +38,9 @@ export const categoriesLayerFetchDataSuccess = categories => ({
 });
 
 export const fetchCategoriesLayer = () => (dispatch) => {
-  dispatch(isLoading(true));
   fetch(`${API_SERVER}/layer/categories/`)
     .then(res => res.json())
     .then(categories => dispatch(categoriesLayerFetchDataSuccess(categories)))
-    .then(() => dispatch(isLoading(false)))
     .catch(() => dispatch(hasErrored(true)));
 };
 
@@ -67,11 +64,9 @@ export const getProjectsToUser = projects => ({
 });
 
 export const fetchProjectUser = idUser => (dispatch) => {
-  dispatch(isLoading(true));
   fetch(`${API_SERVER}/projects/user/${idUser}`)
     .then(res => res.json())
     .then(projects => dispatch(getProjectsToUser(projects)))
-    .then(() => dispatch(isLoading(false)))
     .catch(() => dispatch(hasErrored(true)));
 };
 
@@ -81,11 +76,9 @@ export const layerFetchDataSuccess = layer => ({
 });
 
 export const fetchLayerInfos = id => (dispatch) => {
-  dispatch(isLoading(true));
   fetch(`${API_SERVER}/layerdetail/${parseInt((id), 10)}`)
     .then(res => res.json())
     .then(layer => dispatch(layerFetchDataSuccess(layer)))
-    .then(() => dispatch(isLoading(false)))
     .catch(() => dispatch(hasErrored(true)));
 };
 
@@ -95,11 +88,9 @@ export const activeProjectLayersFetchSuccess = projectLayers => ({
 });
 
 export const fetchLayersFromActiveProject = id => (dispatch) => {
-  dispatch(isLoading(true));
   fetch(`${API_SERVER}/layers-from-project/${id}`)
     .then(res => res.json())
     .then(layers => dispatch(activeProjectLayersFetchSuccess(layers)))
-    .then(() => dispatch(isLoading(false)))
     .catch(() => dispatch(hasErrored(true)));
 };
 
@@ -110,10 +101,8 @@ export const logSendId = idNameReceive => ({
 
 // fetch log
 export const fetchLogUser = login => (dispatch) => {
-  dispatch(isLoading(true));
   fetch(`${API_SERVER}/login/?firstname=${login.firstname}&password=${login.password}`)
     .then(res => res.json())
     .then(data => dispatch(logSendId(data)))
-    .then(() => dispatch(isLoading(false)))
     .catch(() => dispatch(hasErrored(true)));
 };
