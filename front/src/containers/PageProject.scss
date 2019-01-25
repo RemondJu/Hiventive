@@ -4,74 +4,68 @@
   height: 100%;
   display: flex;
 
-  .sideBarProject {
+  h2 {
+    font-weight: bold;
+  }
 
-    .projectRow {
-      height: 100%;
-      min-width: 250px;
+  .projects-list {
+    list-style-type: none;
+    padding-inline-start: 0;
+  }
 
-      h2 {
-        font-weight: bold;
-      }
-
-      .projects-list {
-        list-style-type: none;
-        padding-inline-start: 0;
-      }
-
-      button {
-        border-radius: 8px;
-        padding: 10px 15px;
-        border: none;
-        background-color: $button-third;
-        color: white;
-        align-self: center;
-        font-weight: bold;
-        transition: 0.4s;
-        span{
-          font-size: 1em;
-        }
-      }
-
-      button:hover {
-        background-color: $fourth-color;
-        color: $third-color;
-        transition: 0.4s;
-      }
-
-      .filter {
-        margin-top: 10px;
-        background: none;
-        color: $third-color;
-        width: 90%;
-        text-align: left;
-        font-weight: 200;
-      }
-      .filter:hover {
-        background-color: $fourth-color;
-        transition: all 0.5s ease;
-        width: 100%;
-      }
-
-      .button-build {
-        border-radius: 8px;
-        padding: 10px 15px;
-        border: none;
-        background-color: $button-third;
-        color: white;
-        align-self: center;
-        font-weight: bold;
-        transition: 0.4s;
-        span{
-          font-size: 1em;
-        }
-      }
-      .button-build:hover {
-        background-color: $fourth-color;
-        color: $third-color;
-        transition: 0.4s;
-      }
+  button {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: none;
+    background-color: $button-third;
+    color: white;
+    align-self: center;
+    font-weight: bold;
+    transition: 0.4s;
+    span{
+      font-size: 1em;
     }
+  }
+
+  button:hover {
+    background-color: $fourth-color;
+    color: $third-color;
+    transition: 0.4s;
+  }
+
+  .filter {
+    margin-top: 10px;
+    background: none;
+    color: $third-color;
+    width: 90%;
+    text-align: left;
+    font-weight: 200;
+  }
+  
+  .filter:hover {
+    background-color: $fourth-color;
+    transition: all 0.5s ease;
+    width: 100%;
+  }
+
+  .button-build {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: none;
+    background-color: $button-third;
+    color: white;
+    align-self: center;
+    font-weight: bold;
+    transition: 0.4s;
+
+    span{
+      font-size: 1em;
+    }
+  }
+  .button-build:hover {
+    background-color: $fourth-color;
+    color: $third-color;
+    transition: 0.4s;
   }
 
   .titleProject {
@@ -87,11 +81,30 @@
 
       .flexAdjust {
         width: 83px;
-      }    
+      }
 
       .titleDesc {
+        display: flex;
+        flex-direction: column;
         margin-left: auto;
-        color: $button-third;
+        color: $third-color;
+        height: 148px;
+
+        h1, p {
+          margin: 15px 0px;
+        }
+
+        .button_display_submit {
+          border-radius: 8px;
+        }
+
+        .label_input {
+
+          .editionInput {
+            border-radius: 8px;
+            padding: 8px;
+          }
+        }
       }
 
       .projectBackButton {
@@ -106,27 +119,16 @@
 
   .layersTitles {
     width: 100%;
+    overflow-y: scroll; 
+    max-height: 550px;
+
+    .EmptyMessage {
+      font-size: 30px;
+      margin: 50px 0px; 
+    }
   }
+
   
-  .add-remove-button {
-    width: 65px;
-    height: 65px;
-    background-color: $button-third;
-    transition: 0.5s;
-    left: 0;
-  }
-
-  .add-remove-button:hover {
-    width: 65px;
-    height: 65px;
-    background-color: white;
-    transition: 0.5s;
-    left: 0;
-  }
-
-  .EmptyMessage {
-    font-size: 30px;
-  }
 
   tr {
     display: flex;
