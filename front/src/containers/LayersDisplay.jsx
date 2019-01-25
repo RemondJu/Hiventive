@@ -70,16 +70,15 @@ class LayersDisplay extends Component {
       filterTypeRedux,
       categoryLayer,
       projectUser,
-      activeProjectId,
+      activeProjectName,
     } = this.props;
-    const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
     const { displayPublicPrivate, shareFilter } = this.state;
     return (
 
       <div className="LayersDisplay">
         <SideBarDefault title={projectUser[0] ? (
           <h2 className="activeProject">
-            {`project ${projectUser[pos].name}`}
+            {activeProjectName}
           </h2>
         ) : ''}
         >
@@ -141,6 +140,7 @@ LayersDisplay.defaultProps = {
   layers: [],
   typeFilter: '',
   categoryLayer: {},
+  activeProjectName: '',
 };
 
 LayersDisplay.propTypes = {
@@ -162,7 +162,8 @@ LayersDisplay.propTypes = {
   filterTypeRedux: PropTypes.func.isRequired,
   newProjectModalAction: PropTypes.func.isRequired,
   fetchCategoriesLayerRedux: PropTypes.func.isRequired,
-
+  // Props type string
+  activeProjectName: PropTypes.string,
 };
 
 const mstp = state => ({
@@ -170,6 +171,7 @@ const mstp = state => ({
   typeFilter: state.typeFilter,
   categoryLayer: state.categoryLayer,
   projectUser: state.projectUser,
+  activeProjectName: state.activeProjectName,
   activeProjectId: state.activeProjectId,
 });
 
