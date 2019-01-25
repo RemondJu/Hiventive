@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './LayersDisplay.scss';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -77,10 +77,13 @@ class LayersDisplay extends Component {
 
       <div className="LayersDisplay">
         <SideBarDefault title={projectUser[0] ? (
-          <h2 className="activeProject">
-            {`Project ${activeProjectName}`}
+          <h2>
+            <Link className="activeProject" to="/project-page">
+              {`Project ${activeProjectName}`}
+              <span aria-label="cryEmoji" role="img">&#32;↩️</span>
+            </Link>
           </h2>
-        ) : ''}
+        ) : <Link className="activeProject" to="/project-page">Select project</Link>}
         >
           <div className="filters">
             <h2>Filters</h2>
