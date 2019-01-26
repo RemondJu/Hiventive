@@ -1,4 +1,4 @@
-const initialState = 'Select your Project';
+const initialState = '';
 
 const activeProjectName = (state = initialState, action) => {
   switch (action.type) {
