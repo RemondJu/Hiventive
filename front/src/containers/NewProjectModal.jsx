@@ -72,8 +72,10 @@ class NewProjectModal extends Component {
 }
 
 NewProjectModal.propTypes = {
-  newProjectModalToggle: PropTypes.shape.isRequired,
-  userIsLogin: PropTypes.shape.isRequired,
+  newProjectModalToggle: PropTypes.string.isRequired,
+  userIsLogin: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
   newProjectModalAction: PropTypes.func.isRequired,
 };
 

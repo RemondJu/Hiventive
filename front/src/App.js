@@ -19,15 +19,15 @@ const App = () => (
     <ModalLogin />
     <NewProjectModal />
     <AddLayer />
-    <Switch>
-      <div className="body_content_switch">
+    <div className="body_content_switch">
+      <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/ToolPage" component={LayersDisplay} />
         <Route path="/layerinfos/:id" component={LayerInfos} />
         <Route path="/project-page" component={PageProject} />
         <Route path="/project-build-page" component={PageBuildProject} />
-      </div>
-    </Switch>
+      </Switch>
+    </div>
   </div>
 );
 

@@ -89,8 +89,8 @@ class LayersDisplay extends Component {
             <h2>Filters</h2>
             <ul className="projects-list">
               <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
-              {(categoryLayer.categories !== undefined)
-                ? categoryLayer.categories.map(type => <li><button type="button" onClick={() => filterTypeRedux(type.type)} className="filter">{type.type}</button></li>)
+              {(categoryLayer !== undefined)
+                ? categoryLayer.map(type => <li key={type.id}><button type="button" onClick={() => filterTypeRedux(type.type)} className="filter">{type.type}</button></li>)
                 : '. . .'}
             </ul>
           </div>
@@ -149,18 +149,15 @@ LayersDisplay.defaultProps = {
 
 LayersDisplay.propTypes = {
   // Props type shape
-  layers: PropTypes.shape({
+  layers: PropTypes.arrayOf(PropTypes.shape({
     color: PropTypes.string,
     fontSize: PropTypes.number,
-  }),
-  typeFilter: PropTypes.shape({
-    color: PropTypes.string,
-    fontSize: PropTypes.number,
-  }),
-  categoryLayer: PropTypes.shape({
+  })),
+  typeFilter: PropTypes.string,
+  categoryLayer: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     type: PropTypes.string,
-  }),
+  })),
   // Props type func
   fetchData: PropTypes.func.isRequired,
   filterTypeRedux: PropTypes.func.isRequired,

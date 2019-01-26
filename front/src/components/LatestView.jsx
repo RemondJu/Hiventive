@@ -31,11 +31,10 @@ class LatestView extends Component {
           <Row>
             {
               mostviews.map((view, index) => (
-                <Col md={{ size: 4 }} className="mb-5 mt-1">
+                <Col key={view.id} md={{ size: 4 }} className="mb-5 mt-1">
                   <NavLink className="test" to={`/layerinfos/${view.id}`}>
                     <CardBestLayer
                       className="overlay"
-                      key={view.id}
                       rank={index + 1}
                       nameLayer={view.name}
                       download={view.mostDownload}

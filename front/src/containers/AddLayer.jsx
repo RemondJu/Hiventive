@@ -151,7 +151,7 @@ class AddLayer extends Component {
                   <Label htmlFor="layerTypeID">Select type</Label>
                   <Input className="option-style" type="select" name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
                     <option value={0}>None</option>
-                    {categoryLayer.length === 0 ? '...' : categoryLayer.categories.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
+                    {categoryLayer.length === 0 ? '...' : categoryLayer.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
                   </Input>
                 </FormGroup>
               </Col>
@@ -188,10 +188,11 @@ class AddLayer extends Component {
 
 AddLayer.propTypes = {
   fetchCategoriesLayerRedux: PropTypes.func.isRequired,
-  categoryLayer: PropTypes.shape.isRequired,
+  categoryLayer: PropTypes.arrayOf(PropTypes.shape).isRequired,
   newLayerModalRedux: PropTypes.func.isRequired,
-  userIsLogin: PropTypes.shape.isRequired,
-
+  userIsLogin: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
 };
 
 const mstp = state => ({
