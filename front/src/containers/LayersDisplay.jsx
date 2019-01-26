@@ -69,20 +69,15 @@ class LayersDisplay extends Component {
       newProjectModalAction,
       filterTypeRedux,
       categoryLayer,
-      projectUser,
       activeProjectName,
     } = this.props;
     const { displayPublicPrivate, shareFilter } = this.state;
     return (
-
       <div className="LayersDisplay">
-        <SideBarDefault title={projectUser[0] ? (
-          <h2>
-            <Link className="active_project" to="/project-page">
-              {`Project ${activeProjectName}`}
-              <span aria-label="cryEmoji" role="img">&#32;↩️</span>
-            </Link>
-          </h2>
+        <SideBarDefault title={activeProjectName !== '' ? (
+          <Link className="active_project" to="/project-page">
+            {`Project ${activeProjectName}`}
+          </Link>
         ) : <Link className="active_project" to="/project-page">Select project</Link>}
         >
           <div className="filters">
@@ -171,7 +166,6 @@ const mstp = state => ({
   layers: state.layersFetchDataSuccess,
   typeFilter: state.typeFilter,
   categoryLayer: state.categoryLayer,
-  projectUser: state.projectUser,
   activeProjectName: state.activeProjectName,
   activeProjectId: state.activeProjectId,
 });

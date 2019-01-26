@@ -1,7 +1,7 @@
 @import '../index.scss';
 
 .SideBarDefault{
-  min-width: 250px;  
+  width: 250px;  
   height: 93vh;
   display: flex;
   flex-direction: column;
@@ -13,6 +13,7 @@
 
   h2 {
     font-weight: bold;
+    max-width: 100%;
   }
 
   .projects-list {
