@@ -74,26 +74,24 @@ class LayerFromCatalog extends Component {
     } = this.props;
     const { layerAdded } = this.state;
     return (
-      <div className="LayerFromCatalog">
-        <tr className="Layer">
-          <NavLink className="info-button" to={`/layerinfos/${id}`}>
-            <td className="imageRow">
-              <img className="info" alt="logo_info" src={info} />
-            </td>
-          </NavLink>
-          <td className="tableText">{name}</td>
-          <td className="tableDescription">{description.length > 20 ? `${description.slice(0, 22)} ...` : description }</td>
-          <td className="tableText">{url.length > 20 ? `${url.slice(8, 30)} ...` : url }</td>
-          <td className="tableText">{repository}</td>
-          <td className="tableText">
-            {share
-              ? ''
-              : <img className="isShare" src={privatelayer} alt="private" />
-            }
+      <tr className="LayerFromCatalog">
+        <NavLink className="info-button" to={`/layerinfos/${id}`}>
+          <td className="imageRow">
+            <img className="info" alt="logo_info" src={info} />
           </td>
-          <td><button className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
-        </tr>
-      </div>
+        </NavLink>
+        <td className="tableText">{name}</td>
+        <td className="tableDescription">{description.length > 20 ? `${description.slice(0, 22)} ...` : description }</td>
+        <td className="tableText">{url.length > 20 ? `${url.slice(8, 30)} ...` : url }</td>
+        <td className="tableText">{repository}</td>
+        <td className="tableText">
+          {share
+            ? ''
+            : <img className="isShare" src={privatelayer} alt="private" />
+          }
+        </td>
+        <td><button className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
+      </tr>
     );
   }
 }

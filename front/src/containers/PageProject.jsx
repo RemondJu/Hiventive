@@ -255,7 +255,9 @@ PageProject.propTypes = {
   projectLayers: PropTypes.arrayOf(PropTypes.shape).isRequired,
   projectUser: PropTypes.arrayOf(PropTypes.shape).isRequired,
   // Others
-  userIsLogin: PropTypes.shape.isRequired,
+  userIsLogin: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
   activeProjectId: PropTypes.number,
   activeProjectName: PropTypes.string,
   refreshFetch: PropTypes.bool.isRequired,

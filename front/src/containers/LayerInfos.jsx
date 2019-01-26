@@ -325,9 +325,22 @@ class LayerInfos extends Component {
 }
 
 LayerInfos.propTypes = {
-  layer: PropTypes.shape.isRequired,
-  categoryLayer: PropTypes.shape.isRequired,
-  history: PropTypes.shape.isRequired,
+  layer: PropTypes.shape({
+    description: PropTypes.string,
+    downloadsCounter: PropTypes.number,
+    hostSite: PropTypes.string,
+    id: PropTypes.number,
+    imported: PropTypes.number,
+    layerName: PropTypes.string,
+    share: PropTypes.number,
+    type: PropTypes.string,
+    typeID: PropTypes.number,
+    url: PropTypes.string,
+    userName: PropTypes.string,
+    version: PropTypes.string,
+    viewsCounter: PropTypes.number,
+  }).isRequired,
+  categoryLayer: PropTypes.arrayOf(PropTypes.shape).isRequired,
   fetchData: PropTypes.func.isRequired,
 };
 
