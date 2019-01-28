@@ -79,8 +79,13 @@
             }
     } 
   }
-}
-.hidden {
+  .hidden {
   transform: scale(1.2); 
   display: none;
+}
+  .alert_text{
+    position: fixed;
+    top: 10px;
+    right: 5%;
+  }
 }

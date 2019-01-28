@@ -95,17 +95,19 @@ class LayersDisplay extends Component {
         </SideBarDefault>
         <table className="layersTitles">
           <h2 className="title-page">Layers Catalog</h2>
-          <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">Private layers</button>
-          <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">Public layers</button>
-          <button type="button" onClick={this.showAllLayers} className="priv-pub-button">All layers</button>
-          <tr>
-            <th />
-            <th>Name</th>
-            <th>Description</th>
-            <th>Url</th>
-            <th>Repository</th>
-            <th>Shared</th>
-          </tr>
+          <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
+          <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
+          <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
+          <div className="titreTable">
+            <tr>
+              <th />
+              <th>Name</th>
+              <th>Description</th>
+              <th>Url</th>
+              <th>Repository</th>
+              <th>Shared</th>
+            </tr>
+          </div>
           <div className="layersScrolling">
             <div className="layers-cage">
               {layers.length !== 0 ? layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
@@ -125,8 +127,9 @@ class LayersDisplay extends Component {
                     Refresh the page!
                   <span aria-label="cryEmoji" role="img"> 🔁 </span>
                 </p>
+
               )}
-              {(layers.length === 0 || layers.length < nbLayersShow) ? '' : <button type="button" onClick={() => this.moreLayers()}>More layers</button>}
+              {(layers.length === 0 || layers.length < nbLayersShow) ? '' : <button type="button" onClick={() => this.moreLayers()}>More layers </button>}
             </div>
             <br />
           </div>

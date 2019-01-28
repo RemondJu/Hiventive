@@ -4,7 +4,7 @@
   background-color: $opacity-background;
   width: auto;
   margin: 20px;
-  
+
 .info-button {
 
 .imageRow{
@@ -41,5 +41,50 @@
     width: 65px;
     border-radius: 0;
     font-weight: bolder;
+  }
+}
+
+@media screen and (max-width: 850px){
+  .tableUrl {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 670px){
+  .LayerFromCatalog{
+
+    .repo {
+      display: none;
+    }
+  }  
+}
+
+@media screen and (max-width: 650px){
+  .LayerFromCatalog{
+
+    .share {
+      display: none;
+    }
+
+    .tableDescription {
+      word-wrap: normal;
+      width: 80%;
+    }
+  }  
+}
+
+@media screen and (max-width: 550px) {
+  .LayerFromCatalog{
+
+    .tableDescription {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .LayerFromCatalog{
+    width: 300px;
+    margin: 10px auto;
   }
 }

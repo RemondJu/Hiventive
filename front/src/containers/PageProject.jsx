@@ -96,12 +96,12 @@ class PageProject extends Component {
     const conf = {
       method: 'DELETE',
     };
-    fetch(`${API_SERVER}/project/${id}`, conf)
+    fetch(`${API_SERVER}/delete-project/${id}`, conf)
+      .then(resetActiveProjectAction())
+      .then(enableRefreshAction())
       .then(this.setState({
         deleteButtonEnabled: false,
-      }))
-      .then(resetActiveProjectAction())
-      .then(enableRefreshAction());
+      }));
   }
 
   sendProjectUpdate(e) {
@@ -155,6 +155,7 @@ class PageProject extends Component {
       newProjectName,
       newProjectDescription,
     } = this.state;
+    const title = activeProjectId !== 0 ? activeProjectName : 'Select a project';
     const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
     return (
       <div className="PageProject">
@@ -205,35 +206,36 @@ class PageProject extends Component {
                   onDoubleClick={editionButtonEnabled
                     ? () => this.closeEdition() : () => { }}
                 >
-                  <span>{editionButtonEnabled ? 'Double click to exit edition' : 'Edit your project'}</span>
+                  <span>{editionButtonEnabled ? 'Double click to exit' : 'Edit your project'}</span>
                 </button>
                 <button
                   className="button_display"
                   type="button"
-                  onMouseOut={deleteButtonEnabled ? this.deactivateDeletion : () => { }}
+                  onDoubleClick={deleteButtonEnabled ? this.deactivateDeletion : () => { }}
                   onClick={this.activateDeletion}
-                  onDoubleClick={deleteButtonEnabled
-                    ? () => this.deleteProject(activeProjectId) : () => { }}
                 >
-                  <span>{deleteButtonEnabled ? 'Double click to confirm' : 'Delete this project'}</span>
+                  <span>{deleteButtonEnabled ? 'Double click to exit' : 'Delete this project'}</span>
                 </button>
+                {deleteButtonEnabled ? <button type="button" onClick={() => this.deleteProject(activeProjectId)}>Confirm</button> : ''}
               </div>) : ''}
           <table className="layersTitles">
-            {projectLayers[0] ? projectLayers.map(projectLayer => (
-              <LayerFromCatalog
-                key={projectLayer.id}
-                id={projectLayer.id}
-                name={projectLayer.name}
-                description={projectLayer.description}
-                url={projectLayer.url}
-                repository={projectLayer.repository}
-                share={projectLayer.share}
-              />)) : (
-                <p className="EmptyMessage">
-                  No layers yet...
-                  <span aria-label="cryEmoji" role="img"> 😭 </span>
-                </p>
-            )}
+            <div className="scrolling">
+              {projectLayers[0] ? projectLayers.map(projectLayer => (
+                <LayerFromCatalog
+                  key={projectLayer.id}
+                  id={projectLayer.id}
+                  name={projectLayer.name}
+                  description={projectLayer.description}
+                  url={projectLayer.url}
+                  repository={projectLayer.hostSite}
+                  share={projectLayer.share}
+                />)) : (
+                  <p className="EmptyMessage">
+                No layers yet...
+                    <span aria-label="cryEmoji" role="img"> 😭 </span>
+                  </p>
+              ) }
+            </div>
           </table>
         </div>
       </div>
