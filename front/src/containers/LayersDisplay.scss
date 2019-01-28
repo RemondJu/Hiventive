@@ -1,15 +1,15 @@
 @import '../index.scss';
 
-.LayersDisplay{
-  width:100%;  
+.LayersDisplay {
+  width: 100%;
   display: flex;
 
-  .filters{
-    h2{
+  .filters {
+    h2 {
       font-weight: bold;
     }
 
-    .projects-list{
+    .projects-list {
       list-style-type: none;
       padding-inline-start: 0;
     }
@@ -20,7 +20,7 @@
     align-items: flex-start;
     padding-left: 15px;
 
-    .filter{
+    .filter {
       margin-top: 10px;
       background: none;
       color: $third-color;
@@ -28,12 +28,14 @@
       text-align: left;
       font-weight: 200;
     }
-    .filter:hover{
+
+    .filter:hover {
       background-color: $fourth-color;
       transition: all 0.5s ease;
       width: 100%;
     }
   }
+
   .active_project {
     color: white;
     font-size: 1.3em;
@@ -42,7 +44,7 @@
     font-family: $font-general;
   }
 
-  button{
+  button {
     border-radius: 8px;
     padding: 10px 15px;
     border: none;
@@ -51,38 +53,54 @@
     align-self: center;
     font-weight: bold;
     transition: 0.4s;
-    span{
+
+    span {
       font-size: 1em;
     }
   }
-  button:hover{
+
+  button:hover {
     background-color: $fourth-color;
     color: $third-color;
     transition: 0.4s;
   }
-  .layersTitles{
-  color: $third-color;
-  text-align: center;
-  margin-top: 16px;
-  width: 100%;
-    
-  th{
-    font-size: 1.1em;
-    margin-right: 13%;
+
+  .layersTitles {
+    color: $third-color;
+    text-align: center;
+    margin-top: 16px;
+    width: 100%;
+
+    .titreTable {
+      background-color: $third-color;
+      color: $fourth-color;
+      padding-right: 8%;
+      margin-right: 5%;
+      width: 95%;
+      margin-left: 2.4%;
+    }
+
+    th {
+      font-size: 1.3em;
+      margin-right: 14%;
+    }
+
+    tr {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 1%;
+      padding-right: 1%;
+      font-size: 1.1em;
+      height: 65px;
+      align-items: center;
+    }
+
+
+    .priv-pub-button {
+      margin: 1%;
+    }
   }
-  tr{
-    display: flex;
-    justify-content: space-between;
-    padding-left: 1%;
-    padding-right: 1%;
-    font-size: 1.1em;
-    height: 65px;
-    align-items: center;
-  }
-  .priv-pub-button {
-    margin: 1%;
-  }
-  }
+
   .layers-cage {
     margin-left: 1%;
   }
@@ -92,8 +110,8 @@
   margin: 10px;
 }
 
-.layersScrolling{
-  overflow-y: scroll; 
+.layersScrolling {
+  overflow-y: scroll;
   max-height: 550px;
 }
 
@@ -102,8 +120,8 @@
   width: 0.8em;
 }
 
-.layersScrolling::-webkit-scrollbar-track{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+.layersScrolling::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
 }
 
@@ -112,5 +130,3 @@
   outline: 1px solid slategrey;
   border-radius: 15px;
 }
-
-
