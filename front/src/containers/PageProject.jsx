@@ -97,12 +97,12 @@ class PageProject extends Component {
     const conf = {
       method: 'DELETE',
     };
-    fetch(`${API_SERVER}/project/${id}`, conf)
+    fetch(`${API_SERVER}/delete-project/${id}`, conf)
+      .then(resetActiveProjectAction())
+      .then(enableRefreshAction())
       .then(this.setState({
         deleteButtonEnabled: false,
-      }))
-      .then(resetActiveProjectAction())
-      .then(enableRefreshAction());
+      }));
   }
 
   sendProjectUpdate(e) {
@@ -208,18 +208,17 @@ class PageProject extends Component {
                   onDoubleClick={editionButtonEnabled
                     ? () => this.closeEdition() : () => { }}
                 >
-                  <span>{editionButtonEnabled ? 'Double click to exit edition' : 'Edit your project'}</span>
+                  <span>{editionButtonEnabled ? 'Double click to exit' : 'Edit your project'}</span>
                 </button>
                 <button
                   className="button_display"
                   type="button"
-                  onMouseOut={deleteButtonEnabled ? this.deactivateDeletion : () => { }}
+                  onDoubleClick={deleteButtonEnabled ? this.deactivateDeletion : () => { }}
                   onClick={this.activateDeletion}
-                  onDoubleClick={deleteButtonEnabled
-                    ? () => this.deleteProject(activeProjectId) : () => { }}
                 >
-                  <span>{deleteButtonEnabled ? 'Double click to confirm' : 'Delete this project'}</span>
+                  <span>{deleteButtonEnabled ? 'Double click to exit' : 'Delete this project'}</span>
                 </button>
+                {deleteButtonEnabled ? <button type="button" onClick={() => this.deleteProject(activeProjectId)}>Confirm</button> : ''}
               </div>) : ''}
           <table className="layersTitles">
             <div className="scrolling">
