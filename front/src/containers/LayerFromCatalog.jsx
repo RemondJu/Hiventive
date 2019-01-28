@@ -75,12 +75,14 @@ class LayerFromCatalog extends Component {
     const { layerAdded } = this.state;
     return (
       <tr className="LayerFromCatalog">
-        <NavLink className="info-button" to={`/layerinfos/${id}`}>
-          <td className="imageRow">
-            <img className="info" alt="logo_info" src={info} />
-          </td>
-        </NavLink>
-        <td className="tableText name">{name}</td>
+        <td>
+          <NavLink className="info-button" to={`/layerinfos/${id}`}>
+            <div className="imageRow">
+              <img className="info" alt="logo_info" src={info} />
+            </div>
+          </NavLink>
+        </td>
+        <td className="tableText">{name}</td>
         <td className="tableDescription">{description.length > 20 ? `${description.slice(0, 22)} ...` : description }</td>
         <td className="tableUrl">{url.length > 20 ? `${url.slice(0, 30)} ...` : url }</td>
         <td className="tableText repo">{repository}</td>
