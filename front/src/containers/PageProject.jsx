@@ -156,6 +156,7 @@ class PageProject extends Component {
       newProjectName,
       newProjectDescription,
     } = this.state;
+    const title = activeProjectId !== 0 ? activeProjectName : 'Select a project';
     const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
     return (
       <div className="PageProject">
@@ -181,7 +182,7 @@ class PageProject extends Component {
                 Name :
                   <input className="editionInput" required name="newProjectName" id="newProjectName" onChange={this.handleChange} value={newProjectName} type="text" />
                 </label>
-              ) : <h1>{activeProjectName}</h1>}
+              ) : <h1>{title}</h1>}
               {editionButtonEnabled ? (
                 <label className="label_input" htmlFor="newProjectDescription">
                 Description :
@@ -221,21 +222,23 @@ class PageProject extends Component {
                 </button>
               </div>) : ''}
           <table className="layersTitles">
-            {projectLayers[0] ? projectLayers.map(projectLayer => (
-              <LayerFromCatalog
-                key={projectLayer.id}
-                id={projectLayer.id}
-                name={projectLayer.name}
-                description={projectLayer.description}
-                url={projectLayer.url}
-                repository={projectLayer.repository}
-                share={projectLayer.share}
-              />)) : (
-                <p className="EmptyMessage">
-              No layers yet...
-                  <span aria-label="cryEmoji" role="img"> 😭 </span>
-                </p>
-            ) }
+            <div className="scrolling">
+              {projectLayers[0] ? projectLayers.map(projectLayer => (
+                <LayerFromCatalog
+                  key={projectLayer.id}
+                  id={projectLayer.id}
+                  name={projectLayer.name}
+                  description={projectLayer.description}
+                  url={projectLayer.url}
+                  repository={projectLayer.hostSite}
+                  share={projectLayer.share}
+                />)) : (
+                  <p className="EmptyMessage">
+                No layers yet...
+                    <span aria-label="cryEmoji" role="img"> 😭 </span>
+                  </p>
+              ) }
+            </div>
           </table>
         </div>
       </div>
