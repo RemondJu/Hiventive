@@ -4,36 +4,22 @@
   background-color: $opacity-background;
   width: auto;
   margin: 20px;
-
-  .tableText {
-    height: 100%;
-    width: 20%;
-    margin-top: 2.5%;
-  }
-
-  .tableDescription {
-    height: 100%;
-    width: 20%;
-    margin-top: 2.5%;
-  }
-
+  
 .info-button {
 
 .imageRow{
-  width: 65px;
+  vertical-align: middle;
   height: 65px;
+  min-width: 65px;
   background-color: $button-third;
   transition: 0.5s;
-  left: 0;
 
   .info {
-    width: 50px;
-    height: 50px;
-    margin-top: 11%;
+    width: 35px;
+    height: 35px;
     transition: 0.5s;
-    left: 0;
   }
-  }
+}
   .imageRow:hover {
     background-color: $opacity-background;
     transition: 0.5s;
@@ -45,14 +31,15 @@
   }
 }
 
-  .add-remove-button {
-    height: 65px;
-    border-radius: 0;
-    width: 60px;
-    font-size: 30px;
-  }
   .isShare {
     height: 20px;
     width: 20px;
+  }
+
+  .add-remove-button {
+    height: 65px;
+    width: 65px;
+    border-radius: 0;
+    font-weight: bolder;
   }
 }

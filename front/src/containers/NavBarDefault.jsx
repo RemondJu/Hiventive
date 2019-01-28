@@ -70,7 +70,7 @@ class NavBarDefault extends Component {
         <Navbar className="navbarcolor navbar-fixed-top" expand="md">
           <NavLink to="/" className="navbar-brand d-inline align-center">
             <div className="logoalign">
-              <img className="d-inline-block align-center" alt="Hiventive" src={logoHiventiveWhite} width="45vw" height="40vw" />
+              <img className="d-inline-block align-center" alt="Hiventive" src={logoHiventiveWhite} width="40vw" height="40vw" />
               <h2 className="positiontitre">Hiventive</h2>
             </div>
           </NavLink>

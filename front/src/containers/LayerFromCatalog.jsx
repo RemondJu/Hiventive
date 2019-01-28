@@ -90,7 +90,7 @@ class LayerFromCatalog extends Component {
             : <img className="isShare" src={privatelayer} alt="private" />
           }
         </td>
-        <td><button className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
+        <td><button className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? 'RMV' : 'ADD'}</button></td>
       </tr>
     );
   }

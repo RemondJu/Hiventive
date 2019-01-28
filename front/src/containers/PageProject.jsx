@@ -14,7 +14,6 @@ import {
   resetActiveProject,
   getActiveProjectName,
 } from '../actions';
-import BackButton from '../components/BackButton';
 import SideBarDefault from '../components/SideBarDefault';
 
 import LayerFromCatalog from './LayerFromCatalog';
@@ -160,15 +159,17 @@ class PageProject extends Component {
     return (
       <div className="PageProject">
         <SideBarDefault>
-          <h2>OS Projects</h2>
-          <ul className="projects-list">
-            {projectUser.map(userProject => <li key={userProject.id}><button type="button" className="filter" onClick={() => this.selectProject(userProject.id, userProject.name)}>{userProject.name}</button></li>)}
-          </ul>
-          <NavLink to="/project-build-page">
-            <button className="button-build" type="button">
-              Build your OS
-            </button>
-          </NavLink>
+          <div className="filters">
+            <h2>OS Projects</h2>
+            <ul className="projects-list">
+              {projectUser.map(userProject => <li key={userProject.id}><button type="button" className="filter" onClick={() => this.selectProject(userProject.id, userProject.name)}>{userProject.name}</button></li>)}
+            </ul>
+            <NavLink to="/project-build-page">
+              <button className="button-build" type="button">
+                Build your OS
+              </button>
+            </NavLink>
+          </div>
         </SideBarDefault>
         <div className="titleProject">
           <div className="titleDisplay">
@@ -178,23 +179,20 @@ class PageProject extends Component {
             <form className="titleDesc" onSubmit={this.sendProjectUpdate}>
               {editionButtonEnabled ? (
                 <label className="label_input" htmlFor="newProjectName">
-                Name :
+                  Name :
                   <input className="editionInput" required name="newProjectName" id="newProjectName" onChange={this.handleChange} value={newProjectName} type="text" />
                 </label>
-              ) : <h1>{activeProjectName}</h1>}
+              ) : <h2>{activeProjectName}</h2>}
               {editionButtonEnabled ? (
                 <label className="label_input" htmlFor="newProjectDescription">
-                Description :
+                  Description :
                   <input className="editionInput" required name="newProjectDescription" id="newProjectDescription" onChange={this.handleChange} value={newProjectDescription} type="text" />
                 </label>
-              ) : <p>{activeProjectId !== 0 ? projectUser[pos].description : ''}</p>}
+              ) : <p className="description_style">{activeProjectId !== 0 ? projectUser[pos].description : ''}</p>}
               {editionButtonEnabled ? (
                 <button className="button_display_submit" type="submit">Submit</button>
               ) : ''}
             </form>
-            <div className="projectBackButton">
-              <BackButton />
-            </div>
           </div>
           {activeProjectId !== 0
             ? (
@@ -232,10 +230,10 @@ class PageProject extends Component {
                 share={projectLayer.share}
               />)) : (
                 <p className="EmptyMessage">
-              No layers yet...
+                  No layers yet...
                   <span aria-label="cryEmoji" role="img"> 😭 </span>
                 </p>
-            ) }
+            )}
           </table>
         </div>
       </div>

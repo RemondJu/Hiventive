@@ -1,24 +1,33 @@
 @import '../index.scss';
 
 .LayersDisplay{
-  width:100%;  
+  width:100%;
+  height: 100%;
+  position: relative;
   display: flex;
 
+  p{
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  h2{
+    font-weight: bold;
+  }
+
   .filters{
-    h2{
-      font-weight: bold;
-    }
+    display: flex;
+    min-height: 100%;
+    margin-bottom: 40%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 15px;
 
     .projects-list{
       list-style-type: none;
       padding-inline-start: 0;
     }
-
-    display: flex;
-    margin-bottom: 50px;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 15px;
 
     .filter{
       margin-top: 10px;
@@ -28,6 +37,7 @@
       text-align: left;
       font-weight: 200;
     }
+
     .filter:hover{
       background-color: $fourth-color;
       transition: all 0.5s ease;
@@ -36,14 +46,14 @@
   }
   .active_project {
     color: white;
-    font-size: 1.3em;
     text-align: center;
     margin: 30% 0px;
     font-family: $font-general;
   }
 
   button{
-    border-radius: 8px;
+    width: 160px;
+    border-radius: 5px;
     padding: 10px 15px;
     border: none;
     background-color: $button-third;
@@ -60,6 +70,8 @@
     color: $third-color;
     transition: 0.4s;
   }
+
+
   .layersTitles{
   color: $third-color;
   text-align: center;
@@ -73,8 +85,6 @@
   tr{
     display: flex;
     justify-content: space-between;
-    padding-left: 1%;
-    padding-right: 1%;
     font-size: 1.1em;
     height: 65px;
     align-items: center;
@@ -84,12 +94,14 @@
   }
   }
   .layers-cage {
-    margin-left: 1%;
+    align-items: baseline;
   }
 }
 
 .title-page {
-  margin: 10px;
+  margin-top: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .layersScrolling{
