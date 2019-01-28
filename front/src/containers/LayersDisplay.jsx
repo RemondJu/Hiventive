@@ -98,14 +98,16 @@ class LayersDisplay extends Component {
           <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
           <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
           <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
-          <tr>
-            <th />
-            <th>Name</th>
-            <th>Description</th>
-            <th>Url</th>
-            <th>Repository</th>
-            <th>Shared</th>
-          </tr>
+          <div className="titreTable">
+            <tr>
+              <th />
+              <th>Name</th>
+              <th>Description</th>
+              <th>Url</th>
+              <th>Repository</th>
+              <th>Shared</th>
+            </tr>
+          </div>
           <div className="layersScrolling">
             <div className="layers-cage">
               {layers.length !== 0 ? layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
@@ -125,7 +127,9 @@ class LayersDisplay extends Component {
                     Refresh the page!
                   <span aria-label="cryEmoji" role="img"> 🔁 </span>
                 </p>
+
               )}
+
               {(layers.length === 0 || layers.length < nbLayersShow) ? '' : <button type="button" onClick={() => this.moreLayers()}>More layers </button>}
             </div>
           </div>

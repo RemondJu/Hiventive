@@ -3,11 +3,17 @@
 .LayerFromCatalog {
   background-color: $opacity-background;
   width: auto;
-  margin: 20px;
+  margin: 25px;
 
   .tableText {
     height: 100%;
     width: 20%;
+    margin-top: 2.5%;
+  }
+
+  .tableUrl{
+    height: 100%;
+    width: 25%;
     margin-top: 2.5%;
   }
 
