@@ -18,8 +18,9 @@ import {
   newLayerModal,
   newProjectModal,
   switchLoginModal,
+  getWordFilter,
+  enableRefresh,
 } from '../actions';
-import { fetchSearchLayer } from '../actions/fetch';
 import logoHiventiveWhite from '../images/logoHiventive_white.png';
 import burgerMenu from '../images/burgerMenu.png';
 import './NavBarDefault.scss';
@@ -44,10 +45,19 @@ class NavBarDefault extends Component {
 
   sendSearch(event) {
     const { wordSearch } = this.state;
-    const { fetchSearchLayerRedux, history, filterTypeRedux } = this.props;
+    const {
+      enableRefreshAction,
+      getWordFilterAction,
+      history,
+      filterTypeRedux,
+    } = this.props;
     event.preventDefault();
-    fetchSearchLayerRedux(wordSearch);
     filterTypeRedux('All');
+    enableRefreshAction();
+    getWordFilterAction(wordSearch);
+    this.setState({
+      wordSearch: '',
+    });
     history.push('/ToolPage');
   }
 
@@ -121,7 +131,6 @@ class NavBarDefault extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-
       </div>
     );
   }
@@ -135,8 +144,9 @@ const mdtp = dispatch => bindActionCreators({
   switchLoginModalRedux: switchLoginModal,
   newProjectModalAction: newProjectModal,
   switchAddLayerModalRedux: newLayerModal,
-  fetchSearchLayerRedux: fetchSearchLayer,
   filterTypeRedux: filterType,
+  getWordFilterAction: getWordFilter,
+  enableRefreshAction: enableRefresh,
 }, dispatch);
 
 export default withRouter(connect(mstp, mdtp)(NavBarDefault));
