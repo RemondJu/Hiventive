@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom';
 const Banner = () => (
   <div className="Banner">
     <h2>
-      What is Hiventive ?
+      What is Yocto Builder by Hiventive ?
     </h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna
-      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    <p className="justifytext">
+    The Yocto Project is not an embedded Linux Distribution,
+    it creates a custom one for you. To help you in this customisation,
+    Yocto Builder is a tool aimed to ease the use, generation and the deployment
+    of Yocto through an intuitive web application.
+    It’s built upon a wide community sharing layers, machines and more in order to reduce effort.
+    Create, manage and share your Linux Distribution projects directly on our web application.
     </p>
     <Link to={{
       pathname: '/ToolPage',
