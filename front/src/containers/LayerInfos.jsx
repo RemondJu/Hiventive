@@ -209,7 +209,7 @@ class LayerInfos extends Component {
                     {boolButtonEdite ? (
                       <select className="select_input" name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
                         <option value={layerTypeID}>{layer.type}</option>
-                        {categoryLayer.length === 0 ? '...' : categoryLayer.categories.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
+                        {categoryLayer.length === 0 ? '...' : categoryLayer.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
                       </select>
                     ) : (<span className="elementLayerInfo">{layer.type}</span>)}
                   </p>
