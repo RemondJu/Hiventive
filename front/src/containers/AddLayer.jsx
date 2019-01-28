@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import {
-  Col, Row, Button, Form, FormGroup, Label, Input,
+  Col, Row, Button, Form, FormGroup, Label, Input, Alert,
 } from 'reactstrap';
 
 import { fetchCategoriesLayer } from '../actions/fetch';
@@ -25,10 +25,14 @@ class AddLayer extends Component {
       description: '',
       layerTypeID: '',
       share: true,
+      boolSendLayer: false,
+      colorAlert: '',
+      textAlert: '',
     };
     this.inputChange = this.inputChange.bind(this);
     this.inputChangeCheckbox = this.inputChangeCheckbox.bind(this);
     this.sendForm = this.sendForm.bind(this);
+    this.sendAlert = this.sendAlert.bind(this);
   }
 
 
@@ -72,16 +76,14 @@ class AddLayer extends Component {
       imported: false,
       layerTypeID: Number(layerTypeID),
       description: description === '' ? 'no description' : description,
+      version: version === '' ? '0.0.1' : version,
       name,
-      version,
       url,
       hostSite,
       share,
     };
 
-    // id project temp
-    const projectId = 1;
-    if (layerTypeID !== 0) {
+    if (layerTypeID !== 0 && name !== '' && url !== '' && hostSite !== '') {
       const conf = {
         method: 'POST',
         headers: {
@@ -89,11 +91,31 @@ class AddLayer extends Component {
         },
         body: JSON.stringify(layerSend),
       };
-      fetch(`${API_SERVER}/layer/?projectId=${projectId}`, conf)
-        .then(() => history.push('/'))
-        .catch();
+      fetch(`${API_SERVER}/layer/`, conf)
+        .then(() => this.setState({
+          name: '',
+          version: '',
+          url: '',
+          hostSite: '',
+          description: '',
+          layerTypeID: '',
+          share: true,
+        }))
+        .then(() => newLayerModalRedux())
+        .then(() => history.push('/ToolPage'))
+        .catch(() => this.sendAlert('danger', 'Sorry your layer is not send'));
+    } else {
+      this.sendAlert('warning', 'Your form is empty !');
     }
-    newLayerModalRedux();
+  }
+
+  sendAlert(color, text) {
+    setTimeout(() => this.setState({ boolSendLayer: false }), 5000);
+    this.setState(prevState => ({
+      boolSendLayer: !prevState.boolSendLayer,
+      colorAlert: color,
+      textAlert: text,
+    }));
   }
 
   render() {
@@ -104,6 +126,9 @@ class AddLayer extends Component {
       hostSite,
       description,
       share,
+      boolSendLayer,
+      colorAlert,
+      textAlert,
     } = this.state;
 
     const {
@@ -114,10 +139,16 @@ class AddLayer extends Component {
 
     return (
       <div className={`modal_add_layer ${modalLayer}`}>
+        {!boolSendLayer ? '' : (
+          <Alert color={colorAlert} className="alert_text">
+            {textAlert}
+          </Alert>
+        )}
+
         <div className="content_modal_add_layer">
           <button className="close" type="button" onClick={newLayerModalRedux}>&times;</button>
           <h2 className="modal_title">ADD A NEW LAYER</h2>
-          <Form className="modal_form" onSubmit={this.sendForm}>
+          <Form className="modal_form" noValidate onSubmit={this.sendForm}>
             <Row form>
               <Col className="form-style" md={6}>
                 <FormGroup>
