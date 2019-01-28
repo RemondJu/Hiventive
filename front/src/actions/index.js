@@ -44,3 +44,8 @@ export const getActiveProjectName = name => ({
 export const resetActiveProject = () => ({
   type: 'RESET_ACTIVE_PROJECT',
 });
+
+export const getWordFilter = word => ({
+  type: 'GET_WORD_FILTER',
+  word,
+});

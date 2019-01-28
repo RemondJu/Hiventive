@@ -4,10 +4,9 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { layersFetchData, fetchCategoriesLayer } from '../actions/fetch';
+import { fetchCategoriesLayer, fetchSearchLayer } from '../actions/fetch';
 import LayerFromCatalog from './LayerFromCatalog';
-import { filterType, newProjectModal } from '../actions';
-import API_SERVER from '../constants';
+import { filterType, newProjectModal, enableRefresh } from '../actions';
 import SideBarDefault from '../components/SideBarDefault';
 
 class LayersDisplay extends Component {
@@ -26,13 +25,21 @@ class LayersDisplay extends Component {
 
   componentDidMount() {
     const {
-      fetchData,
       filterTypeRedux,
       fetchCategoriesLayerRedux,
+      fetchSearchLayerRedux,
+      wordFilter,
     } = this.props;
-    fetchData(`${API_SERVER}/layers`);
+    fetchSearchLayerRedux(wordFilter);
     filterTypeRedux('All');
     fetchCategoriesLayerRedux();
+  }
+
+  componentDidUpdate() {
+    const { wordFilter, fetchSearchLayerRedux, refreshFetch } = this.props;
+    if (refreshFetch) {
+      fetchSearchLayerRedux(wordFilter);
+    }
   }
 
   showPrivateLayers() {
@@ -158,7 +165,7 @@ LayersDisplay.propTypes = {
     type: PropTypes.string,
   })),
   // Props type func
-  fetchData: PropTypes.func.isRequired,
+  fetchSearchLayerRedux: PropTypes.func.isRequired,
   filterTypeRedux: PropTypes.func.isRequired,
   newProjectModalAction: PropTypes.func.isRequired,
   fetchCategoriesLayerRedux: PropTypes.func.isRequired,
@@ -172,13 +179,16 @@ const mstp = state => ({
   categoryLayer: state.categoryLayer,
   activeProjectName: state.activeProjectName,
   activeProjectId: state.activeProjectId,
+  wordFilter: state.wordFilter,
+  refreshFetch: state.refreshFetch,
 });
 
 const mdtp = dispatch => bindActionCreators({
-  fetchData: layersFetchData,
   filterTypeRedux: filterType,
   newProjectModalAction: newProjectModal,
   fetchCategoriesLayerRedux: fetchCategoriesLayer,
+  fetchSearchLayerRedux: fetchSearchLayer,
+  enableRefreshAction: enableRefresh,
 }, dispatch);
 
 
