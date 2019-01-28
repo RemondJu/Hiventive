@@ -80,11 +80,11 @@ class LayerFromCatalog extends Component {
             <img className="info" alt="logo_info" src={info} />
           </td>
         </NavLink>
-        <td className="tableText">{name}</td>
+        <td className="tableText name">{name}</td>
         <td className="tableDescription">{description.length > 20 ? `${description.slice(0, 22)} ...` : description }</td>
         <td className="tableUrl">{url.length > 20 ? `${url.slice(0, 30)} ...` : url }</td>
-        <td className="tableText">{repository}</td>
-        <td className="tableText">
+        <td className="tableText repo">{repository}</td>
+        <td className="tableText share">
           {share
             ? ''
             : <img className="isShare" src={privatelayer} alt="private" />

@@ -82,7 +82,6 @@
 
     th {
       font-size: 1.3em;
-      margin-right: 14%;
     }
 
     tr {
@@ -129,4 +128,10 @@
   background-color: $third-color;
   outline: 1px solid slategrey;
   border-radius: 15px;
+}
+
+@media screen and (max-width: 850px) {
+  .titreTable{
+    display: none;
+  }
 }
