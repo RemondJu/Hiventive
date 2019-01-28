@@ -118,7 +118,7 @@ router.delete('/project-layer/:id', (req, res) => {
   });
 });
 
-router.delete('/project/:id', (req, res) => {
+router.delete('/delete-project/:id', (req, res) => {
   conf.query('DELETE FROM `Project` WHERE id = ?', req.params.id, (err) => {
     if (err) {
       logger.errorLog.error(err);
