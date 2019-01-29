@@ -121,9 +121,9 @@ class NavBarDefault extends Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <div className="displaymenu">
-                    <button className="buttonlink" type="button" onClick={() => switchLoginModalRedux()}>Your profile</button>
+                    <button className="buttonlink" type="button" onClick={() => switchLoginModalRedux()}>Profile</button>
                     <NavLink to="/project-page">
-                      <button className="buttonlink" type="button">Your projects</button>
+                      <button className="buttonlink" type="button">Projects</button>
                     </NavLink>
                   </div>
                 </DropdownMenu>
