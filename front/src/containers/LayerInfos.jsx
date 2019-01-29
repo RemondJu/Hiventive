@@ -227,7 +227,7 @@ class LayerInfos extends Component {
                         </label>
 
                       </p>
-                    ) : (<span className="elementLayerInfo">{layer.description}</span>)}
+                    ) : (<p className="elementLayerInfo">{layer.description}</p>)}
                   </p>
                 </Col>
               </Row>
