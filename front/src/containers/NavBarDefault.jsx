@@ -32,6 +32,7 @@ class NavBarDefault extends Component {
     this.state = {
       wordSearch: '',
       collapsed: true,
+      wordButton: 'Go to catalog',
     };
     this.searchChange = this.searchChange.bind(this);
     this.sendSearch = this.sendSearch.bind(this);
@@ -74,7 +75,7 @@ class NavBarDefault extends Component {
       switchAddLayerModalRedux,
       newProjectModalAction,
     } = this.props;
-    const { collapsed, wordSearch } = this.state;
+    const { collapsed, wordSearch, wordButton } = this.state;
     return (
       <div className="NavBarTest">
         <Navbar className="navbarcolor navbar-fixed-top" expand="md">
@@ -99,8 +100,10 @@ class NavBarDefault extends Component {
                   name="search"
                   id="exampleSearch"
                   size="90"
+                  onFocus={() => this.setState({ wordButton: 'Search' })}
+                  onBlur={() => this.setState({ wordButton: 'Go to catalog' })}
                 />
-                <button className="btn btn-outline-light my-1 my-sm-1" type="submit">Search</button>
+                <button className="btn btn-outline-light my-1 my-sm-1" type="submit">{wordButton}</button>
               </form>
             </FormGroup>
             <Nav className="ml-auto colorhover" navbar>
