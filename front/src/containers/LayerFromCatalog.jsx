@@ -80,7 +80,7 @@ class LayerFromCatalog extends Component {
       <Row className="LayerFromCatalog">
         <Col sm="1">
           <NavLink className="info-button" to={`/layerinfos/${id}`}>
-            <div className="imageRow">
+            <div className="imageRow" title="More information about the layer">
               <img className="info" alt="logo_info" src={info} />
             </div>
           </NavLink>
@@ -95,7 +95,7 @@ class LayerFromCatalog extends Component {
         <Col sm="5" className=" text_row">{description.length > 75 ? `${description.slice(0, 75)} ...` : description}</Col>
         <Col sm="2" className=" text_row">{url}</Col>
 
-        <Col sm="1"><button className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? 'RMV' : 'ADD'}</button></Col>
+        <Col sm="1"><button title={layerAdded ? 'Remove a layer in your project' : 'Adding a layer in your project'} className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? 'RMV' : 'ADD'}</button></Col>
       </Row>
     );
   }
