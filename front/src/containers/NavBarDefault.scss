@@ -3,7 +3,7 @@
 /* GENERAL REACTSTRAP */
 
 .NavBarTest {
-  position: fixed;
+  position: relative;
   width: 100%;
   z-index: 9;
   align-items: center;
@@ -32,8 +32,6 @@
   padding-left: 5%;
   color: $fourth-color;
   font-size: 1.7em;
-  font-weight: bold;
-
 }
 
 /* Search bar */
@@ -72,7 +70,6 @@
     background-color: white;
     color: $third-color;
     font-family: $font-general;
-    font-weight: bold;
     font-size: 1.2em;
     cursor: pointer;
     padding-bottom: 1vh;
@@ -83,13 +80,11 @@
 
 .buttonlink:hover {
   color: $secondary-color !important;
-  font-weight: bold;
 }
 
 .positiontitre:hover {
   color: $secondary-color;
   font-family: $font-general;
-  font-weight: bold;
 }
 .titlemenu:hover {
   color: $secondary-color;
@@ -97,23 +92,22 @@
 
 /* Media screen */
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1300px) {
   .positionsearch {
     margin-left: 10px;
-    max-width: 80%;
+    max-width: 70%;
   }
+}
 
-  @media screen and (max-width: 750px) {
-    .positionsearch {
-      margin-left: 10px;
-      max-width: 80%;
-    }
+@media screen and (max-width: 1000px) {
+  .positionsearch {
+    margin-left: 10px;
+    max-width: 55%;
   }
+}
 
-  @media screen and (max-width: 600px) {
-    .positionsearch {
-      margin-left: 10px;
-      max-width: 80%;
-    }
+@media screen and (max-width: 350px) {
+  .positiontitre {
+    display: none;
   }
 }

@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './PageProject.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchProjectUser, fetchLayersFromActiveProject } from '../actions/fetch';
-import { selectActiveProject, enableRefresh } from '../actions';
-import BackButton from '../components/toolPage/BackButton';
-import SideBarDefault from '../components/toolPage/SideBarDefault';
+import { Container } from 'reactstrap';
+import {
+  fetchProjectUser,
+  fetchLayersFromActiveProject,
+} from '../actions/fetch';
+import {
+  selectActiveProject,
+  enableRefresh,
+  resetActiveProject,
+  getActiveProjectName,
+} from '../actions';
+import SideBarDefault from '../components/SideBarDefault';
 
 import LayerFromCatalog from './LayerFromCatalog';
 import API_SERVER from '../constants';
@@ -30,8 +38,9 @@ class PageProject extends Component {
   }
 
   componentDidMount() {
-    const { fetchProjectUserRedux, userIsLogin } = this.props;
+    const { fetchProjectUserRedux, userIsLogin, getActiveProjectLayers } = this.props;
     fetchProjectUserRedux(userIsLogin.id);
+    getActiveProjectLayers(userIsLogin.id);
     this.setState({
       deleteButtonEnabled: false,
       editionButtonEnabled: false,
@@ -39,8 +48,14 @@ class PageProject extends Component {
   }
 
   componentDidUpdate() {
-    const { fetchProjectUserRedux, userIsLogin, refreshFetch } = this.props;
+    const {
+      fetchProjectUserRedux,
+      userIsLogin,
+      refreshFetch,
+      getActiveProjectLayers,
+    } = this.props;
     if (refreshFetch) {
+      getActiveProjectLayers(userIsLogin.id);
       fetchProjectUserRedux(userIsLogin.id);
     }
   }
@@ -78,15 +93,16 @@ class PageProject extends Component {
   }
 
   deleteProject(id) {
-    const { enableRefreshAction } = this.props;
+    const { enableRefreshAction, resetActiveProjectAction } = this.props;
     const conf = {
       method: 'DELETE',
     };
-    fetch(`${API_SERVER}/project/${id}`, conf)
+    fetch(`${API_SERVER}/delete-project/${id}`, conf)
+      .then(resetActiveProjectAction())
+      .then(enableRefreshAction())
       .then(this.setState({
         deleteButtonEnabled: false,
-      }))
-      .then(enableRefreshAction);
+      }));
   }
 
   sendProjectUpdate(e) {
@@ -116,14 +132,24 @@ class PageProject extends Component {
       .then(enableRefreshAction);
   }
 
-  selectProject(id) {
-    const { selectActiveProjectAction, fetchLayersFromActiveProjectAction } = this.props;
+  selectProject(id, name) {
+    const {
+      selectActiveProjectAction,
+      getActiveProjectLayers,
+      getActiveProjectNameAction,
+    } = this.props;
     selectActiveProjectAction(id);
-    fetchLayersFromActiveProjectAction(id);
+    getActiveProjectLayers(id);
+    getActiveProjectNameAction(name);
   }
 
   render() {
-    const { projectUser, projectLayers, activeProjectId } = this.props;
+    const {
+      projectUser,
+      projectLayers,
+      activeProjectId,
+      activeProjectName,
+    } = this.props;
     const {
       deleteButtonEnabled,
       editionButtonEnabled,
@@ -131,52 +157,44 @@ class PageProject extends Component {
       newProjectDescription,
     } = this.state;
     const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
-    const projectName = activeProjectId !== 0 ? projectUser[pos].name : '';
-    const projectDesc = activeProjectId !== 0 ? projectUser[pos].description : '';
-    const textButtonDelete = deleteButtonEnabled ? 'Double click to confirm' : 'Delete this project';
-    const deletionConfirm = deleteButtonEnabled
-      ? () => this.deleteProject(activeProjectId) : () => { };
-    const textButtonEdit = editionButtonEnabled ? 'Double click to exit edition' : 'Edit your project';
-    const exitEdition = editionButtonEnabled ? () => this.closeEdition() : () => { };
     return (
       <div className="PageProject">
-        <div className="sideBarProject">
-          <div className="projectRow">
-            <SideBarDefault>
-              <h2>OS Projects</h2>
-              <ul className="projects-list">
-                {projectUser.map(userProject => <li key={userProject.id}><button type="button" className="filter" onClick={() => this.selectProject(userProject.id)}>{userProject.name}</button></li>)}
-              </ul>
-              <NavLink to="/project-build-page">
-                <button className="button-build" type="button">
-                  Build your OS
-                </button>
-              </NavLink>
-            </SideBarDefault>
+        <SideBarDefault>
+          <div className="filters">
+            <h2>OS Projects</h2>
+            <ul className="projects-list">
+              {projectUser.map(userProject => <li key={userProject.id}><button type="button" className="filter" onClick={() => this.selectProject(userProject.id, userProject.name)}>{userProject.name}</button></li>)}
+            </ul>
+            {activeProjectId ? (
+              <a href="./fileSend.md" download="fileSend.md" className="button-build">
+                {`Build your OS \n${activeProjectName}`}
+              </a>
+            ) : ''}
+
           </div>
-        </div>
+        </SideBarDefault>
         <div className="titleProject">
           <div className="titleDisplay">
+            <div className="flexAdjust">
+              {''}
+            </div>
             <form className="titleDesc" onSubmit={this.sendProjectUpdate}>
               {editionButtonEnabled ? (
                 <label className="label_input" htmlFor="newProjectName">
-                Name :
-                  <input className="login_input_title" required name="newProjectName" id="newProjectName" onChange={this.handleChange} value={newProjectName} type="text" />
+                  Name :
+                  <input className="editionInput" required name="newProjectName" id="newProjectName" onChange={this.handleChange} value={newProjectName} type="text" />
                 </label>
-              ) : <h1>{activeProjectId !== 0 ? projectName : 'Select one of your projects'}</h1>}
+              ) : <h2>{activeProjectName}</h2>}
               {editionButtonEnabled ? (
                 <label className="label_input" htmlFor="newProjectDescription">
-                Description :
-                  <input className="login_input_title" required name="newProjectDescription" id="newProjectDescription" onChange={this.handleChange} value={newProjectDescription} type="text" />
+                  Description :
+                  <input className="editionInput" required name="newProjectDescription" id="newProjectDescription" onChange={this.handleChange} value={newProjectDescription} type="text" />
                 </label>
-              ) : <p>{activeProjectId !== 0 ? projectDesc : ''}</p>}
+              ) : <p className="description_style">{activeProjectId !== 0 ? projectUser[pos].description : ''}</p>}
               {editionButtonEnabled ? (
                 <button className="button_display_submit" type="submit">Submit</button>
               ) : ''}
             </form>
-            <div className="projectBackButton">
-              <BackButton />
-            </div>
           </div>
           {activeProjectId !== 0
             ? (
@@ -184,38 +202,42 @@ class PageProject extends Component {
                 <button
                   className="button_display"
                   type="button"
-                  onClick={() => this.editionMode(projectName, projectDesc)}
-                  onDoubleClick={exitEdition}
+                  onClick={
+                    () => this.editionMode(projectUser[pos].name, projectUser[pos].description)}
+                  onDoubleClick={editionButtonEnabled
+                    ? () => this.closeEdition() : () => { }}
                 >
-                  <span>{textButtonEdit}</span>
+                  <span>{editionButtonEnabled ? 'Double click to exit' : 'Edit your project'}</span>
                 </button>
                 <button
                   className="button_display"
                   type="button"
-                  onMouseOut={deleteButtonEnabled ? this.deactivateDeletion : () => { }}
-                  onClick={() => this.activateDeletion()}
-                  onDoubleClick={deletionConfirm}
+                  onDoubleClick={deleteButtonEnabled ? this.deactivateDeletion : () => { }}
+                  onClick={this.activateDeletion}
                 >
-                  <span>{textButtonDelete}</span>
+                  <span>{deleteButtonEnabled ? 'Double click to exit' : 'Delete this project'}</span>
                 </button>
+                {deleteButtonEnabled ? <button type="button" onClick={() => this.deleteProject(activeProjectId)}>Confirm</button> : ''}
               </div>) : ''}
-          <table className="layersTitles">
-            {projectLayers[0] ? projectLayers.map(projectLayer => (
-              <LayerFromCatalog
-                key={projectLayer.id}
-                id={projectLayer.id}
-                name={projectLayer.name}
-                description={projectLayer.description}
-                url={projectLayer.url}
-                repository={projectLayer.repository}
-                share={projectLayer.share}
-              />)) : (
-                <p className="EmptyMessage">
-              No layers yet...
-                  <span aria-label="cryEmoji" role="img"> 😭 </span>
-                </p>
-            ) }
-          </table>
+          <Container fluid className="layersTitles">
+            <div className="scrolling">
+              {projectLayers[0] ? projectLayers.map(projectLayer => (
+                <LayerFromCatalog
+                  key={projectLayer.id}
+                  id={projectLayer.id}
+                  name={projectLayer.name}
+                  description={projectLayer.description}
+                  url={projectLayer.url}
+                  repository={projectLayer.hostSite}
+                  share={projectLayer.share}
+                />)) : (
+                  <p className="EmptyMessage">
+                    No layers yet...
+                    <span aria-label="cryEmoji" role="img"> 😭 </span>
+                  </p>
+              )}
+            </div>
+          </Container>
         </div>
       </div>
     );
@@ -223,10 +245,28 @@ class PageProject extends Component {
 }
 
 PageProject.propTypes = {
+  // Functions
   fetchProjectUserRedux: PropTypes.func.isRequired,
   selectActiveProjectAction: PropTypes.func.isRequired,
-  fetchLayersFromActiveProjectAction: PropTypes.func.isRequired,
+  getActiveProjectLayers: PropTypes.func.isRequired,
+  enableRefreshAction: PropTypes.func.isRequired,
+  resetActiveProjectAction: PropTypes.func.isRequired,
+  getActiveProjectNameAction: PropTypes.func.isRequired,
+  // Arrays
   projectLayers: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  projectUser: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  // Others
+  userIsLogin: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+  activeProjectId: PropTypes.number,
+  activeProjectName: PropTypes.string,
+  refreshFetch: PropTypes.bool.isRequired,
+};
+
+PageProject.defaultProps = {
+  activeProjectId: 0,
+  activeProjectName: '',
 };
 
 const mstp = state => ({
@@ -235,13 +275,16 @@ const mstp = state => ({
   activeProjectId: state.activeProjectId,
   projectLayers: state.projectLayers,
   refreshFetch: state.refreshFetch,
+  activeProjectName: state.activeProjectName,
 });
 
 const mdtp = dispatch => bindActionCreators({
   fetchProjectUserRedux: fetchProjectUser,
   selectActiveProjectAction: selectActiveProject,
-  fetchLayersFromActiveProjectAction: fetchLayersFromActiveProject,
+  getActiveProjectLayers: fetchLayersFromActiveProject,
   enableRefreshAction: enableRefresh,
+  resetActiveProjectAction: resetActiveProject,
+  getActiveProjectNameAction: getActiveProjectName,
 }, dispatch);
 
 export default withRouter(connect(mstp, mdtp)(PageProject));

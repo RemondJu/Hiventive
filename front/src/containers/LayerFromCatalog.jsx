@@ -4,6 +4,10 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import {
+  Col, Row,
+} from 'reactstrap';
+import { enableRefresh } from '../actions';
 import { fetchLayersFromActiveProject } from '../actions/fetch';
 import info from '../images/info.png';
 import privatelayer from '../images/privatelayer.png';
@@ -32,7 +36,7 @@ class LayerFromCatalog extends Component {
   }
 
   addLayerToProject() {
-    const { activeProjectId, id, fetchLayersFromActiveProjectAction } = this.props;
+    const { activeProjectId, id, enableRefreshAction } = this.props;
     const { layerAdded } = this.state;
     if (activeProjectId !== 0) {
       if (!layerAdded) {
@@ -48,6 +52,7 @@ class LayerFromCatalog extends Component {
           body: JSON.stringify(data),
         };
         fetch(`${API_SERVER}/project-layer`, config)
+          .then(enableRefreshAction)
           .then(this.setState({
             layerAdded: !layerAdded,
           }))
@@ -57,10 +62,10 @@ class LayerFromCatalog extends Component {
           method: 'DELETE',
         };
         fetch(`${API_SERVER}/project-layer/${id}`, config)
+          .then(enableRefreshAction)
           .then(this.setState({
             layerAdded: !layerAdded,
           }))
-          .then(fetchLayersFromActiveProjectAction())
           .catch();
       }
     }
@@ -68,30 +73,30 @@ class LayerFromCatalog extends Component {
 
   render() {
     const {
-      id, name, description, url, repository, share,
+      id, name, description, url, share,
     } = this.props;
     const { layerAdded } = this.state;
     return (
-      <div className="LayerFromCatalog">
-        <tr className="Layer">
-          <NavLink className="test" to={`/layerinfos/${id}`}>
-            <td className="imageRow">
+      <Row className="LayerFromCatalog">
+        <Col sm="1">
+          <NavLink className="info-button" to={`/layerinfos/${id}`}>
+            <div className="imageRow" title="More information about the layer">
               <img className="info" alt="logo_info" src={info} />
-            </td>
+            </div>
           </NavLink>
-          <td className="tableText">{name}</td>
-          <td className="tableDescription">{description.length > 20 ? `${description.slice(0, 22)} ...` : description }</td>
-          <td className="tableText">{url}</td>
-          <td className="tableText">{repository}</td>
-          <td className="tableText">
-            {share
-              ? ''
-              : <img className="isShare" src={privatelayer} alt="private" />
-            }
-          </td>
-          <td><button className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? '-' : '+'}</button></td>
-        </tr>
-      </div>
+        </Col>
+        <Col sm="1">
+          {share
+            ? ''
+            : <img className="isShare text_row" src={privatelayer} alt="private" />
+          }
+        </Col>
+        <Col sm="2" className=" text_row">{name}</Col>
+        <Col sm="4" className=" text_row">{description.length > 75 ? `${description.slice(0, 75)} ...` : description}</Col>
+        <Col sm="3" className=" text_row">{url}</Col>
+
+        <Col sm="1"><button title={layerAdded ? 'Remove a layer in your project' : 'Adding a layer in your project'} className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? 'RMV' : 'ADD'}</button></Col>
+      </Row>
     );
   }
 }
@@ -103,7 +108,6 @@ LayerFromCatalog.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
   url: PropTypes.string,
-  repository: PropTypes.string,
   share: PropTypes.number,
 };
 
@@ -113,15 +117,16 @@ LayerFromCatalog.defaultProps = {
   name: 'layer name',
   description: 'layer description',
   url: 'layer url',
-  repository: 'layer repository',
   share: 1,
 };
 
 const mstp = state => ({
+  refreshFetch: state.refreshFetch,
   activeProjectId: state.activeProjectId,
 });
 
 const mdtp = dispatch => bindActionCreators({
+  enableRefreshAction: enableRefresh,
   fetchLayersFromActiveProjectAction: fetchLayersFromActiveProject,
 }, dispatch);
 

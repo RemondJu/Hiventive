@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './Join.scss';
 import CountUp from 'react-countup';
 
-import community from '../../images/community.png';
-import connection from '../../images/connection.png';
-import help from '../../images/help.png';
-import API_SERVER from '../../constants';
+import community from '../images/community.png';
+import connection from '../images/connection.png';
+import help from '../images/help.png';
+import API_SERVER from '../constants';
 
 
 class Join extends Component {
@@ -53,9 +53,9 @@ class Join extends Component {
             <CountUp
               className="account-balance"
               start={0}
-              end={` ${contributors} `}
+              end={contributors}
               delay={5}
-              duration={10}
+              duration={2}
               useEasing
               useGrouping
               separator=" "
@@ -70,9 +70,9 @@ class Join extends Component {
             <CountUp
               className="account-balance"
               start={0}
-              end={` ${projects} `}
+              end={projects}
               delay={5}
-              duration={10}
+              duration={2}
               useEasing
               useGrouping
               separator=" "
@@ -85,9 +85,9 @@ class Join extends Component {
             <CountUp
               className="account-balance"
               start={0}
-              end={` ${allView} `}
+              end={allView}
               delay={5}
-              duration={10}
+              duration={2}
               useEasing
               useGrouping
               separator=" "
@@ -100,9 +100,9 @@ class Join extends Component {
             <CountUp
               className="account-balance"
               start={0}
-              end={` ${allDownload} `}
+              end={allDownload}
               delay={5}
-              duration={10}
+              duration={2}
               useEasing
               useGrouping
               separator=" "

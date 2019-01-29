@@ -32,7 +32,7 @@ router.get('/projects', (req, res) => {
 
 /* GET select all layers */
 router.get('/layers', (req, res) => {
-  conf.query('SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, Layer.share, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id ORDER BY Layer.name', (err, result) => {
+  conf.query('SELECT Layer.id, Layer.name, Layer.description, Layer.url, Layer.hostSite, Layer.share, LayerType.type FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id ORDER BY Layer.name', (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
@@ -65,7 +65,7 @@ router.post('/layer/', (req, res) => {
 
 /* GET search layer */
 router.get('/layer/search/', (req, res) => {
-  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.hostSite, LayerType.type, Layer.share FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.name`, (err, result) => {
+  conf.query(`SELECT Layer.id, Layer.name, Layer.description, Layer.url, Layer.hostSite, LayerType.type, Layer.share FROM Layer LEFT JOIN LayerType ON Layer.layerTypeID = LayerType.id WHERE name LIKE '%${req.query.wordSearch}%' OR description LIKE '%${req.query.wordSearch}%' ORDER BY Layer.name`, (err, result) => {
     if (err) {
       logger.errorLog.error(err);
     } else {
@@ -118,7 +118,7 @@ router.delete('/project-layer/:id', (req, res) => {
   });
 });
 
-router.delete('/project/:id', (req, res) => {
+router.delete('/delete-project/:id', (req, res) => {
   conf.query('DELETE FROM `Project` WHERE id = ?', req.params.id, (err) => {
     if (err) {
       logger.errorLog.error(err);

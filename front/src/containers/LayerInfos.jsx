@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import BackButton from './BackButton';
-import { fetchLayerInfos } from '../../actions/fetch';
-import API_SERVER from '../../constants';
+import BackButton from '../components/BackButton';
+import { fetchLayerInfos } from '../actions/fetch';
+import API_SERVER from '../constants';
 
 import './LayerInfos.scss';
 
@@ -151,42 +151,38 @@ class LayerInfos extends Component {
       layerTypeID,
       share,
     } = this.state;
-    const textButtonDelete = boolButtonDelete ? 'Double click here for confirm' : 'Delete';
+    const textButtonDelete = boolButtonDelete ? 'Click twice to delete' : 'Delete your layer';
     const doubleClickForDelete = boolButtonDelete ? () => this.deleteLayer() : () => { };
-    const textButtonEdit = boolButtonEdite ? 'Double click for exit edit mode' : 'Edit your layer';
-    const doubleClickForExitEdit = boolButtonEdite ? () => this.editModeOff() : () => { };
     return (
       <div className="LayerInfos">
-        <div className="contentBackButton">
-          <BackButton />
-        </div>
         <Container className="card_layer">
-          <form onSubmit={this.sendEdit}>
+          <form>
             <Row>
-              <Col className="pageHeader mt-2 ml-5 mb-5" sm="auto" md="auto">
-                <h1 className="titleLayerInfo">
-                  Layer Name :
-                  {' '}
-                  {boolButtonEdite ? (
-                    <label className="label_input" htmlFor="layerName">
-                      <input className="login_input_title" required name="layerName" id="layerName" onChange={this.inputChange} value={layerName} type="text" />
-                    </label>
-                  ) : (<span className="nameLayerInfo">{layer.layerName}</span>)}
-                </h1>
-              </Col>
-            </Row>
-            <Row>
-              <Col className="buttons_for_admin mt-2 mr-auto ml-auto mb-5">
+              <Col className="pageHeader mt-4 mr-2 ml-2 mb-2">
                 <div className="container_button">
-                  <button
-                    className="button_display"
-                    type="button"
-                    onClick={() => this.editMode()}
-                    onDoubleClick={doubleClickForExitEdit}
-                  >
-                    <span>{textButtonEdit}</span>
-                  </button>
+                  {boolButtonEdite ? (
+                    <button
+                      className="button_display_submit"
+                      type="button"
+                      onClick={this.sendEdit}
+                    >
+                      Submit changes
+                    </button>
+                  ) : (
+                    <button
+                      className="button_display"
+                      type="button"
+                      onClick={() => this.editMode()}
+                    >
+                      <span>
+                      Edit your layer
+                      </span>
+                    </button>
+                  )
+                }
                 </div>
+              </Col>
+              <Col className="pageHeader mt-4 mr-2 ml-2 mb-2">
                 <div className="container_button">
                   <button
                     className="button_display"
@@ -199,9 +195,27 @@ class LayerInfos extends Component {
                   </button>
                 </div>
               </Col>
+              <BackButton />
             </Row>
+
             <div className="cardCss">
               <Row>
+                <Col className="pageHeader mt-5 ml-5 mb-3" sm="auto" md="auto">
+                  <h2 className="titleLayerInfo">LAYER DETAIL</h2>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
+                  <p className="titleSecLayerInfo">
+                    Name :
+                    {' '}
+                    {boolButtonEdite ? (
+                      <label className="label_input" htmlFor="layerName">
+                        <input className="login_input" required name="layerName" id="layerName" onChange={this.inputChange} value={layerName} type="text" />
+                      </label>
+                    ) : (<span className="nameLayerInfo">{layer.layerName}</span>)}
+                  </p>
+                </Col>
                 <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                   <p className="titleSecLayerInfo">
                     Type :
@@ -209,29 +223,11 @@ class LayerInfos extends Component {
                     {boolButtonEdite ? (
                       <select className="select_input" name="layerTypeID" id="layerTypeID" onChange={this.inputChange}>
                         <option value={layerTypeID}>{layer.type}</option>
-                        {categoryLayer.length === 0 ? '...' : categoryLayer.categories.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
+                        {categoryLayer.length === 0 ? '...' : categoryLayer.map(category => <option key={category.id} value={category.id}>{category.type}</option>)}
                       </select>
                     ) : (<span className="elementLayerInfo">{layer.type}</span>)}
                   </p>
                 </Col>
-              </Row>
-              <Row>
-                <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
-                  <p className="titleSecLayerInfo">
-                    Description :
-                    {' '}
-                    {boolButtonEdite ? (
-                      <p>
-                        <label className="label_input" htmlFor="description">
-                          <textarea className="text_area_input" name="description" id="description" onChange={this.inputChange} value={description} />
-                        </label>
-
-                      </p>
-                    ) : (<span className="elementLayerInfo">{layer.description}</span>)}
-                  </p>
-                </Col>
-              </Row>
-              <Row>
                 <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                   <p className="titleSecLayerInfo">
                     Version :
@@ -243,8 +239,6 @@ class LayerInfos extends Component {
                     ) : (<span className="elementLayerInfo">{layer.version}</span>)}
                   </p>
                 </Col>
-              </Row>
-              <Row>
                 <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                   <p className="titleSecLayerInfo">
                     Share :
@@ -252,20 +246,6 @@ class LayerInfos extends Component {
                     {boolButtonEdite ? (
                       <button className="button_checbox" type="button" onClick={() => this.inputChangeCheckbox()}>{share ? 'Public' : 'Private'}</button>
                     ) : (<span className="elementLayerInfo">{layer.share ? 'Public' : 'Private'}</span>)}
-                  </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
-                  <p className="titleSecLayerInfo">
-                    url :
-                    {' '}
-
-                    {boolButtonEdite ? (
-                      <label className="label_input" htmlFor="url">
-                        <input className="login_input" required name="url" id="url" onChange={this.inputChange} value={url} type="text" />
-                      </label>
-                    ) : (<span><a className="urlLayerInfo" href={layer.url} rel="noopener noreferrer" target="_blank">{layer.url}</a></span>)}
                   </p>
                 </Col>
               </Row>
@@ -281,8 +261,6 @@ class LayerInfos extends Component {
                     ) : (<span className="urlLayerInfo">{layer.hostSite}</span>)}
                   </p>
                 </Col>
-              </Row>
-              <Row>
                 <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                   <p className="titleSecLayerInfo">
                     Owner :
@@ -290,8 +268,6 @@ class LayerInfos extends Component {
                     <span className="elementLayerInfo">{layer.userName}</span>
                   </p>
                 </Col>
-              </Row>
-              <Row>
                 <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                   <p className="titleSecLayerInfo">
                     Download :
@@ -299,8 +275,6 @@ class LayerInfos extends Component {
                     <span className="elementLayerInfo">{layer.downloadsCounter}</span>
                   </p>
                 </Col>
-              </Row>
-              <Row>
                 <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
                   <p className="titleSecLayerInfo">
                     View :
@@ -310,10 +284,31 @@ class LayerInfos extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col className="pageHeader mt-2 ml-auto mr-auto " sm="auto" md="auto">
-                  {boolButtonEdite ? (
-                    <button className="button_display_submit" type="submit">Submit this changes</button>
-                  ) : ''}
+                <Col className="pageHeader mt-2 ml-5" sm="auto" md="auto">
+                  <p className="titleSecLayerInfo">
+                    URL :
+                    {' '}
+                    {boolButtonEdite ? (
+                      <label className="label_input" htmlFor="url">
+                        <input className="login_input" required name="url" id="url" onChange={this.inputChange} value={url} type="text" />
+                      </label>
+                    ) : (<span><a className="urlLayerInfo" href={layer.url} rel="noopener noreferrer" target="_blank">{layer.url}</a></span>)}
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="pageHeader mb-5 mt-2 ml-5" sm="auto" md="auto">
+                  <p className="titleSecLayerInfo">
+                    Description :
+                    {' '}
+                    {boolButtonEdite ? (
+                      <p>
+                        <label className="label_input" htmlFor="description">
+                          <textarea className="text_area_input" name="description" id="description" onChange={this.inputChange} value={description} />
+                        </label>
+                      </p>
+                    ) : (<p className="elementLayerInfo">{layer.description}</p>)}
+                  </p>
                 </Col>
               </Row>
             </div>
@@ -325,9 +320,22 @@ class LayerInfos extends Component {
 }
 
 LayerInfos.propTypes = {
-  layer: PropTypes.shape.isRequired,
-  categoryLayer: PropTypes.shape.isRequired,
-  history: PropTypes.shape.isRequired,
+  layer: PropTypes.shape({
+    description: PropTypes.string,
+    downloadsCounter: PropTypes.number,
+    hostSite: PropTypes.string,
+    id: PropTypes.number,
+    imported: PropTypes.number,
+    layerName: PropTypes.string,
+    share: PropTypes.number,
+    type: PropTypes.string,
+    typeID: PropTypes.number,
+    url: PropTypes.string,
+    userName: PropTypes.string,
+    version: PropTypes.string,
+    viewsCounter: PropTypes.number,
+  }).isRequired,
+  categoryLayer: PropTypes.arrayOf(PropTypes.shape).isRequired,
   fetchData: PropTypes.func.isRequired,
 };
 

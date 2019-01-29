@@ -1,92 +1,120 @@
 @import '../index.scss';
 
 .PageProject {
-  height: 100%;
   display: flex;
+  height: 100%;
+  width:100%;
+  display: flex;
+  position: relative;
 
-  .sideBarProject {
-    width: 40%;
+  h2 {
+    font-weight: bold;
+  }
 
-    .projectRow {
-      height: 100%;
-      min-width: 250px;
-
-      h2{
-        font-weight: bold;
-      }
-
-      .projects-list{
-        list-style-type: none;
-        padding-inline-start: 0;
-
-      }
-
-      button{
-        border-radius: 8px;
-        padding: 10px 15px;
-        border: none;
-        background-color: $button-third;
-        color: white;
-        align-self: center;
-        font-weight: bold;
-        transition: 0.4s;
-        span{
-          font-size: 1em;
-        }
-      }
-      button:hover{
-        background-color: $fourth-color;
-        color: $third-color;
-        transition: 0.4s;
-      }
-
-      .filter{
-        margin-top: 10px;
-        background: none;
-        color: $third-color;
-        width: 90%;
-        text-align: left;
-        font-weight: 200;
-      }
-      .filter:hover{
-        background-color: $fourth-color;
-        transition: all 0.5s ease;
-        width: 100%;
-      }
-
-      .button-build{
-        border-radius: 8px;
-        padding: 10px 15px;
-        border: none;
-        background-color: $button-third;
-        color: white;
-        align-self: center;
-        font-weight: bold;
-        transition: 0.4s;
-        span{
-          font-size: 1em;
-        }
-      }
-      .button-build:hover{
-        background-color: $fourth-color;
-        color: $third-color;
-        transition: 0.4s;
-      }
+  button {
+    border-radius: 5px;
+    padding: 10px 15px;
+    border: none;
+    width: 160px;
+    background-color: $button-third;
+    color: white;
+    align-self: center;
+    font-weight: bold;
+    transition: 0.4s;
+    
+    span{
+      font-size: 1em;
     }
+  }
+
+  button:hover {
+    background-color: $fourth-color;
+    color: $third-color;
+    transition: 0.4s;
+  }
+
+  .filters{
+    display: flex;
+    margin-bottom: 40%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 15px;
+
+    .projects-list {
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
+  }
+
+  .filter {
+    margin-top: 10px;
+    background: none;
+    color: $third-color;
+    width: 90%;
+    text-align: left;
+    font-weight: 200;
+  }
+  
+  .filter:hover {
+    background-color: $fourth-color;
+    transition: all 0.5s ease;
+    width: 100%;
+  }
+
+  .button-build {
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 160px;
+    border: none;
+    background-color: $button-third;
+    color: white;
+    align-self: center;
+    font-weight: bold;
+    transition: 0.4s;
+
+    span{
+      font-size: 1em;
+    }
+  }
+  .button-build:hover {
+    background-color: $fourth-color;
+    color: $third-color;
+    transition: 0.4s;
   }
 
   .titleProject {
     text-align: center;
     margin-top: 2%;
-    width: 100%;
+    width: 80%;
 
     .titleDisplay {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      margin: 10px;
+
+      .flexAdjust {
+        width: 83px;
+      }
 
       .titleDesc {
+        display: flex;
+        flex-direction: column;
         margin-left: auto;
+        color: $third-color;
+
+        .button_display_submit {
+          border-radius: 5px;
+        }
+
+        .label_input {
+
+          .editionInput {
+            border-radius: 5px;
+            padding: 8px;
+          }
+        }
+
+        .description_style{
+          font-size: 20px;
+        }
       }
 
       .projectBackButton {
@@ -95,30 +123,56 @@
     }
   }
   .button_display {
-    margin-right: 10%;
+    border-radius: 5px;
+    margin: 0px 10px;
   }
 
-  .LayerFromCatalog {
-    margin-right: 70px;
-    margin-top: 1%;
+  .layersTitles {
+    width: 100%;
+
+    .scrolling {
+      overflow-y: scroll; 
+      overflow-x: hidden;
+      height: 440px;
+    }
+
+    .scrolling::-webkit-scrollbar {
+      border-radius: 15px;
+      width: 0.8em;
+    }
+    
+    .scrolling::-webkit-scrollbar-track{
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 15px;
+    }
+    
+    .scrolling::-webkit-scrollbar-thumb {
+      background-color: $third-color;
+      outline: 1px solid slategrey;
+      border-radius: 15px;
+    }
+
+    .EmptyMessage {
+      font-size: 30px;
+      margin: 50px 0px; 
+    }
   }
 
-  .add-remove-button {
-    width: 65px;
+  tr {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1em;
+    margin-top: 15px;
     height: 65px;
-    background-color: $button-third;
-    transition: 0.5s;
-    left: 0;
+    align-items: center;
   }
-  .add-remove-button:hover {
-    width: 65px;
-    height: 65px;
-    background-color: white;
-    transition: 0.5s;
-    left: 0;
-  }
-  .EmptyMessage {
-    font-size: 30px;
-  }
+}
 
+@media screen and (max-width: 1100px) {
+  .PageProject{
+
+    .titleProject {
+      width: 100%;
+    }
+  }  
 }

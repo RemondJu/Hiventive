@@ -1,23 +1,39 @@
 @import '../index.scss';
 
 .LayersDisplay{
-  width:100%;  
+  height: 100%;
+  position: relative;
   display: flex;
+.title_table{
+    font-size: 1.4em !important ;
+    text-align: start;
+  }
+  .desc{
+    padding-left: 5%;
+  }
+  .head_table{
+    padding: 15px 0px;
+  }
+  p{
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  h2{
+    font-weight: bold;
+  }
+
   .filters{
-    h2{
-      font-weight: bold;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 15px;
 
     .projects-list{
       list-style-type: none;
       padding-inline-start: 0;
     }
-
-    display: flex;
-    margin-bottom: 50px;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 15px;
 
     .filter{
       margin-top: 10px;
@@ -27,21 +43,24 @@
       text-align: left;
       font-weight: 200;
     }
-    .filter:hover{
+
+    .filter:hover {
       background-color: $fourth-color;
       transition: all 0.5s ease;
       width: 100%;
     }
-    .activeProject {
-      color: white;
-      font-size: 40px;
-      text-align: center;
-      margin-bottom: 30%;
-      font-family: 'ZCOOL QingKe HuangYou', cursive;
-    }
   }
+
+  .active_project {
+    color: white;
+    text-align: center;
+    margin: 30% 0px;
+    font-family: $font-general;
+  }
+
   button{
-    border-radius: 8px;
+    width: 160px;
+    border-radius: 5px;
     padding: 10px 15px;
     border: none;
     background-color: $button-third;
@@ -49,45 +68,46 @@
     align-self: center;
     font-weight: bold;
     transition: 0.4s;
-    span{
+
+    span {
       font-size: 1em;
     }
   }
-  button:hover{
+
+  button:hover {
     background-color: $fourth-color;
     color: $third-color;
     transition: 0.4s;
   }
+
   .layersTitles{
-  color: $third-color;
-  text-align: center;
-  th{
-    font-size: 1.4em;
-  }
-  tr{
-    display: flex;
-    justify-content: space-between;
-    padding-left: 1%;
-    padding-right: 1%;
-    font-size: 1.1em;
-    margin-top: 15px;
-    height: 65px;
-    align-items: center;
-  }
-  .priv-pub-button {
-    margin: 1%;
-  }
+    color: $third-color;
+    text-align: center;
+    margin-top: 16px;
+    width: 80%;
+    
+    .titreTable {
+      background-color: $third-color;
+      color: $fourth-color;
+      padding-right: 8%;
+      margin: 20px;
+    }
+    .priv-pub-button {
+      margin: 1%;  
+    }
   }
 }
 
 .title-page {
-  margin: 10px;
+  margin-top: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.layersScrolling{
-  overflow-y: scroll; 
-  max-height: 550px;;
-  margin-top: 20px;
+.layersScrolling {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 440px;
 }
 
 .layersScrolling::-webkit-scrollbar {
@@ -95,8 +115,8 @@
   width: 0.8em;
 }
 
-.layersScrolling::-webkit-scrollbar-track{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+.layersScrolling::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
 }
 
@@ -106,4 +126,18 @@
   border-radius: 15px;
 }
 
+@media screen and (max-width: 850px) {
+  .titreTable{
+    display: none;
+  }
+}
 
+@media screen and (max-width: 1100px) {
+  .LayersDisplay{
+
+    .layersTitles {
+      width: 100%;
+    }
+  }
+  
+}

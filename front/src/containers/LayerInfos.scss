@@ -1,41 +1,35 @@
-@import '../../index.scss';
+@import '../index.scss';
 
 .LayerInfos {
   width: 100%;
-
-  .contentBackButton{
-    padding-top: 5%;
-  }
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom, $secondary-color, $primary-color);
 
   .cardCss {
     width: auto;
-    border: 4px solid $third-color;
     background-color: $third-color;
-    opacity: 0.92;
-    border-radius: 10px;
-    box-shadow: 2px 2px 2px 8px rgba(0, 0, 0, 0.687);
-
   }
   .pageHeader {
+
     .titleLayerInfo {
       color: $fourth-color;
-      text-shadow: 1px 1px black;
+
       font-family: $font-general;
       background-color: $third-color;
-      opacity: 0.9;
-      box-shadow: 2px 2px 2px 4px rgba(0, 0, 0, 0.687);
-      border-radius: 10px;
-      padding: 10px;
-      height: 75px;
+
+      border-radius: 5px;
+
+      font-size: 2.2em;
+      font-weight: bold;
     }
 
     .nameLayerInfo {
       color: $secondary-color;
       font-family: $font-general;
-      text-shadow: 1px 1px black;
     }
 
     .titleSecLayerInfo {
+      padding-left: 10px;
       color: $fourth-color;
       font-family: $font-general;
       font-size: 1.3em;
@@ -46,75 +40,64 @@
       font-family: $font-general;
       font-size: 1em;
       padding-left: 5px;
-      text-shadow: 1px 1px black;
+      width: 60vw;
+      height: 100%;
     }
 
     .urlLayerInfo {
       color: $secondary-color;
       font-family: $font-general;
       font-size: 1em;
-      text-decoration: underline;
       padding-left: 5px;
-      text-shadow: 1px 1px black;
     }
   }
-  .card_layer{
-    margin: 0px auto 75px auto;
-  }
-  .buttons_for_admin{
-    display: flex;
-  }
+
   .container_button{
+    width: 160px;
     margin: auto;
-    height: 100px;
+    height: 60px;
   }
   .button_display{
-position: absolute;
-    border-radius: 8px;
+    position: absolute;
+    border-radius: 5px;
     padding: 10px 15px;
     border: none;
-    background-color: $button-third;
+    background-color: $third-color;
     color: white;
     align-self: center;
     font-weight: bold;
     transition: 0.4s;
+    width: 160px;
     span{
       font-size: 1em;
     }
   }
   .button_display:hover{
-    background-color: $secondary-color;
+    background-color: white;
     color: $third-color;
   }
   .button_display_submit{
-    background-color: white;
-    color: $button-third;
+    background-color: $third-color;
+    color: white;
     font-weight: bold;
     transition: 0.4s;
     padding: 10px 15px;
-    border-radius: 8px;
+    border-radius: 5px;
     margin: 0px 0px 25px 0px;
+    width: 160px;
   }
   .button_display_submit:hover{
-    background-color: $secondary-color;
+    background-color: white;
     color: $third-color;
   }
-  .login_input_title{
-    width: 75%;
-    font-size: 0.7em;
-    color: $secondary-color;
-    background-color: #fcfcfc18;
-    border-radius: 8px;
-  }
+
   .text_area_input{
     width: 50vw;
-    border-radius: 8px;
-    background-color: #fcfcfc18;
+    border-radius: 5px;
     color: $secondary-color;
   }
   .button_checbox{
-    background-color: #fcfcfc18;
-    border-radius: 8px;
+    border-radius: 5px;
     color: $secondary-color;
   }
   .button_checbox:hover{
@@ -122,14 +105,12 @@ position: absolute;
     color: black;
   }
   .login_input{
-    border-radius: 8px;
+    border-radius: 5px;
     color: $secondary-color;
-    background-color: #fcfcfc18;
   }
   .select_input{
-    border-radius: 8px;
+    border-radius: 5px;
     color: $secondary-color;
-    background-color: #fcfcfc18;
   }
   
 }

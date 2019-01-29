@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import './LayersDisplay.scss';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { layersFetchData, fetchCategoriesLayer } from '../actions/fetch';
+import {
+  Col, Row, Container,
+} from 'reactstrap';
+import { fetchCategoriesLayer, fetchSearchLayer } from '../actions/fetch';
 import LayerFromCatalog from './LayerFromCatalog';
-import { filterType, newProjectModal } from '../actions';
-import API_SERVER from '../constants';
-import SideBarDefault from '../components/toolPage/SideBarDefault';
+import { filterType, newProjectModal, enableRefresh } from '../actions';
+import SideBarDefault from '../components/SideBarDefault';
+
 
 class LayersDisplay extends Component {
   constructor(props) {
@@ -16,7 +19,7 @@ class LayersDisplay extends Component {
     this.state = {
       shareFilter: 1,
       displayPublicPrivate: true,
-      nbLayersShow: 5,
+      nbLayersShow: 4,
     };
     this.showPrivateLayers = this.showPrivateLayers.bind(this);
     this.showPublicLayers = this.showPublicLayers.bind(this);
@@ -26,13 +29,21 @@ class LayersDisplay extends Component {
 
   componentDidMount() {
     const {
-      fetchData,
       filterTypeRedux,
       fetchCategoriesLayerRedux,
+      fetchSearchLayerRedux,
+      wordFilter,
     } = this.props;
-    fetchData(`${API_SERVER}/layers`);
+    fetchSearchLayerRedux(wordFilter);
     filterTypeRedux('All');
     fetchCategoriesLayerRedux();
+  }
+
+  componentDidUpdate() {
+    const { wordFilter, fetchSearchLayerRedux, refreshFetch } = this.props;
+    if (refreshFetch) {
+      fetchSearchLayerRedux(wordFilter);
+    }
   }
 
   showPrivateLayers() {
@@ -57,7 +68,7 @@ class LayersDisplay extends Component {
 
   moreLayers() {
     this.setState(prevState => ({
-      nbLayersShow: prevState.nbLayersShow + 5,
+      nbLayersShow: prevState.nbLayersShow + 3,
     }));
   }
 
@@ -69,46 +80,49 @@ class LayersDisplay extends Component {
       newProjectModalAction,
       filterTypeRedux,
       categoryLayer,
-      projectUser,
-      activeProjectId,
+      activeProjectName,
     } = this.props;
-    const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
     const { displayPublicPrivate, shareFilter } = this.state;
     return (
       <div className="LayersDisplay">
-        <SideBarDefault title={projectUser[0] ? (
-          <h2 className="activeProject">
-            {`project ${projectUser[pos].name}`}
-          </h2>
-        ) : ''}
-        >
+        <SideBarDefault>
           <div className="filters">
             <h2>Filters</h2>
             <ul className="projects-list">
-              <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
-              {(categoryLayer.categories !== undefined)
-                ? categoryLayer.categories.map(type => <li><button type="button" onClick={() => filterTypeRedux(type.type)} className="filter">{type.type}</button></li>)
+              <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All layers</button>
+              {(categoryLayer !== undefined)
+                ? categoryLayer.map(type => <li key={type.id}><button type="button" onClick={() => filterTypeRedux(type.type)} className="filter">{type.type}</button></li>)
                 : '. . .'}
             </ul>
           </div>
           <button className="button_new_project" type="button" onClick={newProjectModalAction}>
-            + New project
+            Create project
           </button>
+          <p>OR</p>
+          <div>
+            {activeProjectName !== '' ? (
+              <Link className="active_project" to="/project-page"><button type="button">{`Go to ${activeProjectName}`}</button></Link>) : <Link className="active_project" to="/project-page"><button type="button">Select a project</button></Link>}
+          </div>
         </SideBarDefault>
-        <table className="layersTitles ">
+        <Container fluid className="layersTitles">
+          <h2 className="title-page">Layers Catalog</h2>
+          <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
+          <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
+          <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
+          <div className="titreTable">
+            <Row className="head_table">
+              <Col className="title_table" xs="1" />
+              <Col className="title_table" xs="1">Shared</Col>
+              <Col className="title_table" xs="2">Name</Col>
+              <Col className="title_table desc" xs="5">Description</Col>
+              <Col className="title_table" xs="3">Url</Col>
+
+
+              <Col xs="1" />
+            </Row>
+          </div>
           <div className="layersScrolling">
-            <h1 className="title-page">Layers</h1>
-            <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
-            <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
-            <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
-            <tr>
-              <th />
-              <th>Layer name</th>
-              <th>Description</th>
-              <th>Maintainer</th>
-              <th>Repository</th>
-            </tr>
-            <div>
+            <div className="layers-cage">
               {layers.length !== 0 ? layers.filter(element => element.type === typeFilter || typeFilter === 'All').filter(element => (displayPublicPrivate ? element : element.share === shareFilter)).map(layer => (
                 <LayerFromCatalog
                   key={layer.id}
@@ -121,16 +135,18 @@ class LayersDisplay extends Component {
                 />
               )).slice(0, nbLayersShow) : (
                 <p>
-              No layers loaded.
+                    No layers loaded.
                   <span aria-label="cryEmoji" role="img"> 😭 </span>
-              Refresh the page!
+                    Refresh the page!
                   <span aria-label="cryEmoji" role="img"> 🔁 </span>
                 </p>
-              ) }
-              <button type="button" onClick={() => this.moreLayers()}>More layers </button>
+
+              )}
+              {(layers.length === 0 || layers.length < nbLayersShow) ? '' : <button type="button" onClick={() => this.moreLayers()}>More layers </button>}
             </div>
+            <br />
           </div>
-        </table>
+        </Container>
       </div>
     );
   }
@@ -140,43 +156,45 @@ LayersDisplay.defaultProps = {
   layers: [],
   typeFilter: '',
   categoryLayer: {},
+  activeProjectName: '',
 };
 
 LayersDisplay.propTypes = {
   // Props type shape
-  layers: PropTypes.shape({
+  layers: PropTypes.arrayOf(PropTypes.shape({
     color: PropTypes.string,
     fontSize: PropTypes.number,
-  }),
-  typeFilter: PropTypes.shape({
-    color: PropTypes.string,
-    fontSize: PropTypes.number,
-  }),
-  categoryLayer: PropTypes.shape({
+  })),
+  typeFilter: PropTypes.string,
+  categoryLayer: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     type: PropTypes.string,
-  }),
+  })),
   // Props type func
-  fetchData: PropTypes.func.isRequired,
+  fetchSearchLayerRedux: PropTypes.func.isRequired,
   filterTypeRedux: PropTypes.func.isRequired,
   newProjectModalAction: PropTypes.func.isRequired,
   fetchCategoriesLayerRedux: PropTypes.func.isRequired,
-
+  // Props type string
+  activeProjectName: PropTypes.string,
 };
 
 const mstp = state => ({
   layers: state.layersFetchDataSuccess,
   typeFilter: state.typeFilter,
   categoryLayer: state.categoryLayer,
-  projectUser: state.projectUser,
+  activeProjectName: state.activeProjectName,
   activeProjectId: state.activeProjectId,
+  wordFilter: state.wordFilter,
+  refreshFetch: state.refreshFetch,
 });
 
 const mdtp = dispatch => bindActionCreators({
-  fetchData: layersFetchData,
   filterTypeRedux: filterType,
   newProjectModalAction: newProjectModal,
   fetchCategoriesLayerRedux: fetchCategoriesLayer,
+  fetchSearchLayerRedux: fetchSearchLayer,
+  enableRefreshAction: enableRefresh,
 }, dispatch);
 
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import CardBestLayer from './CardBestLayer';
-import API_SERVER from '../../constants';
+import API_SERVER from '../constants';
 import './BestLayers.scss';
 
 class BestLayers extends Component {
@@ -31,10 +31,9 @@ class BestLayers extends Component {
           <Row>
             {
               mostdownloaded.map((element, index) => (
-                <Col md={{ size: 4 }} className="mb-1 mt-4 layerCard">
+                <Col key={element.id} md={{ size: 4 }} className="mb-1 mt-4 layerCard">
                   <NavLink className="test" to={`/layerinfos/${element.id}`}>
                     <CardBestLayer
-                      key={element.id}
                       rank={index + 1}
                       nameLayer={element.name}
                       download={element.mostDownload}

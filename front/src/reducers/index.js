@@ -14,6 +14,8 @@ import projectUser from './projectUser';
 import activeProjectId from './activeProjectId';
 import projectLayers from './projectLayers';
 import refreshFetch from './refreshFetch';
+import activeProjectName from './activeProjectName';
+import wordFilter from './wordFilter';
 
 const allReducers = combineReducers({
   modal,
@@ -33,6 +35,8 @@ const allReducers = combineReducers({
   activeProjectId,
   projectLayers,
   refreshFetch,
+  activeProjectName,
+  wordFilter,
 });
 
 export default allReducers;

@@ -43,6 +43,10 @@ class NewProjectModal extends Component {
     fetch(`${API_SERVER}/project`, conf)
       .then(() => history.push('/project-page'))
       .then(() => newProjectModalAction())
+      .then(this.setState({
+        projectDescription: '',
+        projectName: '',
+      }))
       .catch();
   }
 
@@ -72,8 +76,10 @@ class NewProjectModal extends Component {
 }
 
 NewProjectModal.propTypes = {
-  newProjectModalToggle: PropTypes.shape.isRequired,
-  userIsLogin: PropTypes.shape.isRequired,
+  newProjectModalToggle: PropTypes.string.isRequired,
+  userIsLogin: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
   newProjectModalAction: PropTypes.func.isRequired,
 };
 

@@ -18,8 +18,9 @@ import {
   newLayerModal,
   newProjectModal,
   switchLoginModal,
+  getWordFilter,
+  enableRefresh,
 } from '../actions';
-import { fetchSearchLayer } from '../actions/fetch';
 import logoHiventiveWhite from '../images/logoHiventive_white.png';
 import burgerMenu from '../images/burgerMenu.png';
 import './NavBarDefault.scss';
@@ -31,6 +32,7 @@ class NavBarDefault extends Component {
     this.state = {
       wordSearch: '',
       collapsed: true,
+      wordButton: 'Go to catalog',
     };
     this.searchChange = this.searchChange.bind(this);
     this.sendSearch = this.sendSearch.bind(this);
@@ -44,10 +46,19 @@ class NavBarDefault extends Component {
 
   sendSearch(event) {
     const { wordSearch } = this.state;
-    const { fetchSearchLayerRedux, history, filterTypeRedux } = this.props;
+    const {
+      enableRefreshAction,
+      getWordFilterAction,
+      history,
+      filterTypeRedux,
+    } = this.props;
     event.preventDefault();
-    fetchSearchLayerRedux(wordSearch);
     filterTypeRedux('All');
+    enableRefreshAction();
+    getWordFilterAction(wordSearch);
+    this.setState({
+      wordSearch: '',
+    });
     history.push('/ToolPage');
   }
 
@@ -64,13 +75,13 @@ class NavBarDefault extends Component {
       switchAddLayerModalRedux,
       newProjectModalAction,
     } = this.props;
-    const { collapsed, wordSearch } = this.state;
+    const { collapsed, wordSearch, wordButton } = this.state;
     return (
       <div className="NavBarTest">
         <Navbar className="navbarcolor navbar-fixed-top" expand="md">
           <NavLink to="/" className="navbar-brand d-inline align-center">
             <div className="logoalign">
-              <img className="d-inline-block align-center" alt="Hiventive" src={logoHiventiveWhite} width="45vw" height="40vw" />
+              <img className="d-inline-block align-center" alt="Hiventive" src={logoHiventiveWhite} width="40vw" height="40vw" />
               <h2 className="positiontitre">Hiventive</h2>
             </div>
           </NavLink>
@@ -89,8 +100,10 @@ class NavBarDefault extends Component {
                   name="search"
                   id="exampleSearch"
                   size="90"
+                  onFocus={() => this.setState({ wordButton: 'Search' })}
+                  onBlur={() => this.setState({ wordButton: 'Go to catalog' })}
                 />
-                <button className="btn btn-outline-light my-1 my-sm-1" type="submit">Search</button>
+                <button className="btn btn-outline-light my-1 my-sm-1" type="submit">{wordButton}</button>
               </form>
             </FormGroup>
             <Nav className="ml-auto colorhover" navbar>
@@ -111,9 +124,9 @@ class NavBarDefault extends Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <div className="displaymenu">
-                    <button className="buttonlink" type="button" onClick={() => switchLoginModalRedux()}>Your profile</button>
+                    <button className="buttonlink" type="button" onClick={() => switchLoginModalRedux()}>Profile</button>
                     <NavLink to="/project-page">
-                      <button className="buttonlink" type="button">Your projects</button>
+                      <button className="buttonlink" type="button">Projects</button>
                     </NavLink>
                   </div>
                 </DropdownMenu>
@@ -121,7 +134,6 @@ class NavBarDefault extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-
       </div>
     );
   }
@@ -135,8 +147,9 @@ const mdtp = dispatch => bindActionCreators({
   switchLoginModalRedux: switchLoginModal,
   newProjectModalAction: newProjectModal,
   switchAddLayerModalRedux: newLayerModal,
-  fetchSearchLayerRedux: fetchSearchLayer,
   filterTypeRedux: filterType,
+  getWordFilterAction: getWordFilter,
+  enableRefreshAction: enableRefresh,
 }, dispatch);
 
 export default withRouter(connect(mstp, mdtp)(NavBarDefault));

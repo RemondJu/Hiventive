@@ -35,3 +35,17 @@ export const selectActiveProject = projectId => ({
 export const enableRefresh = () => ({
   type: 'ENABLE_REFRESH',
 });
+
+export const getActiveProjectName = name => ({
+  type: 'GET_PROJECT_NAME',
+  name,
+});
+
+export const resetActiveProject = () => ({
+  type: 'RESET_ACTIVE_PROJECT',
+});
+
+export const getWordFilter = word => ({
+  type: 'GET_WORD_FILTER',
+  word,
+});
