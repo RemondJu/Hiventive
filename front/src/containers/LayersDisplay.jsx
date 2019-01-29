@@ -114,7 +114,7 @@ class LayersDisplay extends Component {
               <Col className="title_table" xs="1" />
               <Col className="title_table" xs="1">Shared</Col>
               <Col className="title_table" xs="2">Name</Col>
-              <Col className="title_table" xs="5">Description</Col>
+              <Col className="title_table desc" xs="5">Description</Col>
               <Col className="title_table" xs="3">Url</Col>
 
 
