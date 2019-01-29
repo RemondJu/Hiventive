@@ -155,7 +155,6 @@ class PageProject extends Component {
       newProjectName,
       newProjectDescription,
     } = this.state;
-    const title = activeProjectId !== 0 ? activeProjectName : 'Select a project';
     const pos = activeProjectId !== 0 ? projectUser.map(el => el.id).indexOf(activeProjectId) : 0;
     return (
       <div className="PageProject">
