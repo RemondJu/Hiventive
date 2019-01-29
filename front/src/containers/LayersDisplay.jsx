@@ -104,7 +104,7 @@ class LayersDisplay extends Component {
               <Link className="active_project" to="/project-page"><button type="button">{`Go to ${activeProjectName}`}</button></Link>) : <Link className="active_project" to="/project-page"><button type="button">Select a project</button></Link>}
           </div>
         </SideBarDefault>
-        <Container className="layersTitles">
+        <Container fluid className="layersTitles">
           <h2 className="title-page">Layers Catalog</h2>
           <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
           <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>

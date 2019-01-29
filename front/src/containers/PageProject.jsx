@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import './PageProject.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Container } from 'reactstrap';
 import {
   fetchProjectUser,
   fetchLayersFromActiveProject,
@@ -218,7 +219,7 @@ class PageProject extends Component {
                 </button>
                 {deleteButtonEnabled ? <button type="button" onClick={() => this.deleteProject(activeProjectId)}>Confirm</button> : ''}
               </div>) : ''}
-          <table className="layersTitles">
+          <Container fluid className="layersTitles">
             <div className="scrolling">
               {projectLayers[0] ? projectLayers.map(projectLayer => (
                 <LayerFromCatalog
@@ -236,7 +237,7 @@ class PageProject extends Component {
                   </p>
               )}
             </div>
-          </table>
+          </Container>
         </div>
       </div>
     );
