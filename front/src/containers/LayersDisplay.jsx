@@ -4,10 +4,14 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import {
+  Col, Row, Container,
+} from 'reactstrap';
 import { fetchCategoriesLayer, fetchSearchLayer } from '../actions/fetch';
 import LayerFromCatalog from './LayerFromCatalog';
 import { filterType, newProjectModal, enableRefresh } from '../actions';
 import SideBarDefault from '../components/SideBarDefault';
+
 
 class LayersDisplay extends Component {
   constructor(props) {
@@ -100,20 +104,22 @@ class LayersDisplay extends Component {
               <Link className="active_project" to="/project-page"><button type="button">{`Go to ${activeProjectName}`}</button></Link>) : <Link className="active_project" to="/project-page"><button type="button">Select a project</button></Link>}
           </div>
         </SideBarDefault>
-        <table className="layersTitles">
+        <Container className="layersTitles">
           <h2 className="title-page">Layers Catalog</h2>
           <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
           <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
           <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
           <div className="titreTable">
-            <tr>
-              <th />
-              <th>Name</th>
-              <th>Description</th>
-              <th>Url</th>
-              <th>Repository</th>
-              <th>Shared</th>
-            </tr>
+            <Row className="head_table">
+              <Col className="title_table" xs="1" />
+              <Col className="title_table" xs="1">Shared</Col>
+              <Col className="title_table" xs="2">Name</Col>
+              <Col className="title_table" xs="5">Description</Col>
+              <Col className="title_table" xs="3">Url</Col>
+
+
+              <Col xs="1" />
+            </Row>
           </div>
           <div className="layersScrolling">
             <div className="layers-cage">
@@ -140,7 +146,7 @@ class LayersDisplay extends Component {
             </div>
             <br />
           </div>
-        </table>
+        </Container>
       </div>
     );
   }

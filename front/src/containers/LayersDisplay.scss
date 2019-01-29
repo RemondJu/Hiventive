@@ -4,7 +4,12 @@
   height: 100%;
   position: relative;
   display: flex;
-
+.title_table{
+    font-size: 1.4em !important ;
+  }
+  .head_table{
+    padding: 15px 0px;
+  }
   p{
     margin: 10px 0;
     text-align: center;
@@ -82,21 +87,7 @@
       color: $fourth-color;
       padding-right: 8%;
       margin: 20px;
-     }
-    
-    th{
-      font-size: 1.1em;
-      margin-right: 13%;
     }
-
-    tr{
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.1em;
-      height: 65px;
-      align-items: center;
-    }
-    
     .priv-pub-button {
       margin: 1%;  
     }
@@ -146,5 +137,6 @@
     .layersTitles {
       width: 100%;
     }
-  }  
+  }
+  
 }
