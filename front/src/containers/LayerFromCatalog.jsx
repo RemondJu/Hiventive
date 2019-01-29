@@ -92,8 +92,8 @@ class LayerFromCatalog extends Component {
           }
         </Col>
         <Col sm="2" className=" text_row">{name}</Col>
-        <Col sm="5" className=" text_row">{description.length > 75 ? `${description.slice(0, 75)} ...` : description}</Col>
-        <Col sm="2" className=" text_row">{url}</Col>
+        <Col sm="4" className=" text_row">{description.length > 75 ? `${description.slice(0, 75)} ...` : description}</Col>
+        <Col sm="3" className=" text_row">{url}</Col>
 
         <Col sm="1"><button title={layerAdded ? 'Remove a layer in your project' : 'Adding a layer in your project'} className="add-remove-button" type="button" onClick={this.addLayerToProject}>{layerAdded ? 'RMV' : 'ADD'}</button></Col>
       </Row>
