@@ -4,20 +4,24 @@
   background-color: $opacity-background;
   width: auto;
   margin: 20px;
-
+  min-height: 80px ;
+.text_row{
+  margin: auto;
+  text-align: left;
+}
 .info-button {
 
 .imageRow{
   vertical-align: middle;
-  height: 65px;
+  height: 100%;
   min-width: 65px;
   background-color: $button-third;
   transition: 0.5s;
 
   .info {
-    width: 45px;
-    height: 45px;
-    margin-top: 14%;
+    width: 40px;
+    height: 40px;
+    margin: 30% 0px;
     transition: 0.5s;
   }
 }
@@ -35,10 +39,11 @@
   .isShare {
     height: 20px;
     width: 20px;
+    margin: 50% 0px;
   }
 
   .add-remove-button {
-    height: 65px;
+    height: 100%;
     width: 65px;
     border-radius: 0;
     font-weight: bolder;
