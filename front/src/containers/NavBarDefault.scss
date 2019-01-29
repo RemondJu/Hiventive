@@ -92,23 +92,22 @@
 
 /* Media screen */
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1300px) {
   .positionsearch {
     margin-left: 10px;
-    max-width: 80%;
+    max-width: 70%;
   }
+}
 
-  @media screen and (max-width: 750px) {
-    .positionsearch {
-      margin-left: 10px;
-      max-width: 80%;
-    }
+@media screen and (max-width: 1000px) {
+  .positionsearch {
+    margin-left: 10px;
+    max-width: 55%;
   }
+}
 
-  @media screen and (max-width: 600px) {
-    .positionsearch {
-      margin-left: 10px;
-      max-width: 80%;
-    }
+@media screen and (max-width: 350px) {
+  .positiontitre {
+    display: none;
   }
 }
