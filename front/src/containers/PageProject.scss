@@ -86,7 +86,7 @@
   .titleProject {
     text-align: center;
     margin-top: 2%;
-    width: 100%;
+    width: 80%;
 
     .titleDisplay {
       margin: 10px;
@@ -166,4 +166,13 @@
     height: 65px;
     align-items: center;
   }
+}
+
+@media screen and (max-width: 1100px) {
+  .PageProject{
+
+    .titleProject {
+      width: 100%;
+    }
+  }  
 }
