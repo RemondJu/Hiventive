@@ -82,9 +82,9 @@ class LayerFromCatalog extends Component {
             </div>
           </NavLink>
         </td>
-        <td className="tableText">{name}</td>
-        <td className="tableDescription">{description.length > 20 ? `${description.slice(0, 22)} ...` : description }</td>
-        <td className="tableUrl">{url.length > 20 ? `${url.slice(0, 30)} ...` : url }</td>
+        <td className="tableText">{name.length > 9 ? `${name.slice(0, 7)}...` : name}</td>
+        <td className="tableDescription">{description.length > 20 ? `${description.slice(0, 22)} ...` : description}</td>
+        <td className="tableUrl">{url.length > 20 ? `${url.slice(7, 20)} ...` : url}</td>
         <td className="tableText repo">{repository}</td>
         <td className="tableText share">
           {share
