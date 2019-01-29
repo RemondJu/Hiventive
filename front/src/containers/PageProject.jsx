@@ -4,9 +4,7 @@ import { withRouter } from 'react-router-dom';
 import './PageProject.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  Col, Row, Container,
-} from 'reactstrap';
+import { Container } from 'reactstrap';
 import {
   fetchProjectUser,
   fetchLayersFromActiveProject,
