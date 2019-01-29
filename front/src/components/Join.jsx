@@ -55,7 +55,7 @@ class Join extends Component {
               start={0}
               end={contributors}
               delay={5}
-              duration={10}
+              duration={2}
               useEasing
               useGrouping
               separator=" "
@@ -72,7 +72,7 @@ class Join extends Component {
               start={0}
               end={projects}
               delay={5}
-              duration={10}
+              duration={2}
               useEasing
               useGrouping
               separator=" "
@@ -87,7 +87,7 @@ class Join extends Component {
               start={0}
               end={allView}
               delay={5}
-              duration={10}
+              duration={2}
               useEasing
               useGrouping
               separator=" "
@@ -102,7 +102,7 @@ class Join extends Component {
               start={0}
               end={allDownload}
               delay={5}
-              duration={10}
+              duration={2}
               useEasing
               useGrouping
               separator=" "
