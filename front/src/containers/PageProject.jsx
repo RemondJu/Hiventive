@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './PageProject.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -164,11 +164,12 @@ class PageProject extends Component {
             <ul className="projects-list">
               {projectUser.map(userProject => <li key={userProject.id}><button type="button" className="filter" onClick={() => this.selectProject(userProject.id, userProject.name)}>{userProject.name}</button></li>)}
             </ul>
-            <NavLink to="/project-build-page">
-              <button className="button-build" type="button">
-                Build your OS
-              </button>
-            </NavLink>
+            {activeProjectId ? (
+              <a href="./fileSend.md" download="fileSend.md" className="button-build">
+                {`Build your OS \n${activeProjectName}`}
+              </a>
+            ) : ''}
+
           </div>
         </SideBarDefault>
         <div className="titleProject">
@@ -230,10 +231,10 @@ class PageProject extends Component {
                   share={projectLayer.share}
                 />)) : (
                   <p className="EmptyMessage">
-                No layers yet...
+                    No layers yet...
                     <span aria-label="cryEmoji" role="img"> 😭 </span>
                   </p>
-              ) }
+              )}
             </div>
           </table>
         </div>
