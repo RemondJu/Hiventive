@@ -43,6 +43,10 @@ class NewProjectModal extends Component {
     fetch(`${API_SERVER}/project`, conf)
       .then(() => history.push('/project-page'))
       .then(() => newProjectModalAction())
+      .then(this.setState({
+        projectDescription: '',
+        projectName: '',
+      }))
       .catch();
   }
 
