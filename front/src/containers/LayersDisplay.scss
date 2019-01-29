@@ -1,26 +1,35 @@
 @import '../index.scss';
 
-.LayersDisplay {
-  width: 100%;
+.LayersDisplay{
+  width:100%;
+  height: 100%;
+  position: relative;
   display: flex;
 
-  .filters {
-    h2 {
-      font-weight: bold;
-    }
+  p{
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+  }
 
-    .projects-list {
-      list-style-type: none;
-      padding-inline-start: 0;
-    }
+  h2{
+    font-weight: bold;
+  }
 
+  .filters{
     display: flex;
-    margin-bottom: 50px;
+    min-height: 100%;
+    margin-bottom: 40%;
     flex-direction: column;
     align-items: flex-start;
     padding-left: 15px;
 
-    .filter {
+    .projects-list{
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
+
+    .filter{
       margin-top: 10px;
       background: none;
       color: $third-color;
@@ -38,14 +47,14 @@
 
   .active_project {
     color: white;
-    font-size: 1.3em;
     text-align: center;
     margin: 30% 0px;
     font-family: $font-general;
   }
 
-  button {
-    border-radius: 8px;
+  button{
+    width: 160px;
+    border-radius: 5px;
     padding: 10px 15px;
     border: none;
     background-color: $button-third;
@@ -65,12 +74,12 @@
     transition: 0.4s;
   }
 
-  .layersTitles {
+  .layersTitles{
     color: $third-color;
     text-align: center;
     margin-top: 16px;
     width: 100%;
-
+    
     .titreTable {
       background-color: $third-color;
       color: $fourth-color;
@@ -78,35 +87,35 @@
       margin-right: 5%;
       width: 95%;
       margin-left: 2.4%;
+     }
+    
+    th{
+      font-size: 1.1em;
+      margin-right: 13%;
     }
 
-    th {
-      font-size: 1.3em;
-    }
-
-    tr {
+    tr{
       display: flex;
       justify-content: space-between;
-      padding-left: 1%;
-      padding-right: 1%;
       font-size: 1.1em;
       height: 65px;
       align-items: center;
     }
-
-
+    
     .priv-pub-button {
       margin: 1%;
     }
   }
 
   .layers-cage {
-    margin-left: 1%;
+    align-items: baseline;
   }
 }
 
 .title-page {
-  margin: 10px;
+  margin-top: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .layersScrolling {

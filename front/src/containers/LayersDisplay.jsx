@@ -15,7 +15,7 @@ class LayersDisplay extends Component {
     this.state = {
       shareFilter: 1,
       displayPublicPrivate: true,
-      nbLayersShow: 5,
+      nbLayersShow: 4,
     };
     this.showPrivateLayers = this.showPrivateLayers.bind(this);
     this.showPublicLayers = this.showPublicLayers.bind(this);
@@ -64,7 +64,7 @@ class LayersDisplay extends Component {
 
   moreLayers() {
     this.setState(prevState => ({
-      nbLayersShow: prevState.nbLayersShow + 5,
+      nbLayersShow: prevState.nbLayersShow + 3,
     }));
   }
 
@@ -81,27 +81,27 @@ class LayersDisplay extends Component {
     const { displayPublicPrivate, shareFilter } = this.state;
     return (
       <div className="LayersDisplay">
-        <SideBarDefault title={activeProjectName !== '' ? (
-          <Link className="active_project" to="/project-page">
-            {`Project ${activeProjectName}`}
-          </Link>
-        ) : <Link className="active_project" to="/project-page">Select project</Link>}
-        >
+        <SideBarDefault>
           <div className="filters">
             <h2>Filters</h2>
             <ul className="projects-list">
-              <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All</button>
+              <button type="button" onClick={() => filterTypeRedux('All')} className="filter">All layers</button>
               {(categoryLayer !== undefined)
                 ? categoryLayer.map(type => <li key={type.id}><button type="button" onClick={() => filterTypeRedux(type.type)} className="filter">{type.type}</button></li>)
                 : '. . .'}
             </ul>
           </div>
           <button className="button_new_project" type="button" onClick={newProjectModalAction}>
-            + New project
+            Create project
           </button>
+          <p>OR</p>
+          <div>
+            {activeProjectName !== '' ? (
+              <Link className="active_project" to="/project-page"><button type="button">{`Go to ${activeProjectName}`}</button></Link>) : <Link className="active_project" to="/project-page"><button type="button">Select a project</button></Link>}
+          </div>
         </SideBarDefault>
         <table className="layersTitles">
-          <h1 className="title-page">Layers</h1>
+          <h2 className="title-page">Layers Catalog</h2>
           <button type="button" onClick={this.showPrivateLayers} className="priv-pub-button">private</button>
           <button type="button" onClick={this.showPublicLayers} className="priv-pub-button">public</button>
           <button type="button" onClick={this.showAllLayers} className="priv-pub-button">all</button>
@@ -136,9 +136,9 @@ class LayersDisplay extends Component {
                 </p>
 
               )}
-
               {(layers.length === 0 || layers.length < nbLayersShow) ? '' : <button type="button" onClick={() => this.moreLayers()}>More layers </button>}
             </div>
+            <br />
           </div>
         </table>
       </div>

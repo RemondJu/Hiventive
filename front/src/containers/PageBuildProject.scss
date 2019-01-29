@@ -2,6 +2,7 @@
 
 button{
   padding: 10px 15px;
+  width: 120px;
   border: none;
   background-color: $button-third;
   color: white;
@@ -13,14 +14,10 @@ button{
   }
 }
 button:hover{
-  border-radius: 8px;
+  border-radius: 5px;
   background-color: $fourth-color;
   color: $third-color;
   transition: 0.4s;
-}
-
-h1 {
-  margin-left: auto;
 }
 
 .page_build-project{
@@ -52,7 +49,7 @@ h1 {
 
     .button-build{
       margin : 10px auto;
-      border-radius: 8px;
+      border-radius: 5px;
       padding: 10px 15px;
       border: none;
       background-color: $button-third;

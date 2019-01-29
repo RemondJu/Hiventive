@@ -1,27 +1,27 @@
 @import '../index.scss';
 
 .PageProject {
-  height: 100%;
   display: flex;
+  height: 100%;
+  width:100%;
+  display: flex;
+  position: relative;
 
   h2 {
     font-weight: bold;
   }
 
-  .projects-list {
-    list-style-type: none;
-    padding-inline-start: 0;
-  }
-
   button {
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 10px 15px;
     border: none;
+    width: 160px;
     background-color: $button-third;
     color: white;
     align-self: center;
     font-weight: bold;
     transition: 0.4s;
+    
     span{
       font-size: 1em;
     }
@@ -31,6 +31,20 @@
     background-color: $fourth-color;
     color: $third-color;
     transition: 0.4s;
+  }
+
+  .filters{
+    display: flex;
+    min-height: 100%;
+    margin-bottom: 40%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 15px;
+
+    .projects-list {
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
   }
 
   .filter {
@@ -49,8 +63,9 @@
   }
 
   .button-build {
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 10px 15px;
+    width: 160px;
     border: none;
     background-color: $button-third;
     color: white;
@@ -74,9 +89,6 @@
     width: 100%;
 
     .titleDisplay {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       margin: 10px;
 
       .flexAdjust {
@@ -88,22 +100,21 @@
         flex-direction: column;
         margin-left: auto;
         color: $third-color;
-        height: 148px;
-
-        h1, p {
-          margin: 0px 0px 15px 0px;
-        }
 
         .button_display_submit {
-          border-radius: 8px;
+          border-radius: 5px;
         }
 
         .label_input {
 
           .editionInput {
-            border-radius: 8px;
+            border-radius: 5px;
             padding: 8px;
           }
+        }
+
+        .description_style{
+          font-size: 20px;
         }
       }
 
@@ -113,7 +124,7 @@
     }
   }
   .button_display {
-    border-radius: 8px;
+    border-radius: 5px;
     margin: 0px 10px;
   }
 
@@ -147,13 +158,9 @@
     }
   }
 
-  
-
   tr {
     display: flex;
     justify-content: space-between;
-    padding-left: 1%;
-    padding-right: 1%;
     font-size: 1.1em;
     margin-top: 15px;
     height: 65px;
